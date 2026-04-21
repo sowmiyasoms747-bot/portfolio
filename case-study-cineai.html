@@ -3608,7 +3608,7 @@
               <div class="cs-centered-content">
                 <!-- Hierarchical Flow Diagram (Recreated from User Sketch) -->
                 <div class="flow-diagram-canvas reveal reveal-delay-1"
-                  style="background: #0a0a0a; padding: 60px 24px; border-radius: 20px; border: 1px solid #222; width: 100%; position: relative; overflow: hidden;">
+                  style="background: #0a0a0a; padding: 60px 24px 80px; border-radius: 20px; border: 1px solid #222; width: 100%; position: relative; overflow-x: auto; -webkit-overflow-scrolling: touch;">
 
                   <!-- Background Decorative Element -->
                   <div
@@ -3617,7 +3617,7 @@
 
                   <!-- Top Navigation Section -->
                   <div class="flow-nav-container"
-                    style="display: flex; justify-content: center; gap: 40px; margin-bottom: 40px; position: relative; z-index: 2;">
+                    style="display: flex; justify-content: center; gap: 40px; margin-bottom: 40px; position: relative; z-index: 2; min-width: 600px;">
                     <div style="display: flex; flex-direction: column; align-items: center; width: 100px;">
                       <div class="nav-node"
                         style="padding: 10px 0; border: 1px solid #333; border-radius: 40px; font-size: 0.75rem; font-weight: 700; color: #444; width: 100%; text-align: center; opacity: 0.5;">
@@ -3710,10 +3710,25 @@
                       text-transform: uppercase;
                       letter-spacing: 0.5px;
                     }
+
+                    @media (max-width: 768px) {
+                      .flow-diagram-canvas::after {
+                        content: '← Swipe to see full flow →';
+                        position: absolute;
+                        bottom: 20px;
+                        left: 50%;
+                        transform: translateX(-50%);
+                        font-size: 0.75rem;
+                        color: #555;
+                        text-transform: uppercase;
+                        letter-spacing: 1px;
+                        white-space: nowrap;
+                      }
+                    }
                   </style>
 
                   <div class="flow-main-container"
-                    style="display: flex; justify-content: center; gap: 40px; align-items: flex-start; position: relative;">
+                    style="display: flex; justify-content: center; gap: 40px; align-items: flex-start; position: relative; min-width: 600px;">
 
 
                     <div style="width: 100px;"></div>

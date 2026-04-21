@@ -37,7 +37,7 @@
       /* Changed from #ffffff to be card background in dark theme */
       --text-dark: #ffffff;
 
-      --shadow-sm: 0 2px 12px rgba(255, 255, 255, 0.05);
+      --shadow-sm: 0 2px 12px rgba(227, 27, 27, 0.05);
       --shadow-md: 0 8px 32px rgba(255, 255, 255, 0.08);
       --shadow-lg: 0 20px 60px rgba(255, 255, 255, 0.1);
 
@@ -239,9 +239,9 @@
       display: none;
       position: fixed;
       inset: 0;
-      background: rgba(0, 0, 0, 0.97);
-      backdrop-filter: blur(20px);
-      z-index: 999;
+      background: rgba(0, 0, 0, 0.98);
+      backdrop-filter: blur(25px);
+      z-index: 2000;
       flex-direction: column;
       align-items: center;
       justify-content: center;
@@ -264,11 +264,27 @@
 
     .close-nav {
       position: absolute;
-      top: 24px;
+      top: 30px;
       right: 32px;
-      font-size: 2rem;
-      color: var(--text-mid);
+      font-size: 2.2rem;
+      color: #ffffff;
       cursor: pointer;
+      width: 44px;
+      height: 44px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 50%;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      transition: all 0.3s ease;
+      pointer-events: auto !important;
+      z-index: 2100;
+    }
+
+    .close-nav:hover {
+      background: rgba(255, 255, 255, 0.15);
+      transform: rotate(90deg);
     }
 
     /* ── Sections ── */
@@ -424,12 +440,12 @@
     .btn-primary {
       padding: 16px 36px;
       border-radius: 50px;
-      background: white;
+      background: rgb(255, 255, 255);
       color: black;
       font-size: 0.9rem;
       font-weight: 500;
       letter-spacing: 0.02em;
-      box-shadow: 0 8px 24px rgba(255, 255, 255, 0.15);
+      box-shadow: 0 8px 24px rgba(6, 6, 6, 0.15);
       transition: all var(--transition);
       border: none;
       cursor: none;
@@ -437,7 +453,7 @@
 
     .btn-primary:hover {
       transform: translateY(-3px);
-      box-shadow: 0 14px 32px rgba(255, 255, 255, 0.25);
+      box-shadow: 0 14px 32px rgba(12, 12, 12, 0.25);
       background: #eeeeee;
     }
 
@@ -1404,7 +1420,7 @@
 
   <!-- Mobile Nav -->
   <div class="mobile-nav" id="mobileNav">
-    <span class="close-nav" id="closeNav">✕</span>
+    <span class="close-nav" id="closeNav" onclick="closeMobileNav()">✕</span>
     <a href="#hero" onclick="closeMobileNav()">Home</a>
     <a href="#about" onclick="closeMobileNav()">About</a>
     <a href="#portfolio" onclick="closeMobileNav()">Work</a>
