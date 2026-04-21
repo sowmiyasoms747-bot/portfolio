@@ -1454,6 +1454,16 @@
       .chip-3 {
         display: none;
       }
+
+      /* Fix Hamburger Menu Overlap */
+      .mobile-nav.open ~ nav #hamburger {
+        display: none !important;
+      }
+
+      /* Fix Contact Form Group Overflow */
+      .contact-form-grid {
+        grid-template-columns: 1fr !important;
+      }
     }
   </style>
 </head>
@@ -1560,7 +1570,7 @@
           </div>
 
           <div class="about-stat">
-            <div class="num">2+</div>
+            <div class="num">Fresher</div>
             <div class="lbl">Experience</div>
           </div>
         </div>
@@ -1778,7 +1788,7 @@
         <input type="hidden" name="from_name" value="Sowmiya Portfolio">
         <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
 
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+        <div class="contact-form-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
           <div class="form-group">
             <label>Your Name</label>
             <input type="text" name="name" placeholder="Your name" required>

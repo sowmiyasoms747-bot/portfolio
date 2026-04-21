@@ -2482,6 +2482,20 @@
       .cs-meta {
         gap: 20px;
       }
+
+      /* Fix Hamburger Menu Overlap */
+      .mobile-nav.open ~ nav #hamburger {
+        display: none !important;
+      }
+
+      /* Fix User Flow Overflow */
+      .flow-nav-container {
+        flex-direction: row !important;
+        overflow-x: auto;
+        justify-content: flex-start !important;
+        padding-bottom: 20px;
+        -webkit-overflow-scrolling: touch;
+      }
     }
 
     /* ── App Banner & Smart Button ── */
@@ -3602,7 +3616,7 @@
                   </div>
 
                   <!-- Top Navigation Section -->
-                  <div
+                  <div class="flow-nav-container"
                     style="display: flex; justify-content: center; gap: 40px; margin-bottom: 40px; position: relative; z-index: 2;">
                     <div style="display: flex; flex-direction: column; align-items: center; width: 100px;">
                       <div class="nav-node"
@@ -3698,7 +3712,7 @@
                     }
                   </style>
 
-                  <div
+                  <div class="flow-main-container"
                     style="display: flex; justify-content: center; gap: 40px; align-items: flex-start; position: relative;">
 
 
