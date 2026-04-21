@@ -1,0 +1,4142 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BookMyShow Pre-Booking Case Study — Sowmiya</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Outfit:wght@300;400;500;600;700;800&family=DM+Sans:wght@300;400;500&display=swap"
+    rel="stylesheet">
+  <style>
+    /* ── CSS Variables (matches portfolio) ── */
+    :root {
+      /* Monochrome Palette */
+      --white: #ffffff;
+      --black: #000000;
+      --bg-dark: #000000;
+      --bg-surface: #0a0a0a;
+      --bg-card: #121212;
+      --text-main: #ffffff;
+      --text-mid: #a0a0a0;
+      --text-soft: #707070;
+      --accent: #ffffff;
+      --border: #333333;
+
+      /* Mapping pink variables to monochrome for compatibility */
+      --pink-50: #0a0a0a;
+      --pink-100: #1a1a1a;
+      --pink-200: #333333;
+      --pink-300: #666666;
+      --pink-400: #ffffff;
+      --pink-500: #ffffff;
+      --blush: #0a0a0a;
+      --rose: #ffffff;
+      --cream: #000000;
+      --text-dark: #ffffff;
+
+      --shadow-sm: 0 2px 12px rgba(255, 255, 255, 0.05);
+      --shadow-md: 0 8px 32px rgba(255, 255, 255, 0.08);
+      --shadow-lg: 0 20px 60px rgba(255, 255, 255, 0.1);
+
+      --radius-sm: 12px;
+      --radius-md: 20px;
+      --radius-lg: 32px;
+      --transition: 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      font-size: 16px;
+    }
+
+    body {
+      font-family: 'Outfit', sans-serif;
+      background: var(--cream);
+      color: var(--text-dark);
+      overflow-x: hidden;
+      cursor: none;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    /* ── Custom Cursor ── */
+    .cursor {
+      width: 12px;
+      height: 12px;
+      background: white;
+      border-radius: 50%;
+      position: fixed;
+      top: 0;
+      left: 0;
+      pointer-events: none;
+      z-index: 9999;
+      transform: translate(-50%, -50%);
+      transition: width 0.3s, height 0.3s;
+      mix-blend-mode: difference;
+    }
+
+    .cursor-follower {
+      width: 36px;
+      height: 36px;
+      border: 1.5px solid var(--pink-300);
+      border-radius: 50%;
+      position: fixed;
+      top: 0;
+      left: 0;
+      pointer-events: none;
+      z-index: 9998;
+      transform: translate(-50%, -50%);
+      transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    body:has(a:hover) .cursor,
+    body:has(button:hover) .cursor {
+      width: 45px;
+      height: 45px;
+      background: transparent;
+      border: 1px solid white;
+    }
+
+    body:has(a:hover) .cursor-follower,
+    body:has(button:hover) .cursor-follower {
+      width: 0;
+      height: 0;
+      opacity: 0;
+    }
+
+    /* ── Scroll Progress ── */
+    #progress-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 3px;
+      background: linear-gradient(90deg, #666, #fff);
+      z-index: 10000;
+      width: 0%;
+    }
+
+    /* ── Navbar ── */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      padding: 20px 30px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      transition: background 0.4s, box-shadow 0.4s, padding 0.4s;
+    }
+
+    nav.scrolled {
+      background: rgba(0, 0, 0, 0.92);
+      backdrop-filter: blur(20px);
+      box-shadow: 0 2px 24px rgba(255, 255, 255, 0.05);
+      padding: 14px 30px;
+    }
+
+    .nav-logo {
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.6rem;
+      font-weight: 600;
+      color: var(--text-dark);
+      letter-spacing: -0.02em;
+    }
+
+    .nav-logo span {
+      color: var(--rose);
+      font-style: normal;
+    }
+
+    .nav-back {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--text-mid);
+      padding: 10px 22px;
+      border-radius: 50px;
+      border: 1.5px solid var(--pink-200);
+      transition: all var(--transition);
+    }
+
+    .nav-back:hover {
+      background: white;
+      color: black;
+      border-color: white;
+    }
+
+    /* ── Reveal ── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(36px);
+      transition: opacity 0.8s var(--transition), transform 0.8s var(--transition);
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .reveal-delay-1 {
+      transition-delay: 0.1s;
+    }
+
+    .reveal-delay-2 {
+      transition-delay: 0.2s;
+    }
+
+    .reveal-delay-3 {
+      transition-delay: 0.3s;
+    }
+
+    .reveal-delay-4 {
+      transition-delay: 0.4s;
+    }
+
+    /* ── Section helpers ── */
+    .section-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.72rem;
+      font-weight: 500;
+      color: var(--text-soft);
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+
+    .section-label::before {
+      content: '';
+      width: 26px;
+      height: 1px;
+      background: var(--pink-300);
+      display: inline-block;
+    }
+
+    h2.cs-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: clamp(1.9rem, 3.5vw, 2.8rem);
+      font-weight: 500;
+      color: var(--text-dark);
+      line-height: 1.12;
+      letter-spacing: -0.02em;
+      margin-bottom: 28px;
+    }
+
+    h2.cs-title em {
+      font-style: normal;
+      color: var(--rose);
+    }
+
+    /* ── HERO ── */
+    #cs-hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: center;
+      padding: 120px 30px 80px;
+      position: relative;
+      overflow: hidden;
+      background: linear-gradient(160deg, #000000 60%, #0a0a0a 100%);
+    }
+
+    .hero-orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(72px);
+      pointer-events: none;
+    }
+
+    .hero-orb-1 {
+      width: 500px;
+      height: 500px;
+      background: #111111;
+      top: -80px;
+      right: -100px;
+      opacity: 0.7;
+      animation: floatOrb 9s ease-in-out infinite;
+    }
+
+    .hero-orb-2 {
+      width: 300px;
+      height: 300px;
+      background: var(--blush);
+      bottom: 60px;
+      left: -60px;
+      opacity: 0.5;
+      animation: floatOrb 7s 3s ease-in-out infinite;
+    }
+
+    @keyframes floatOrb {
+
+      0%,
+      100% {
+        transform: translateY(0);
+      }
+
+      50% {
+        transform: translateY(-28px);
+      }
+    }
+
+    .cs-breadcrumb {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.78rem;
+      color: var(--text-soft);
+      margin-bottom: 36px;
+      animation: fadeUp 0.7s 0.2s both;
+    }
+
+    .cs-breadcrumb span {
+      color: var(--pink-300);
+    }
+
+    .cs-tag {
+      display: inline-block;
+      padding: 6px 16px;
+      border-radius: 50px;
+      background: #111111;
+      border: 1px solid #333333;
+      font-size: 0.72rem;
+      font-weight: 600;
+      color: white;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+      animation: fadeUp 0.7s 0.3s both;
+    }
+
+    h1.cs-hero-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: clamp(2.8rem, 6vw, 5rem);
+      font-weight: 500;
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+      color: var(--text-dark);
+      max-width: 760px;
+      animation: fadeUp 0.8s 0.4s both;
+    }
+
+    h1.cs-hero-title em {
+      font-style: normal;
+      color: var(--rose);
+    }
+
+    .bms-icon {
+      display: inline-block;
+      height: 0.9em;
+      width: auto;
+      vertical-align: -0.12em;
+      margin: 0 0.05em;
+      fill: #ffffff;
+      filter: drop-shadow(0 0 10px rgba(2, 2, 2, 0.3));
+    }
+
+    .cs-hero-impact {
+      font-size: 1.12rem;
+      color: var(--text-mid);
+      font-weight: 300;
+      max-width: 560px;
+      line-height: 1.7;
+      margin-top: 20px;
+      animation: fadeUp 0.8s 0.55s both;
+    }
+
+    .cs-meta {
+      display: flex;
+      gap: 36px;
+      margin-top: 44px;
+      flex-wrap: wrap;
+      animation: fadeUp 0.8s 0.7s both;
+    }
+
+    .cs-meta-item {}
+
+    .cs-meta-item .meta-label {
+      font-size: 0.68rem;
+      font-weight: 600;
+      color: var(--text-soft);
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      margin-bottom: 5px;
+    }
+
+    .cs-meta-item .meta-val {
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: var(--text-dark);
+    }
+
+    /* hero visual / mockup area */
+
+
+    .cs-hero-visual {
+      position: absolute;
+      right: 30px;
+      top: 50%;
+      transform: translateY(-50%) perspective(1500px) rotateY(-15deg) rotateX(5deg);
+      width: 380px;
+      animation: heroFloat 6s ease-in-out infinite, fadeUp 1s 0.6s both;
+      z-index: 10;
+    }
+
+    @keyframes heroFloat {
+
+      0%,
+      100% {
+        transform: translateY(-50%) perspective(1500px) rotateY(-15deg) rotateX(5deg) translateY(0);
+      }
+
+      50% {
+        transform: translateY(-50%) perspective(1500px) rotateY(-15deg) rotateX(5deg) translateY(-20px);
+      }
+    }
+
+    .premium-mockup {
+      position: relative;
+      width: 100%;
+      border-radius: 54px;
+      background: #000;
+      padding: 10px;
+      /* Chrome Outer Bezel */
+      border: 3px solid #d4d4d4;
+      box-shadow:
+        0 40px 100px rgba(0, 0, 0, 0.6),
+        inset 0 0 10px rgba(255, 255, 255, 0.2);
+    }
+
+    /* Traditional Notch Style from Image */
+    .premium-mockup::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 140px;
+      height: 32px;
+      background: #000;
+      border-radius: 0 0 18px 18px;
+      z-index: 20;
+    }
+
+    .premium-mockup img {
+      width: 100%;
+      display: block;
+      height: auto;
+      border-radius: 42px;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+      position: relative;
+      z-index: 10;
+    }
+
+    /* Side Buttons from Image */
+    .premium-mockup::after {
+      content: '';
+      position: absolute;
+      left: -6px;
+      top: 120px;
+      width: 4px;
+      height: 50px;
+      background: #c0c0c0;
+      border-radius: 2px 0 0 2px;
+      box-shadow: 
+        0 60px 0 #c0c0c0, /* Volume Down */
+        -2px 0 0 rgba(0,0,0,0.3) inset;
+      z-index: -1;
+    }
+
+    /* Power Button on Right */
+    .premium-mockup .power-btn {
+      position: absolute;
+      right: -6px;
+      top: 180px;
+      width: 4px;
+      height: 70px;
+      background: #c0c0c0;
+      border-radius: 0 2px 2px 0;
+      z-index: -1;
+    }
+
+    @media (max-width: 1200px) {
+      .cs-hero-visual {
+        width: 340px;
+        right: 30px;
+        padding-right: 0;
+      }
+    }
+
+    @media (max-width: 900px) {
+      .cs-hero-visual {
+        position: relative;
+        right: 0;
+        top: 0;
+        transform: none !important;
+        width: 320px;
+        margin: 60px auto 0;
+        animation: none;
+      }
+
+      .premium-mockup {
+        border-radius: 32px;
+        padding: 8px;
+      }
+
+      .premium-mockup img {
+        border-radius: 24px;
+      }
+
+      .premium-mockup::before {
+        width: 60px;
+        height: 18px;
+        top: 15px;
+      }
+    }
+
+    .mockup-screen {
+      flex: 1;
+      padding: 20px 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .mockup-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .mockup-logo-text {
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.1rem;
+      color: #ffffff;
+      font-style: normal;
+    }
+
+    .mockup-avatar {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--pink-400), var(--rose));
+    }
+
+    .mockup-banner {
+      border-radius: 18px;
+      height: 140px;
+      background: linear-gradient(135deg, #333 0%, #111 60%, #222 100%);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 16px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .mockup-banner::before {
+      content: '🎬';
+      font-size: 5rem;
+      position: absolute;
+      top: -10px;
+      right: -10px;
+      opacity: 0.2;
+    }
+
+    .mockup-movie-badge {
+      font-size: 0.6rem;
+      color: rgba(255, 255, 255, 0.7);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .mockup-movie-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.1rem;
+      color: white;
+      font-weight: 600;
+    }
+
+    .mockup-ai-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 14px;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 14px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .ai-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: white;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+
+      0%,
+      100% {
+        opacity: 1;
+        transform: scale(1);
+      }
+
+      50% {
+        opacity: .6;
+        transform: scale(1.4);
+      }
+    }
+
+    .ai-text {
+      font-size: 0.68rem;
+      color: #ffffff;
+      font-weight: 500;
+    }
+
+    .mockup-slots {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .slot-row {
+      display: flex;
+      gap: 8px;
+    }
+
+    .slot-chip {
+      flex: 1;
+      padding: 10px 6px;
+      border-radius: 10px;
+      text-align: center;
+      font-size: 0.65rem;
+      font-weight: 600;
+    }
+
+    .slot-chip.available {
+      background: rgba(255, 255, 255, 0.05);
+      color: #888;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .slot-chip.booked {
+      background: white;
+      color: black;
+    }
+
+    .slot-chip.full {
+      background: rgba(255, 255, 255, 0.05);
+      color: rgba(255, 255, 255, 0.3);
+      border: 1px dashed rgba(255, 255, 255, 0.1);
+    }
+
+    .mockup-cta {
+      margin-top: auto;
+      padding: 14px;
+      border-radius: 14px;
+      background: white;
+      text-align: center;
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: black;
+      box-shadow: 0 8px 20px rgba(255, 255, 255, 0.1);
+    }
+
+    .mockup-indicator {
+      display: flex;
+      justify-content: center;
+      gap: 6px;
+      padding: 12px 0;
+    }
+
+    .indicator-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.2);
+    }
+
+    .indicator-dot.active {
+      background: var(--pink-400);
+      width: 18px;
+      border-radius: 3px;
+    }
+
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(32px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* ── Main Content ── */
+    .cs-main {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 30px 100px;
+    }
+
+    /* ── CS Section ── */
+    .cs-section {
+      padding: 80px 0;
+      border-bottom: 1px solid var(--pink-100);
+    }
+
+    .cs-section:last-child {
+      border-bottom: none;
+    }
+
+    .two-col {
+      display: grid;
+      grid-template-columns: 200px 1fr;
+      gap: 60px;
+    }
+
+    .cs-sidebar-label {
+      font-size: 0.72rem;
+      font-weight: 600;
+      color: var(--text-soft);
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      padding-top: 4px;
+      margin-bottom: 12px;
+      display: inline-block;
+    }
+
+    /* ── Centered Section Patterns ── */
+    .cs-section-center {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    .cs-section-center .cs-title {
+      max-width: 1000px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .cs-centered-content {
+      width: 100%;
+      max-width: 1000px;
+      text-align: left;
+      margin: 0 auto;
+    }
+
+    /* ── Image placeholders (where real screenshots go) ── */
+    .img-block {
+      width: 100%;
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      position: relative;
+      background: linear-gradient(135deg, var(--pink-50), var(--blush));
+      border: 1px solid var(--pink-100);
+      margin: 28px 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 48px 32px;
+      gap: 12px;
+    }
+
+    .img-block.tall {
+      min-height: 360px;
+    }
+
+    .img-block.medium {
+      min-height: 260px;
+    }
+
+    .img-block.short {
+      min-height: 180px;
+    }
+
+    .img-block-icon {
+      font-size: 2.5rem;
+      opacity: 0.5;
+    }
+
+    .img-block-label {
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--rose);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .img-block-sub {
+      font-size: 0.75rem;
+      color: var(--text-soft);
+      max-width: 280px;
+      line-height: 1.6;
+    }
+
+    .img-row {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 16px;
+      margin: 28px 0;
+    }
+
+    .img-row .img-block {
+      margin: 0;
+    }
+
+    /* ── Bullets / Lists ── */
+    .cs-bullets {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .cs-bullets li {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      font-size: 0.92rem;
+      color: var(--text-mid);
+      line-height: 1.5;
+      text-align: inherit;
+    }
+
+    .cs-bullets li::before {
+      content: '';
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--rose);
+      margin-top: 8px;
+      flex-shrink: 0;
+    }
+
+    .cs-bullets.centered {
+      display: inline-flex;
+      flex-direction: column;
+      align-items: flex-start;
+      text-align: left;
+      margin: 0 auto;
+    }
+
+    .cs-bullets.centered li {
+      max-width: 600px;
+    }
+
+    .cs-bullets.centered li::before {
+      display: block;
+      /* Restore bullets */
+      background: var(--rose);
+      flex-shrink: 0;
+    }
+
+    .cs-bullets li strong {
+      color: var(--text-dark);
+      font-weight: 500;
+    }
+
+    /* ── Goal / Feature chips ── */
+    .goal-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      margin-top: 4px;
+    }
+
+    .goal-card {
+      padding: 20px 22px;
+      border-radius: var(--radius-sm);
+      background: #0a0a0a;
+      border: 1px solid #333;
+      box-shadow: var(--shadow-sm);
+      transition: transform var(--transition), box-shadow var(--transition);
+    }
+
+    .goal-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .goal-icon {
+      font-size: 1.4rem;
+      margin-bottom: 10px;
+    }
+
+    .goal-text {
+      font-size: 0.88rem;
+      color: var(--text-mid);
+      line-height: 1.6;
+    }
+
+    .goal-text strong {
+      display: block;
+      font-size: 0.92rem;
+      color: var(--text-dark);
+      font-weight: 500;
+      margin-bottom: 4px;
+    }
+
+    /* ── Solution callout ── */
+    .solution-callout {
+      padding: 32px 36px;
+      border-radius: var(--radius-md);
+      background: #0a0a0a;
+      border: 1px solid #333;
+      border-left: 4px solid white;
+      font-size: 1rem;
+      color: var(--text-mid);
+      line-height: 1.8;
+      font-weight: 300;
+    }
+
+    .solution-callout strong {
+      color: var(--text-dark);
+      font-weight: 500;
+    }
+
+    /* ── Feature list ── */
+    .feature-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .feature-item {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      gap: 14px;
+      padding: 16px 20px;
+      border-radius: var(--radius-sm);
+      background: white;
+      border: 1px solid var(--pink-100);
+      font-size: 0.88rem;
+      color: var(--text-mid);
+      transition: all var(--transition);
+    }
+
+    .feature-item:hover {
+      border-color: var(--pink-300);
+      transform: translateX(6px);
+    }
+
+    .feature-emoji {
+      font-size: 1.2rem;
+      width: 32px;
+      text-align: center;
+      flex-shrink: 0;
+    }
+
+    .feature-item strong {
+      color: var(--text-dark);
+      font-weight: 500;
+      margin-right: 6px;
+    }
+
+    /* ── User Flow ── */
+    .flow-steps {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .flow-step {
+      display: flex;
+      align-items: flex-start;
+      gap: 20px;
+      position: relative;
+      padding-bottom: 32px;
+    }
+
+    .flow-step:last-child {
+      padding-bottom: 0;
+    }
+
+    .flow-step-left {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .flow-num {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      flex-shrink: 0;
+      background: linear-gradient(135deg, var(--pink-400), var(--rose));
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.8rem;
+      font-weight: 700;
+      box-shadow: 0 4px 12px rgba(212, 112, 140, 0.3);
+      position: relative;
+      z-index: 1;
+    }
+
+    .flow-line {
+      width: 2px;
+      flex: 1;
+      background: linear-gradient(to bottom, var(--pink-200), transparent);
+      margin-top: 4px;
+    }
+
+    .flow-step:last-child .flow-line {
+      display: none;
+    }
+
+    .flow-body {
+      padding-top: 8px;
+      padding-bottom: 4px;
+    }
+
+    .flow-title {
+      font-size: 0.95rem;
+      font-weight: 500;
+      color: var(--text-dark);
+      margin-bottom: 4px;
+    }
+
+    .flow-desc {
+      font-size: 0.83rem;
+      color: var(--text-soft);
+      line-height: 1.6;
+    }
+
+    /* ── Design Process ── */
+    .process-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 14px;
+    }
+
+    .process-card {
+      padding: 22px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--pink-100);
+      background: white;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .process-step-num {
+      font-size: 0.65rem;
+      font-weight: 700;
+      color: var(--rose);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+
+    .process-card-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.15rem;
+      color: var(--text-dark);
+      margin-bottom: 8px;
+    }
+
+    .process-card-desc {
+      font-size: 0.8rem;
+      color: var(--text-soft);
+      line-height: 1.6;
+    }
+
+    /* ── Screens ── */
+    .screens-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    .screen-card {
+      border-radius: var(--radius-sm);
+      overflow: hidden;
+      border: 1px solid var(--pink-100);
+      box-shadow: var(--shadow-sm);
+      transition: transform var(--transition), box-shadow var(--transition);
+    }
+
+    .screen-card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .screen-thumb {
+      aspect-ratio: 9/16;
+      background: linear-gradient(160deg, #2a1a20, #3d1f2e);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      color: rgba(249, 221, 229, 0.3);
+    }
+
+    .screen-label {
+      padding: 12px 14px;
+      background: #0a0a0a;
+      font-size: 0.75rem;
+      font-weight: 500;
+      color: white;
+      border: 1px solid #333;
+    }
+
+    /* ── Challenges ── */
+    .challenge-list {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .challenge-card {
+      padding: 24px 26px;
+      border-radius: var(--radius-sm);
+      background: #0a0a0a;
+      border: 1px solid #333;
+      box-shadow: var(--shadow-sm);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      transition: border-color var(--transition);
+    }
+
+    .challenge-card:hover {
+      border-color: var(--pink-300);
+    }
+
+    .challenge-side-label {
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+
+    .challenge-side-label.prob {
+      color: var(--pink-400);
+    }
+
+    .challenge-side-label.sol {
+      color: var(--rose);
+    }
+
+    .challenge-text {
+      font-size: 0.87rem;
+      color: var(--text-mid);
+      line-height: 1.65;
+    }
+
+    .challenge-divider {
+      width: 1px;
+      background: var(--pink-100);
+      grid-column: unset;
+      grid-row: 1;
+      display: none;
+    }
+
+    /* ── Outcome ── */
+    .outcome-row {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-top: 4px;
+    }
+
+    .outcome-chip {
+      padding: 16px 22px;
+      border-radius: var(--radius-sm);
+      background: #0a0a0a;
+      border: 1px solid #333;
+      flex: 1;
+      min-width: 160px;
+      text-align: center;
+    }
+
+    .outcome-chip .big {
+      font-family: 'Outfit', sans-serif;
+      font-size: 2.2rem;
+      font-weight: 600;
+      color: var(--rose);
+      display: block;
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+
+    .outcome-chip .small {
+      font-size: 0.75rem;
+      color: var(--text-soft);
+      font-weight: 500;
+    }
+
+    /* ── Learnings ── */
+    .learning-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .learning-pill {
+      padding: 10px 18px;
+      border-radius: 50px;
+      background: var(--pink-50);
+      border: 1px solid var(--pink-200);
+      font-size: 0.83rem;
+      font-weight: 500;
+      color: var(--text-mid);
+      transition: all var(--transition);
+    }
+
+    .learning-pill:hover {
+      background: white;
+      color: black;
+      border-color: white;
+    }
+
+    /* ── Future ── */
+    .future-list {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .future-item {
+      padding: 16px 20px;
+      border-radius: var(--radius-sm);
+      border: 1px dashed var(--pink-200);
+      background: var(--pink-50);
+      font-size: 0.85rem;
+      color: var(--text-mid);
+      line-height: 1.6;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      align-items: center;
+      text-align: center;
+    }
+
+    .future-item::before {
+      content: '→';
+      color: var(--rose);
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    /* ── Creative Features ── */
+    .features-creative-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+      margin-top: 40px;
+    }
+
+    .feature-creative-card {
+      background: #0a0a0a;
+      border: 1px solid #333;
+      border-radius: var(--radius-md);
+      padding: 32px;
+      position: relative;
+      overflow: hidden;
+      transition: all var(--transition);
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      text-align: left;
+    }
+
+    .feature-creative-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 12px 32px rgba(221, 53, 76, 0.08);
+      border-color: var(--pink-300);
+    }
+
+    .feature-creative-card::after {
+      content: '';
+      position: absolute;
+      top: -20px;
+      right: -20px;
+      width: 80px;
+      height: 80px;
+      background: var(--pink-50);
+      border-radius: 50%;
+      z-index: 0;
+      transition: all var(--transition);
+    }
+
+    .feature-creative-card:hover::after {
+      background: var(--rose);
+      opacity: 0.1;
+      transform: scale(1.5);
+    }
+
+    .feature-icon-wrapper {
+      width: 56px;
+      height: 56px;
+      background: var(--pink-50);
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.8rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .feature-creative-content {
+      position: relative;
+      z-index: 1;
+    }
+
+    .feature-creative-title {
+      font-weight: 700;
+      font-size: 1.1rem;
+      color: var(--text-dark);
+      margin-bottom: 8px;
+    }
+
+    .feature-creative-desc {
+      font-size: 0.88rem;
+      color: var(--text-mid);
+      line-height: 1.6;
+    }
+
+    /* ── Problem Bullet Fix ── */
+    .cs-bullets.reveal li::before {
+
+      color: var(--rose);
+      font-size: 1.1rem;
+      margin-right: 12px;
+      flex-shrink: 0;
+    }
+
+    /* ── User Flow Steps ── */
+    .flow-steps {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .flow-step {
+      display: flex;
+      gap: 20px;
+    }
+
+    .flow-step-left {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .flow-num {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: var(--pink-100);
+      color: var(--rose);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 0.85rem;
+      border: 1px solid var(--pink-200);
+    }
+
+    .flow-line {
+      flex-grow: 1;
+      width: 2px;
+      background: var(--pink-100);
+      margin: 4px 0;
+    }
+
+    .flow-body {
+      padding-bottom: 40px;
+    }
+
+    .flow-title {
+      font-weight: 700;
+      color: var(--text-dark);
+      margin-bottom: 6px;
+      font-size: 1rem;
+    }
+
+    .flow-desc {
+      font-size: 0.9rem;
+      color: var(--text-mid);
+      line-height: 1.6;
+    }
+
+    /* ── Footer ── */
+    .cs-footer {
+      background: var(--cream);
+      border-top: 1px solid var(--pink-100);
+      padding: 36px 30px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .footer-logo {
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.3rem;
+      font-weight: 600;
+    }
+
+    .footer-logo span {
+      color: var(--rose);
+      font-style: normal;
+    }
+
+    /* ── Advanced User Flow Diagram ── */
+    .flow-diagram-canvas {
+      width: 100%;
+      background: #0a0a0a;
+      border-radius: var(--radius-md);
+      border: 1px solid #333;
+      padding: 40px 20px;
+      margin: 32px 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 30px;
+      position: relative;
+    }
+
+    .flow-nav-header {
+      display: flex;
+      gap: 30px;
+      position: relative;
+      margin-bottom: 20px;
+    }
+
+    .flow-nav-header::after {
+      content: '';
+      position: absolute;
+      bottom: -15px;
+      left: 10%;
+      right: 17%;
+      height: 2px;
+      background: var(--pink-100);
+      z-index: 0;
+    }
+
+    .nav-node {
+      padding: 10px 24px;
+      background: var(--cream);
+      border: 1px solid var(--pink-200);
+      border-radius: 50px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--text-dark);
+      position: relative;
+      z-index: 1;
+    }
+
+    .nav-node.active {
+      background: white;
+      color: black;
+      border-color: white;
+    }
+
+    .flow-columns {
+      display: flex;
+      gap: 60px;
+      align-items: flex-start;
+      margin-top: 10px;
+    }
+
+    .flow-column {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .flow-arrow-down {
+      color: var(--pink-300);
+      font-size: 1rem;
+      margin: 4px 0;
+    }
+
+    .flow-label {
+      font-size: 0.65rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: var(--rose);
+      letter-spacing: 0.05em;
+      opacity: 0.8;
+    }
+
+    .flow-block {
+      padding: 14px 20px;
+      background: #111;
+      border: 1px solid #333;
+      border-radius: 12px;
+      font-size: 0.78rem;
+      font-weight: 500;
+      color: white;
+      text-align: center;
+      box-shadow: var(--shadow-sm);
+      min-width: 170px;
+      transition: all var(--transition);
+    }
+
+    .flow-block:hover {
+      border-color: var(--pink-400);
+      transform: translateY(-2px);
+    }
+
+    .flow-block.special {
+      background: var(--pink-50);
+      border-color: var(--pink-300);
+    }
+
+    .flow-block.final {
+      background: linear-gradient(135deg, var(--rose), var(--pink-400));
+      color: white;
+      border: none;
+      font-weight: 700;
+    }
+
+    .flow-tag {
+      display: block;
+      font-size: 0.6rem;
+      color: var(--text-soft);
+      margin-top: 4px;
+      font-weight: 300;
+    }
+
+    /* Pro Empathy Map Styles */
+    .empathy-premium-container {
+      width: 90%;
+      max-width: 900px;
+      margin: 40px auto;
+      position: relative;
+    }
+
+    .survey-insight-tag {
+      text-align: center;
+      font-size: 0.8rem;
+      color: var(--text-soft);
+      margin-bottom: 32px;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      font-weight: 500;
+      opacity: 0.8;
+    }
+
+    .empathy-cross-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      margin-bottom: 48px;
+      max-width: 900px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .empathy-quad {
+      background: #0d0d0d;
+      padding: 40px;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+      position: relative;
+      border-radius: 24px;
+      border: 1px solid #1a1a1a;
+      aspect-ratio: 1 / 1;
+      justify-content: flex-start;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+    }
+
+    .empathy-quad:hover {
+      background: #111;
+      border-color: #333;
+      transform: translateY(-8px);
+      box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
+    }
+
+    .quad-header {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .quad-header span {
+      font-size: 1.8rem;
+      filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.2));
+    }
+
+    .quad-header h4 {
+      font-size: 1.6rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: #fff;
+    }
+
+    .quad-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .quad-list li {
+      font-size: 1.15rem;
+      color: #a7a6a6;
+      line-height: 1.6;
+      font-weight: 400;
+      position: relative;
+      padding-left: 28px;
+      text-align: left;
+    }
+
+    .quad-list li::before {
+      content: '✦';
+      position: absolute;
+      left: 0;
+      color: var(--rose);
+      font-weight: 400;
+      font-size: 1rem;
+      top: 2px;
+    }
+
+    .pro-insight-footer {
+      padding: 30px;
+      background: linear-gradient(90deg, #0d0d0d 0%, #050505 100%);
+      border: 1px solid #222;
+      border-left: 3px solid #fff;
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      margin-top: 20px;
+      transition: all 0.4s ease;
+    }
+
+    .pro-insight-footer:hover {
+      border-color: #444;
+      transform: scale(1.01);
+    }
+
+    /* ── Split Challenge Layout ── */
+    .challenge-split-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+      margin-bottom: 40px;
+    }
+    .challenge-bucket {
+      background: #0a0a0a;
+      border: 1px solid #222;
+      border-radius: 20px;
+      padding: 40px;
+      transition: all 0.3s ease;
+    }
+    .challenge-bucket:hover {
+      border-color: #444;
+      background: #0d0d0d;
+    }
+    .challenge-bucket h3 {
+      font-size: 1.4rem;
+      font-weight: 700;
+      margin-bottom: 30px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .challenge-bucket.prob-bucket h3 { color: #888; }
+    .challenge-bucket.sol-bucket h3 { color: var(--rose); }
+    
+    .challenge-bucket ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    .challenge-bucket ul li {
+      font-size: 1rem;
+      line-height: 1.6;
+      color: var(--text-mid);
+      position: relative;
+      padding-left: 28px;
+    }
+    .challenge-bucket.prob-bucket ul li::before {
+      content: '●';
+      position: absolute;
+      left: 0;
+      color: #444;
+      font-size: 0.8rem;
+    }
+    .challenge-bucket.sol-bucket ul li::before {
+      content: '✦';
+      position: absolute;
+      left: 0;
+      color: var(--rose);
+      font-size: 1rem;
+    }
+
+    @media (max-width: 768px) {
+      .challenge-split-grid { grid-template-columns: 1fr; gap: 20px; }
+    }
+
+    .insight-icon {
+      font-size: 1.4rem;
+      color: #fff;
+    }
+
+    .insight-text {
+      font-size: 1.05rem;
+      color: var(--text-dark);
+      font-weight: 400;
+      line-height: 1.5;
+    }
+
+    .quad-watermark {
+      position: absolute;
+      bottom: -15px;
+      right: -5px;
+      font-size: 5.5rem;
+      font-weight: 900;
+      color: rgba(255, 255, 255, 0.03);
+      pointer-events: none;
+      z-index: 0;
+      text-transform: uppercase;
+      letter-spacing: -0.05em;
+    }
+
+    @media (max-width: 800px) {
+      .empathy-cross-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+
+      .empathy-quad {
+        padding: 30px;
+        aspect-ratio: auto;
+        min-height: 280px;
+      }
+    }
+
+    /* ── Wireframe Progression ── */
+    .wireframe-showcase {
+      margin-top: 50px;
+      padding: 40px 0;
+      width: calc(100% + 120px);
+      margin-left: -60px;
+    }
+
+    .wireframe-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+    }
+
+    .wireframe-item {
+      width: 100%;
+      transition: transform var(--transition);
+    }
+
+    .wireframe-item:hover {
+      transform: translateY(-8px);
+    }
+
+    .wf-img-container {
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      border: 1px solid #333;
+      background: #050505;
+      box-shadow: var(--shadow-md);
+      width: 100%;
+    }
+
+    .wf-img-container img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .midfi-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+      gap: 20px;
+      margin-top: 50px;
+      width: calc(100% + 120px);
+      margin-left: -60px;
+    }
+
+    .midfi-item {
+      width: 100%;
+      transition: transform var(--transition);
+    }
+
+    .midfi-item:hover {
+      transform: translateY(-8px);
+    }
+
+    @media (max-width: 1000px) {
+
+      .wireframe-showcase,
+      .midfi-grid {
+        width: 100%;
+        margin-left: 0;
+      }
+
+      .wireframe-grid,
+      .midfi-grid {
+        gap: 24px;
+      }
+    }
+
+    /* ── Visual Identity ── */
+    .visual-identity-container {
+      margin-top: 40px;
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+    }
+
+    .palette-heading {
+      font-size: 0.7rem;
+      font-weight: 700;
+      color: var(--text-soft);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 12px;
+    }
+
+    .palette-row {
+      display: grid;
+      grid-template-columns: 1fr 1.5fr;
+      gap: 32px;
+    }
+
+    .palette-main {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 16px 20px;
+      background: #0a0a0a;
+      border-radius: var(--radius-md);
+      border: 1px solid #333;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .color-swatch-large {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    }
+
+    .color-info h4 {
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--text-dark);
+      margin: 0;
+    }
+
+    .color-info span {
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.7rem;
+      color: var(--text-soft);
+    }
+
+    .palette-secondary {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+    }
+
+    .swatch-small-container {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .swatch-small {
+      height: 50px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.6rem;
+      font-family: 'Outfit', sans-serif;
+      color: white;
+      font-weight: 600;
+      border: 1px solid rgba(0, 0, 0, 0.03);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .typography-showcase-horizontal {
+      width: 100%;
+      padding: 24px 30px;
+      background: #0a0a0a;
+      border-radius: var(--radius-md);
+      border: 1px solid #333;
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      align-items: center;
+      gap: 40px;
+    }
+
+    .type-big-a {
+      font-family: 'Outfit', sans-serif;
+      font-size: 3.5rem;
+      font-weight: 700;
+      color: var(--text-dark);
+      background: linear-gradient(135deg, var(--text-dark), #666);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      flex-shrink: 0;
+    }
+
+    .type-header {
+      width: 140px;
+      flex-shrink: 0;
+    }
+
+    .type-font-name {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--text-dark);
+      margin-bottom: 2px;
+    }
+
+    .type-tag {
+      font-size: 0.6rem;
+      color: var(--rose);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .type-sample-inline {
+      flex: 1;
+      border-left: 1px solid var(--pink-100);
+      padding-left: 40px;
+    }
+
+    .type-alphabet {
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.85rem;
+      color: var(--text-dark);
+      letter-spacing: 0.1em;
+      margin-bottom: 8px;
+      font-weight: 500;
+    }
+
+    .type-desc {
+      font-size: 0.78rem;
+      color: var(--text-soft);
+      line-height: 1.6;
+    }
+
+    @media (max-width: 900px) {
+      .palette-row {
+        grid-template-columns: 1fr;
+      }
+
+      .palette-secondary {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .typography-showcase-horizontal {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 20px;
+      }
+
+      .type-sample-inline {
+        border-left: none;
+        padding-left: 0;
+        border-top: 1px solid var(--pink-100);
+        padding-top: 20px;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .wireframe-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* ── UI Gallery ── */
+    .ui-gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 32px;
+      margin: 40px auto;
+      width: 100%;
+      max-width: 1200px;
+    }
+
+    .ui-screen-item {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      margin-bottom: 20px;
+      transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    }
+
+    .ui-screen-frame {
+      position: relative;
+      background: #000;
+      border-radius: 32px;
+      padding: 8px; /* Inner black bezel */
+      border: 2px solid #d4d4d4; /* Silver outer border */
+      box-shadow:
+        0 20px 50px rgba(0, 0, 0, 0.3),
+        inset 0 0 4px rgba(255, 255, 255, 0.1);
+      aspect-ratio: 9 / 19.5;
+      width: 100%;
+      transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
+      overflow: hidden;
+    }
+
+    .ui-screen-frame::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100px;
+      height: 24px;
+      background: #000;
+      border-radius: 0 0 14px 14px;
+      z-index: 20;
+    }
+
+    .ui-screen-frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      border-radius: 20px;
+      display: block;
+    }
+
+    .ui-screen-item:hover {
+      transform: translateY(-10px);
+    }
+
+    .ui-screen-item:hover .ui-screen-frame {
+      box-shadow: 0 30px 60px rgba(0, 0, 0, 0.2), 0 0 0 1px rgba(255, 255, 255, 0.05);
+      border-color: #262626;
+      transform: scale(1.02);
+    }
+
+    .ui-screen-frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      display: block;
+      transition: transform 0.6s ease;
+    }
+
+    .ui-screen-item:hover img {
+      transform: scale(1.05);
+    }
+
+    .ui-screen-info {
+      text-align: center;
+      padding: 0 10px;
+      transition: transform 0.4s ease;
+    }
+
+    .ui-screen-num {
+      font-size: 0.75rem;
+      font-weight: 800;
+      color: var(--rose);
+      text-transform: uppercase;
+      margin-bottom: 4px;
+      display: block;
+      transition: color 0.3s ease;
+    }
+
+    .ui-screen-item:hover .ui-screen-num {
+      color: var(--pink-500);
+    }
+
+    .ui-screen-name {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--text-dark);
+      line-height: 1.4;
+    }
+
+    @media (max-width: 768px) {
+      .ui-gallery {
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+      }
+    }
+
+    .ui-screen-info {
+      text-align: center;
+    }
+
+    .ui-screen-num {
+      font-size: 0.6rem;
+      font-weight: 800;
+      color: var(--rose);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 2px;
+      display: block;
+    }
+
+    .ui-screen-name {
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--text-dark);
+      line-height: 1.3;
+    }
+
+    @media (max-width: 1100px) {
+      .ui-gallery {
+        width: 100%;
+        margin-left: 0;
+        grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+        gap: 20px;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .ui-gallery {
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+      }
+
+      .ui-screen-frame {
+        border-width: 3px;
+        border-radius: 16px;
+      }
+    }
+
+    .ia-tree {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+      max-width: 1000px;
+    }
+
+    .ia-node {
+      padding: 10px 14px;
+      background: #0a0a0a;
+      border: 1px solid #333;
+      border-radius: 8px;
+      font-size: 0.7rem;
+      font-weight: 600;
+      color: white;
+      position: relative;
+      margin: 6px;
+      min-width: 110px;
+      text-align: center;
+      transition: all var(--transition);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .ia-node:hover {
+      border-color: var(--pink-400);
+      transform: translateY(-2px);
+    }
+
+    .ia-node.root {
+      background: white;
+      color: black;
+      border: none;
+      font-size: 0.85rem;
+      margin-bottom: 30px;
+      padding: 12px 30px;
+    }
+
+    .ia-level-1 {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      width: 100%;
+      position: relative;
+      flex-wrap: nowrap;
+    }
+
+    @media (max-width: 768px) {
+      .ia-level-1 {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .ia-branch {
+        width: 100%;
+      }
+    }
+
+    .ia-branch {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+      flex: 1;
+      min-width: 0;
+    }
+
+    .ia-sub-group {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-top: 15px;
+      gap: 6px;
+      border-top: 1px solid var(--pink-100);
+      padding-top: 12px;
+      width: 100%;
+    }
+
+    .ia-node.special {
+      background: #111;
+      border: 2px solid #666;
+      font-weight: 700;
+      color: white;
+    }
+
+    .ia-node.sub {
+      background: #121212;
+      border-color: #333;
+      font-weight: 500;
+      min-width: 100px;
+      font-size: 0.65rem;
+    }
+
+    .ia-badge {
+      position: absolute;
+      top: -8px;
+      right: -8px;
+      background: white;
+      color: black;
+      font-size: 0.55rem;
+      padding: 2px 5px;
+      border-radius: 4px;
+      font-weight: 700;
+    }
+
+    /* ── Empathy Map ── */
+    .empathy-map-container {
+      margin-top: 24px;
+      padding: 16px;
+      background: rgb(7, 7, 7);
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-sm);
+      border: 1px solid var(--pink-100);
+    }
+
+    .empathy-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.3rem;
+      margin-bottom: 16px;
+      color: var(--text-dark);
+      text-align: center;
+      color: rgb(255, 255, 255);
+    }
+
+    .empathy-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 8px;
+    }
+
+    @media (max-width: 1024px) {
+      .empathy-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .empathy-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .empathy-map-card {
+      scroll-snap-align: start;
+      background: #121212;
+      border-radius: var(--radius-sm);
+      padding: 10px;
+      border: 1px solid #333;
+      transition: transform var(--transition), box-shadow var(--transition);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .empathy-map-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-md);
+      border-color: var(--pink-300);
+    }
+
+    .empathy-map-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--pink-400), var(--rose));
+      opacity: 0;
+      transition: opacity var(--transition);
+    }
+
+    .empathy-map-card:hover::before {
+      opacity: 1;
+    }
+
+    .empathy-map-card-header {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 16px;
+    }
+
+    .empathy-step {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: var(--pink-100);
+      color: var(--rose);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 0.75rem;
+      flex-shrink: 0;
+    }
+
+    .empathy-map-card-header h4 {
+      font-size: 0.95rem;
+      color: var(--text-dark);
+      margin: 0;
+      line-height: 1.2;
+    }
+
+    .empathy-emotion {
+      display: inline-block;
+      padding: 4px 10px;
+      background: #1a1a1a;
+      border: 1px dashed #444;
+      border-radius: 20px;
+      font-size: 0.7rem;
+      font-weight: 600;
+      color: #fff;
+      margin-bottom: 12px;
+    }
+
+    .empathy-body {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .em-row {
+      font-size: 0.76rem;
+      color: #999;
+      line-height: 1.4;
+      padding: 8px 10px;
+      background: #0a0a0a;
+      border-radius: 8px;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
+      border: 1px solid #222;
+    }
+
+    .em-row span {
+      font-weight: 700;
+      color: var(--text-dark);
+      display: block;
+      margin-bottom: 2px;
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .em-row.pain-point {
+      border-left: 4px solid #666;
+      background: #1a1a1a;
+      border-color: #333;
+    }
+
+    .em-row.pain-point span {
+      color: #fff;
+    }
+
+    .em-row.opportunity {
+      border-left: 4px solid #fff;
+      background: #111;
+      border-color: #333;
+    }
+
+    .em-row.opportunity span {
+      color: #fff;
+    }
+
+    @media (max-width: 768px) {
+      .empathy-map-container {
+        padding: 20px;
+      }
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 1100px) {
+      .cs-hero-visual {
+        display: none;
+      }
+
+      #cs-hero {
+        padding-right: 30px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      nav {
+        padding: 16px 24px;
+      }
+
+      nav.scrolled {
+        padding: 12px 24px;
+      }
+
+      #cs-hero {
+        padding: 100px 24px 60px;
+      }
+
+      .cs-main {
+        padding: 0 24px 80px;
+      }
+
+      .two-col {
+        grid-template-columns: 1fr;
+        gap: 24px;
+      }
+
+      .cs-sidebar-label {
+        position: static;
+        margin-bottom: 4px;
+      }
+
+      .goal-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .process-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .screens-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .challenge-card {
+        grid-template-columns: 1fr;
+      }
+
+      .future-list {
+        grid-template-columns: 1fr;
+      }
+
+      .cs-footer {
+        padding: 28px 24px;
+      }
+
+      .cs-meta {
+        gap: 20px;
+      }
+    }
+
+    /* ── App Banner & Smart Button ── */
+
+
+
+    .app-screen-banner {
+      width: 100%;
+      max-width: 360px;
+      margin: 30px auto;
+      background: #0d0d0d;
+      border-radius: 24px;
+      padding: 40px 16px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.04);
+      box-shadow:
+        0 40px 100px rgba(0, 0, 0, 0.6),
+        inset 0 1px 1px rgba(255, 255, 255, 0.05);
+    }
+
+    .app-screen-banner::before {
+      content: '';
+      position: absolute;
+      top: -100px;
+      right: -100px;
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(circle, rgba(255, 255, 255, 0.05) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .app-screen-banner::after {
+      content: '';
+      position: absolute;
+      bottom: -150px;
+      left: -150px;
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, rgba(255, 255, 255, 0.03) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+
+
+
+    .banner-mockup-wrapper {
+      width: 100%;
+      max-width: 200px;
+      perspective: 2000px;
+      margin: 0 auto 30px;
+      position: relative;
+      z-index: 5;
+    }
+
+    .banner-mockup {
+      width: 100%;
+      aspect-ratio: 9 / 19.5;
+      border-radius: 24px;
+      box-shadow:
+        0 10px 20px rgba(0, 0, 0, 0.5),
+        0 30px 60px rgba(0, 0, 0, 0.4),
+        0 60px 100px rgba(255, 255, 255, 0.05);
+      transform: rotateX(12deg) rotateY(-10deg) rotateZ(2deg);
+      border: 10px solid #111;
+      outline: 1px solid rgba(255, 255, 255, 0.15);
+      background: #000;
+      transition: all 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .banner-scroll-container {
+      display: flex;
+      width: 400%;
+      height: 100%;
+      animation: bannerScroll 12s infinite steps(4);
+    }
+
+    .banner-scroll-container img {
+      width: 25%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    @keyframes bannerScroll {
+      to {
+        transform: translateX(-100%);
+      }
+    }
+
+    .banner-mockup-wrapper::after {
+      content: '';
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      right: 10px;
+      height: 24%;
+      background: linear-gradient(to bottom, rgba(255, 255, 255, 0.1) 0%, transparent 100%);
+      border-radius: 35px 35px 0 0;
+      pointer-events: none;
+      z-index: 10;
+      transform: rotateX(12deg) rotateY(-10deg) rotateZ(2deg);
+    }
+
+    .app-screen-banner:hover .banner-mockup {
+      transform: rotateX(6deg) rotateY(-4deg) rotateZ(1deg) scale(1.05) translateY(-10px);
+      box-shadow:
+        0 20px 40px rgba(0, 0, 0, 0.6),
+        0 50px 100px rgba(0, 0, 0, 0.5),
+        0 100px 150px rgba(255, 255, 255, 0.1);
+    }
+
+
+
+    .ai-smart-book-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      padding: 16px 32px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      color: #fff;
+      border-radius: 40px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      backdrop-filter: blur(16px);
+      transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+      position: relative;
+      z-index: 10;
+      box-shadow: 0 0 20px rgba(232, 82, 111, 0.15);
+      margin-top: 10px;
+    }
+
+    .ai-smart-book-btn:hover {
+      background: white;
+      border-color: white;
+      color: black;
+      transform: translateY(-8px) scale(1.05);
+      box-shadow: 0 20px 40px rgba(255, 255, 255, 0.2);
+    }
+
+    .ai-smart-book-btn:hover::before {
+      left: 150%;
+    }
+
+    .ai-smart-book-btn .sparkle {
+      font-size: 1.2rem;
+      animation: sparkleAnim 2s infinite;
+    }
+
+    @keyframes sparkleAnim {
+
+      0%,
+      100% {
+        opacity: 1;
+        transform: scale(1);
+      }
+
+      50% {
+        opacity: 0.6;
+        transform: scale(1.2);
+      }
+    }
+
+    .banner-footer-text {
+      color: rgba(255, 255, 255, 0.5);
+      font-size: 0.8rem;
+      margin-top: 24px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      font-weight: 500;
+    }
+
+
+
+
+    .combined-empathy-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      padding-top: 16px;
+    }
+
+
+
+    @media (max-width: 600px) {
+      .combined-empathy-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* ── Persona Cards ── */
+    .personas-section {
+      padding: 60px 0;
+      background: #000;
+      border-radius: var(--radius-lg);
+      margin: 40px 0;
+    }
+
+    .personas-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+      margin-top: 32px;
+    }
+
+    .persona-card-detailed {
+      background: #0a0a0a;
+      border-radius: var(--radius-md);
+      padding: 32px;
+      border: 1px solid #333;
+      box-shadow: var(--shadow-sm);
+      transition: all var(--transition);
+      position: relative;
+    }
+
+    .persona-card-detailed:hover {
+      transform: translateY(-8px);
+      box-shadow: var(--shadow-md);
+      border-color: var(--pink-300);
+    }
+
+    .persona-bio-header {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 24px;
+      border-bottom: 1px solid #222;
+      padding-bottom: 16px;
+    }
+
+    .persona-img {
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      background: var(--pink-100);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+    }
+
+    .persona-info h4 {
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.4rem;
+      color: var(--text-dark);
+    }
+
+    .persona-info span {
+      font-size: 0.8rem;
+      color: var(--text-soft);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .persona-traits {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 20px;
+    }
+
+    .trait-tag {
+      padding: 4px 12px;
+      background: #1a1a1a;
+      color: #fff;
+      border-radius: 20px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      border: 1px solid #333;
+    }
+
+    .persona-quote {
+      font-style: normal;
+      color: var(--text-mid);
+      font-size: 0.9rem;
+      position: relative;
+      padding-left: 20px;
+      margin-bottom: 20px;
+    }
+
+    .persona-quote::before {
+      content: '"';
+      position: absolute;
+      left: 0;
+      top: 0;
+      font-size: 2rem;
+      color: var(--pink-200);
+      line-height: 1;
+    }
+
+    .persona-details-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .persona-details-list li {
+      font-size: 0.88rem;
+      color: var(--text-mid);
+      line-height: 1.5;
+      padding-left: 24px;
+      position: relative;
+    }
+
+    .persona-details-list li::before {
+      content: '✦';
+      position: absolute;
+      left: 0;
+      color: var(--pink-400);
+      font-size: 0.8rem;
+    }
+
+    @media (max-width: 900px) {
+      .personas-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+
+
+
+</head>
+
+<body>
+
+  <div id="progress-bar"></div>
+  <div class="cursor" id="cursor"></div>
+  <div class="cursor-follower" id="cursorFollower"></div>
+
+  <!-- Navbar -->
+  <nav id="navbar">
+    <div class="nav-logo">S<span>owmiya</span></div>
+    <a href="sowmiya-portfolio.html" class="nav-back">← Back to Portfolio</a>
+  </nav>
+
+  <!-- ════════════════════════ HERO ════════════════════════ -->
+  <section id="cs-hero">
+    <div class="hero-orb hero-orb-1"></div>
+    <div class="hero-orb hero-orb-2"></div>
+
+    <div class="cs-breadcrumb">Portfolio <span>✦</span> Case Study</div>
+    <div class="cs-tag">★ Featured Project</div>
+
+    <h1 class="cs-hero-title">
+      Book<svg class="bms-icon" role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path
+          d="M5.338 16.595a0.66 0.66 0 0 1 -0.554 -0.66v-8.07a0.67 0.67 0 0 1 0.679 -0.672h5.901c0.154 0 0.308 0.015 0.458 0.04a2.622 2.622 0 0 1 2.19 2.576v6.126a0.66 0.66 0 0 1 -0.204 0.478 0.684 0.684 0 0 1 -0.6 0.182 0.66 0.66 0 0 1 -0.553 -0.66V9.809a1.277 1.277 0 0 0 -1.29 -1.272h-1.287v7.398a0.678 0.678 0 0 1 -0.806 0.66 0.66 0.66 0 0 1 -0.553 -0.66v-7.4H6.142v7.4a0.66 0.66 0 0 1 -0.202 0.478 0.682 0.682 0 0 1 -0.602 0.182m9.812 3.517a0.66 0.66 0 0 1 -0.555 -0.662c0 -0.183 0.07 -0.353 0.196 -0.478a0.684 0.684 0 0 1 0.484 -0.193c0.572 0 1.068 -0.365 1.232 -0.909l0.701 -2.307 -2.294 -7.576a0.677 0.677 0 0 1 0.453 -0.847 0.695 0.695 0 0 1 0.84 0.444l1.705 5.65 1.724 -5.647c0.085 -0.318 0.43 -0.52 0.786 -0.459l0.048 0.01a0.68 0.68 0 0 1 0.458 0.85l-2.362 7.774 -0.746 2.489c-0.193 0.571 -0.525 1.036 -0.957 1.349a2.678 2.678 0 0 1 -1.588 0.522 0.664 0.664 0 0 1 -0.125 -0.011M24 7.172l-1.353 -2.277 -2.421 1.137 -1.353 -2.278 -2.42 1.138 -1.354 -2.277 -2.42 1.138 -1.354 -2.277 -2.42 1.136L7.55 0.335 5.132 1.47 0 17.957l6.226 1.88a3.295 3.295 0 0 1 3.151 -2.297c1.822 0 3.3 1.46 3.3 3.26l-0.002 0.065c0.015 0.295 -0.02 0.594 -0.11 0.887l6.331 1.914L24 7.17">
+        </path>
+      </svg>Show <em>AI Smart</em><br>Movie Ticket<br>Pre-Booking
+    </h1>
+    <p class="cs-hero-impact">Eliminate booking stress during high-demand releases with AI-powered auto-booking and
+      real-time seat selection.</p>
+
+    <div class="cs-meta">
+      <div class="cs-meta-item">
+        <div class="meta-label">Role</div>
+        <div class="meta-val">UX/UI Designer · Front-End Dev</div>
+      </div>
+      <div class="cs-meta-item">
+        <div class="meta-label">Tools</div>
+        <div class="meta-val">Figma</div>
+      </div>
+      <div class="cs-meta-item">
+        <div class="meta-label">Duration</div>
+        <div class="meta-val">4 Weeks</div>
+      </div>
+      <div class="cs-meta-item">
+        <div class="meta-label">Type</div>
+        <div class="meta-val">End-to-End Design</div>
+      </div>
+    </div>
+    <!-- Custom Hero Visual -->
+    <div class="cs-hero-visual">
+      <div class="premium-mockup">
+        <div class="power-btn"></div>
+        <img src="AI Booking/After AI option.png" alt="CineAI Smart Booking Conceptual Visual">
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════ MAIN CONTENT ════════════════════════ -->
+  <div class="cs-main">
+
+    <!-- ── OVERVIEW ── -->
+    <div class="cs-section">
+      <style>
+        .overview-grid {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 24px;
+          max-width: 900px;
+          margin: 0 auto;
+        }
+
+        .overview-card {
+          padding: 48px;
+          background: #0a0a0a;
+          border: 1px solid #222;
+          border-radius: var(--radius-md);
+          display: flex;
+          flex-direction: column;
+          gap: 16px;
+          transition: transform var(--transition), border-color var(--transition);
+        }
+
+        .overview-card:hover {
+          transform: translateY(-4px);
+          border-color: #444;
+        }
+
+        .overview-card.full-width {
+          grid-column: 1 / -1;
+        }
+
+        .overview-label {
+          font-size: 0.72rem;
+          font-weight: 600;
+          color: var(--text-soft);
+          letter-spacing: 0.14em;
+          text-transform: uppercase;
+          display: flex;
+          align-items: center;
+          gap: 10px;
+        }
+
+        .overview-label::before {
+          content: '';
+          width: 20px;
+          height: 1px;
+          background: var(--text-soft);
+          display: inline-block;
+        }
+
+        .overview-title {
+          font-family: 'Outfit', sans-serif;
+          font-size: 2rem;
+          font-weight: 500;
+          color: var(--text-dark);
+          line-height: 1.2;
+        }
+
+        .overview-text {
+          font-size: 1.1rem;
+          line-height: 1.8;
+          color: var(--text-mid);
+          font-weight: 300;
+        }
+
+        @media (max-width: 768px) {
+          .overview-grid {
+            grid-template-columns: 1fr;
+          }
+
+          .overview-card {
+            padding: 32px;
+          }
+        }
+      </style>
+
+      <div class="overview-grid">
+        <div class="overview-card full-width reveal">
+          <div class="overview-label">The Project</div>
+          <h2 class="overview-title">What is BookMyShow AI Smart Booking?</h2>
+          <p class="overview-text">
+            This project introduces an AI-powered pre-booking system that allows users to book tickets even before they
+            go live. Users can set their preferences in advance, and the AI automatically books tickets at the right
+            moment.
+          </p>
+        </div>
+
+        <div class="overview-card reveal reveal-delay-1">
+          <div class="overview-label">The Context</div>
+          <h2 class="overview-title">Why did I choose this?</h2>
+          <p class="overview-text">
+            I chose this problem because many users miss tickets for their favorite movies due to high demand and a
+            last-minute rush.
+          </p>
+        </div>
+
+        <div class="overview-card reveal reveal-delay-2">
+          <div class="overview-label">The Objective</div>
+          <h2 class="overview-title">Goal</h2>
+          <p class="overview-text">
+            My goal is to make booking simple, smart, and stress-free for everyone.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── SCREEN EVOLUTION ── -->
+    <div class="cs-section" style="padding: 100px 0;">
+      <div class="cs-section-center" style="margin-bottom: 60px;">
+        <h2 class="cs-title reveal">Screen Evolution</h2>
+        <div class="cs-centered-content">
+          <p class="reveal reveal-delay-1"
+            style="font-size: 1.2rem; color: var(--text-mid); max-width: 700px; margin: 0 auto; line-height: 1.6; text-align: center;">
+            Showing the design and feature improvements of the app.
+          </p>
+        </div>
+      </div>
+
+      <style>
+        .evolution-grid {
+          opacity: 1 !important;
+          visibility: visible !important;
+          display: grid;
+          grid-template-columns: 1fr;
+          gap: 100px;
+          max-width: 1100px;
+          margin: 0 auto;
+          padding: 0 20px;
+        }
+
+        .evolution-row {
+          display: flex;
+          flex-direction: column;
+          gap: 40px;
+        }
+
+        .evolution-info {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          text-align: center;
+          max-width: 700px;
+          margin: 0 auto 10px auto;
+        }
+
+        .evolution-info h4 {
+          font-family: 'Outfit', sans-serif;
+          font-size: 0.75rem;
+          color: var(--text-dark);
+          margin-bottom: 20px;
+          font-weight: 600;
+          letter-spacing: 0.15em;
+          text-transform: uppercase;
+          border: 1px solid #333;
+          padding: 8px 20px;
+          border-radius: 50px;
+          background: #111;
+        }
+
+        .evolution-info p {
+          font-size: 1.2rem !important;
+          color: var(--text-mid) !important;
+          line-height: 1.6;
+          font-weight: 300;
+        }
+
+        .evolution-screens {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 80px;
+          width: 100%;
+        }
+
+        .evolution-screen {
+          background: #0d0d0d;
+          border: 1px solid #1a1a1a;
+          border-radius: 32px;
+          padding: 40px 30px;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          position: relative;
+          transition: all 0.4s ease;
+        }
+
+        .evolution-screen:hover {
+          border-color: #333;
+          background: #111;
+          transform: translateY(-8px);
+          box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
+        }
+
+        .phone-frame {
+          position: relative;
+          background: #000;
+          border-radius: 40px;
+          padding: 8px; /* Inner black bezel */
+          border: 2px solid #d4d4d4; /* Chrome outer bezel */
+          box-shadow:
+            0 30px 60px rgba(0, 0, 0, 0.4),
+            inset 0 0 8px rgba(255, 255, 255, 0.1);
+          aspect-ratio: 9 / 19.5;
+          width: 100%;
+          max-width: 250px;
+          margin-bottom: 25px;
+          transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
+          overflow: hidden;
+        }
+
+        .phone-frame::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 50%;
+          transform: translateX(-50%);
+          width: 100px;
+          height: 24px;
+          background: #000;
+          border-radius: 0 0 14px 14px;
+          z-index: 20;
+        }
+
+        /* Buttons for sub-sections */
+        .phone-frame::after {
+          content: '';
+          position: absolute;
+          left: -4px;
+          top: 80px;
+          width: 2px;
+          height: 40px;
+          background: #aaa;
+          border-radius: 2px 0 0 2px;
+          box-shadow: 0 50px 0 #aaa;
+        }
+
+        .evolution-screen:hover .phone-frame {
+          border-color: #444;
+        }
+
+        .evo-label {
+          margin-bottom: 15px;
+          font-family: 'Outfit', sans-serif;
+          font-size: 0.7rem;
+          font-weight: 700;
+          letter-spacing: 0.15em;
+          color: #888;
+          text-transform: uppercase;
+          border: 1px solid #222;
+          padding: 6px 16px;
+          border-radius: 6px;
+          background: #0a0a0a;
+          transition: all 0.3s ease;
+        }
+
+        .evolution-screen:hover .evo-label {
+          background: white;
+          color: black;
+          border-color: white;
+        }
+
+        .evo-img-wrapper {
+          width: 100%;
+          height: 100%;
+          overflow: hidden;
+          background: #000;
+        }
+
+        .evo-img-wrapper img {
+          width: 100%;
+          height: 100%;
+          display: block;
+          object-fit: contain;
+          border-radius: 36px;
+        }
+
+        .evo-caption {
+          text-align: center;
+          font-size: 0.95rem;
+          color: var(--text-mid);
+          max-width: 90%;
+          line-height: 1.5;
+          font-weight: 300;
+        }
+
+        .evolution-screen:hover .evo-caption {
+          color: #ededed;
+        }
+
+        .evo-arrow {
+          display: none !important;
+        }
+
+        @media (max-width: 900px) {
+          .evolution-screens {
+            grid-template-columns: 1fr;
+          }
+        }
+      </style>
+
+      <div class="evolution-grid">
+        <!-- Pair 1 -->
+        <div class="evolution-row">
+          <div class="evolution-info">
+            <h4>AI Option Introduction</h4>
+            <p>Adding the AI Smart Booking option into the app flow</p>
+          </div>
+          <div class="evolution-screens">
+            <div class="evolution-screen">
+              <span class="evo-label">BEFORE: OLD SCREEN</span>
+              <div class="phone-frame">
+                <div class="evo-img-wrapper"><img src="./AI Booking/Before AI option.png" alt="Before AI option"></div>
+              </div>
+              <div class="evo-caption"> The original app did not have the AI Smart Booking option.</div>
+            </div>
+            <div class="evolution-screen">
+              <span class="evo-label">AFTER: REDESIGNED SCREEN</span>
+              <div class="phone-frame">
+                <div class="evo-img-wrapper"><img src="./AI Booking/After AI option.png" alt="After AI option"></div>
+              </div>
+              <div class="evo-caption">The new design adds the AI assistant, making pre-booking easy and smooth.</div>
+            </div>
+          </div>
+        </div>
+        <!-- Pair 3 -->
+        <div class="evolution-row">
+          <div class="evolution-info">
+            <h4>Backup Time & Date Selection</h4>
+            <p>Select backup date and time for better booking success.</p>
+          </div>
+          <div class="evolution-screens">
+            <div class="evolution-screen">
+              <span class="evo-label">BEFORE: OLD SCREEN</span>
+              <div class="phone-frame">
+                <div class="evo-img-wrapper"><img src="./Theater and timing/Before 1 time slot.png" alt="Before time slot"></div>
+              </div>
+              <div class="evo-caption">In current apps, users can choose only one date, time, and theatre.</div>
+            </div>
+            <div class="evolution-screen">
+              <span class="evo-label">AFTER: REDESIGNED SCREEN</span>
+              <div class="phone-frame">
+                <div class="evo-img-wrapper"><img src="./Theater and timing/After AI 2 time slot.png" alt="After 2 time slots"></div>
+              </div>
+              <div class="evo-caption">In this users select multiple date and time options as backup to increase booking success.</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Pair 4 -->
+        <div class="evolution-row">
+          <div class="evolution-info">
+            <h4>Smart Preview</h4>
+            <p>Transparency through detailed automation summaries.</p>
+          </div>
+          <div class="evolution-screens">
+            <div class="evolution-screen">
+              <span class="evo-label">BEFORE: OLD SCREEN</span>
+              <div class="phone-frame">
+                <div class="evo-img-wrapper"><img src="./Preview/Before Preview.png" alt="Before preview"></div>
+              </div>
+              <div class="evo-caption">Current preview screen showing movie details.</div>
+            </div>
+            <div class="evolution-screen">
+              <span class="evo-label">AFTER: REDESIGNED SCREEN</span>
+              <div class="phone-frame">
+                <div class="evo-img-wrapper"><img src="./Preview/After AI preview.png" alt="After AI preview"></div>
+              </div>
+              <div class="evo-caption">Clear summaries help users understand how the AI will book the ticket.</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Pair 5 -->
+        <div class="evolution-row">
+          <div class="evolution-info">
+            <h4>Auto-Payment</h4>
+            <p>Users set up AutoPay in advance for smooth ticket booking.</p>
+          </div>
+          <div class="evolution-screens">
+            <div class="evolution-screen">
+              <span class="evo-label">BEFORE: OLD SCREEN</span>
+              <div class="phone-frame">
+                <div class="evo-img-wrapper"><img src="./payment/Before payment.png" alt="Before payment"></div>
+              </div>
+              <div class="evo-caption">Manual payment triggers often failed during high-traffic release windows.</div>
+            </div>
+            <div class="evolution-screen">
+              <span class="evo-label">AFTER: REDESIGNED SCREEN</span>
+              <div class="phone-frame">
+                <div class="evo-img-wrapper"><img src="./payment/After New feature auto payment.png" alt="After auto payment"></div>
+              </div>
+              <div class="evo-caption">Authorized auto-pay allows for millisecond execution once tickets go live.</div>
+            </div>
+          </div>
+        </div>
+        <!-- Pair 7 -->
+        <div class="evolution-row">
+          <div class="evolution-info">
+            <h4>Status Tracking</h4>
+            <p>Real-time visibility into the hunting state.</p>
+          </div>
+          <div class="evolution-screens">
+            <div class="evolution-screen">
+              <span class="evo-label">BEFORE: OLD SCREEN</span>
+              <div class="phone-frame">
+                <div class="evo-img-wrapper"><img src="./Ticket Status checking/before booked.png" alt="Before booked"></div>
+              </div>
+              <div class="evo-caption">Simple purchased state with no information on pending auto-requests.</div>
+            </div>
+            <div class="evolution-screen">
+              <span class="evo-label">AFTER: REDESIGNED SCREEN</span>
+              <div class="phone-frame">
+                <div class="evo-img-wrapper"><img src="./Ticket Status checking/after pre booked.png" alt="After booked"></div>
+              </div>
+              <div class="evo-caption">Detailed status display shows the AI actively monitoring for seat availability.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── EXCLUSIVE AI FEATURES ── -->
+    <div class="cs-section" style="padding: 100px 0;">
+      <div class="cs-section-center" style="margin-bottom: 60px;">
+        <h2 class="cs-title reveal">Newly Added AI Screens</h2>
+      </div>
+
+      <style>
+        .new-features-grid {
+          display: grid;
+          grid-template-columns: repeat(2, 1fr);
+          gap: 80px;
+          max-width: 900px;
+          margin: 0 auto;
+          padding: 0;
+        }
+
+        .new-feature-card {
+          background: #0d0d0d;
+          border: 1px solid #1a1a1a;
+          border-radius: 32px;
+          padding: 40px 30px;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          text-align: center;
+          transition: all 0.4s ease;
+        }
+
+        .new-feature-card:hover {
+          border-color: #333;
+          background: #111;
+          transform: translateY(-8px);
+          box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
+        }
+
+        .new-feature-card .phone-frame {
+          max-width: 240px;
+          margin-bottom: 30px;
+        }
+
+        .nft-img-wrapper {
+          width: 240px;
+          margin-bottom: 24px;
+        }
+
+        .nft-img-wrapper img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          display: block;
+        }
+
+        .nft-info {
+          width: 100%;
+        }
+
+        .nft-info h4 {
+          font-family: 'Outfit', sans-serif;
+          font-size: 1.3rem;
+          color: var(--text-dark);
+          margin-bottom: 12px;
+          font-weight: 500;
+        }
+
+        .nft-info p {
+          font-size: 1rem;
+          color: var(--text-mid);
+          line-height: 1.6;
+          font-weight: 300;
+          margin: 0 auto;
+          max-width: 280px;
+        }
+
+        @media (max-width: 768px) {
+          .new-features-grid {
+            grid-template-columns: 1fr;
+            gap: 24px;
+          }
+
+          .new-feature-card {
+            padding: 30px 20px;
+          }
+        }
+      </style>
+
+      <div class="new-features-grid">
+        <!-- Feature 1 -->
+        <div class="new-feature-card reveal">
+          <div class="phone-frame">
+            <div class="evo-img-wrapper">
+              <img src="./newly added screen/AI guidlines.png" alt="AI Guidelines">
+            </div>
+          </div>
+          <div class="nft-info">
+            <h4>1. Smart Guidelines</h4>
+            <p>Clear rules build trust. Users know exactly how the AI will book their tickets before starting.</p>
+          </div>
+        </div>
+
+        <!-- Feature 2 -->
+        <div class="new-feature-card reveal reveal-delay-1">
+          <div class="phone-frame">
+            <div class="evo-img-wrapper">
+              <img src="./newly added screen/Secondry seats.png" alt="Backup Seats">
+            </div>
+          </div>
+          <div class="nft-info">
+            <h4>2. Backup Seats</h4>
+            <p>If the first choice is sold out, the AI automatically tries for the user's secondary seat options.</p>
+          </div>
+        </div>
+
+        <!-- Feature 3 -->
+        <div class="new-feature-card reveal reveal-delay-2">
+          <div class="phone-frame">
+            <div class="evo-img-wrapper">
+              <img src="./newly added screen/debit cards autopay enabled confirmation.png" alt="Autopay Setup">
+            </div>
+          </div>
+          <div class="nft-info">
+            <h4>3. Auto-Pay Setup</h4>
+            <p>Pre-authorizing payments ensures the AI can secure the tickets instantly without payment delays.</p>
+          </div>
+        </div>
+
+        <!-- Feature 4 -->
+        <div class="new-feature-card reveal reveal-delay-3">
+          <div class="phone-frame">
+            <div class="evo-img-wrapper">
+              <img src="./newly added screen/AI confirmation.png" alt="AI Confirmation">
+            </div>
+          </div>
+          <div class="nft-info">
+            <h4>4. Success Confirmation</h4>
+            <p>A satisfying completion screen letting the user know the AI has safely started hunting.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── VISUAL IDENTITY ── -->
+    <div class="cs-section">
+      <div class="cs-section-center">
+        <h2 class="cs-title reveal">Typography & <em>Color</em></h2>
+        <div class="cs-centered-content">
+          <p class="reveal reveal-delay-1"
+            style="font-size:0.9rem;color:var(--text-soft);margin-bottom:32px;line-height:1.7;text-align: center;">
+            The aesthetic foundation of AI Smart Booking, focusing on high-contrast accessibility and cinematic tones.
+          </p>
+
+          <div class="visual-identity-container reveal reveal-delay-2">
+            <!-- Typography -->
+            <div>
+              <h5 class="palette-heading">Typography</h5>
+              <div class="typography-showcase-horizontal">
+                <div class="type-big-a">Aa</div>
+                <div class="type-header">
+                  <div class="type-font-name">Arial</div>
+                  <div class="type-tag">Primary Sans</div>
+                </div>
+                <div class="type-sample-inline">
+                  <div class="type-alphabet">ABCDEFGHIJKLMNOPQRSTUVWXYZ</div>
+                  <div class="type-desc">
+                    Ensuring effortless readability and consistent cross-platform performance.
+                    Selected for its clean, neutral aesthetics that allow cinematic content to remain the focus.
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Color Palettes -->
+            <div class="palette-row">
+              <div>
+                <h5 class="palette-heading">Primary Color</h5>
+                <div class="palette-main">
+                  <div class="color-swatch-large" style="background: #DD354C;"></div>
+                  <div class="color-info">
+                    <h4>Brand Primary</h4>
+                    <span>#DD354C</span>
+                  </div>
+                </div>
+              </div>
+              <div>
+                <h5 class="palette-heading">Secondary & Functional Colors</h5>
+                <div class="palette-secondary">
+                  <div class="swatch-small" style="background: #EB4E63;">#EB4E63</div>
+                  <div class="swatch-small" style="background: #191818;">#191818</div>
+                  <div class="swatch-small" style="background: #1FAD3D;">#1FAD3D</div>
+                  <div class="swatch-small" style="background: #84D6FC;">#84D6FC</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="cs-section">
+      <div class="cs-section-center">
+        <div class="cs-centered-content">
+          <!-- ── EMPATHY MAPPING ── -->
+          <div class="cs-section">
+            <div style="margin-bottom: 60px; text-align: center;">
+              <h2 class="cs-title reveal" style="margin-top: 5px;">EMPATHY MAP</h2>
+              <p class="survey-insight-tag reveal reveal-delay-1">Based on insights from 8 out of 10 users in the
+                survey.</p>
+            </div>
+
+            <div class="empathy-premium-container reveal reveal-delay-2">
+              <div class="empathy-cross-grid">
+                <!-- THINKS -->
+                <div class="empathy-quad">
+                  <div class="quad-header">
+                    <span>💭</span>
+                    <h4>Thinks</h4>
+                  </div>
+                  <ul class="quad-list">
+                    <li>“Will I get tickets for this movie?”</li>
+                    <li>“Tickets might get sold out fast.”</li>
+                    <li>“I should book as early as possible.”</li>
+                    <li>“I don’t want to miss this release.”</li>
+                  </ul>
+                </div>
+
+                <!-- FEELS -->
+                <div class="empathy-quad">
+                  <div class="quad-header">
+                    <span>❤️</span>
+                    <h4>Feels</h4>
+                  </div>
+                  <ul class="quad-list">
+                    <li>Excited about the movie release</li>
+                    <li>Worried about missing tickets</li>
+                    <li>Stressed during booking time</li>
+                    <li>Frustrated when tickets are sold out</li>
+                  </ul>
+                </div>
+
+                <!-- SAYS -->
+                <div class="empathy-quad">
+                  <div class="quad-header">
+                    <span>🗣️</span>
+                    <h4>Says</h4>
+                  </div>
+                  <ul class="quad-list">
+                    <li>“Tickets are already sold out!”</li>
+                    <li>“I tried booking but failed.”</li>
+                    <li>“Booking is too stressful.”</li>
+                    <li>“I wish there was an easier way.”</li>
+                  </ul>
+                </div>
+
+                <!-- DOES -->
+                <div class="empathy-quad">
+                  <div class="quad-header">
+                    <span>⚡</span>
+                    <h4>Does</h4>
+                  </div>
+                  <ul class="quad-list">
+                    <li>Checks app frequently before release</li>
+                    <li>Waits for ticket opening time</li>
+                    <li>Refreshes page multiple times</li>
+                    <li>Tries booking quickly</li>
+                    <li>Looks for alternate shows if failed</li>
+                  </ul>
+                </div>
+              </div>
+
+              <div class="pro-insight-footer reveal reveal-delay-3">
+                <div class="insight-icon">💡</div>
+                <div class="insight-text">
+                  <strong>Key Discovery:</strong> Users are ready early, but the system does not support early booking.
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- ── SOLUTION ── -->
+          <div class="cs-section" style="padding-top: 20px;">
+            <div class="cs-section-center">
+              <h2 class="cs-title reveal">What I Decided<em> to Solve</em></h2>
+              <div class="cs-centered-content">
+                <div class="solution-callout reveal reveal-delay-1">
+                  I introduced <strong>AI-powered smart booking </strong> feature to reduce the stress of <strong>
+                    high-demand
+                    ticket booking </strong>.This solution allows users to <strong> pre-select their preferred theatre,
+                    time,
+                    and seat
+                    category in advance </strong>.While still supporting real-time seat selection like a regular booking
+                  experience.
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- ── USER FLOW ── -->
+          <div class="cs-section">
+            <div class="cs-section-center">
+              <h2 class="cs-title reveal">User <em>Flow</em> </h2>
+
+              <div class="cs-centered-content">
+                <!-- Hierarchical Flow Diagram (Recreated from User Sketch) -->
+                <div class="flow-diagram-canvas reveal reveal-delay-1"
+                  style="background: #0a0a0a; padding: 60px 24px; border-radius: 20px; border: 1px solid #222; width: 100%; position: relative; overflow: hidden;">
+
+                  <!-- Background Decorative Element -->
+                  <div
+                    style="position: absolute; top: -100px; right: -100px; width: 300px; height: 300px; background: radial-gradient(circle, rgba(255,255,255,0.03) 0%, transparent 70%); pointer-events: none;">
+                  </div>
+
+                  <!-- Top Navigation Section -->
+                  <div
+                    style="display: flex; justify-content: center; gap: 40px; margin-bottom: 40px; position: relative; z-index: 2;">
+                    <div style="display: flex; flex-direction: column; align-items: center; width: 100px;">
+                      <div class="nav-node"
+                        style="padding: 10px 0; border: 1px solid #333; border-radius: 40px; font-size: 0.75rem; font-weight: 700; color: #444; width: 100%; text-align: center; opacity: 0.5;">
+                        Home</div>
+                    </div>
+
+                    <div style="display: flex; flex-direction: column; align-items: center; width: 220px;">
+                      <div class="nav-node active"
+                        style="padding: 12px 0; background: rgb(255, 255, 255); color: black; border-radius: 40px; font-size: 0.8rem; font-weight: 800; text-align: center; width: 140px; box-shadow: 0 4px 20px rgba(0,0,0,0.4);">
+                        Movie</div>
+                      <div
+                        style="height: 30px; width: 2px; background: linear-gradient(to bottom, white, #333); margin-top: 10px;">
+                      </div>
+                    </div>
+
+                    <div style="display: flex; flex-direction: column; align-items: center; width: 100px;">
+                      <div class="nav-node"
+                        style="padding: 10px 0; border: 1px solid #333; border-radius: 40px; font-size: 0.75rem; font-weight: 700; color: #444; width: 100%; text-align: center; opacity: 0.5;">
+                        Event</div>
+                    </div>
+
+                    <div style="display: flex; flex-direction: column; align-items: center; width: 200px;">
+                      <div class="nav-node"
+                        style="padding: 10px 0; border: 1px solid #444; border-radius: 40px; font-size: 0.75rem; font-weight: 700; color: #888; background: #111; width: 120px; text-align: center;">
+                        Profile</div>
+                      <div style="height: 30px; width: 2px; background: #333; margin-top: 10px;"></div>
+                    </div>
+                  </div>
+
+                  <style>
+                    .premium-flow-card {
+                      background: #111;
+                      border: 1px solid #222;
+                      border-radius: 14px;
+                      padding: 15px 20px;
+                      width: 100%;
+                      display: flex;
+                      align-items: center;
+                      gap: 15px;
+                      position: relative;
+                      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+                    }
+
+                    .premium-flow-card:hover {
+                      background: #161616;
+                      border-color: #444;
+                      transform: translateY(-3px);
+                      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+                    }
+
+                    .premium-arrow {
+                      display: flex;
+                      flex-direction: column;
+                      align-items: center;
+                      margin: 8px 0;
+                    }
+
+                    .arrow-line {
+                      width: 1px;
+                      height: 35px;
+                      background: #444;
+                    }
+
+                    .arrow-tip {
+                      color: #444;
+                      margin-top: -6px;
+                      font-size: 0.75rem;
+                    }
+
+                    .card-icon {
+                      font-size: 1.1rem;
+                      opacity: 0.8;
+                    }
+
+                    .card-text {
+                      display: flex;
+                      flex-direction: column;
+                      align-items: flex-start;
+                    }
+
+                    .card-title {
+                      font-size: 0.8rem;
+                      font-weight: 700;
+                      color: white;
+                    }
+
+                    .card-sub {
+                      font-size: 0.6rem;
+                      color: #777;
+                      text-transform: uppercase;
+                      letter-spacing: 0.5px;
+                    }
+                  </style>
+
+                  <div
+                    style="display: flex; justify-content: center; gap: 40px; align-items: flex-start; position: relative;">
+
+
+                    <div style="width: 100px;"></div>
+
+                    <!-- Main Flow (Under Movie) -->
+                    <div class="flow-column"
+                      style="display: flex; flex-direction: column; align-items: center; width: 240px; z-index: 2;">
+
+                      <div class="premium-flow-card">
+                        <span class="card-icon">🎬</span>
+                        <div class="card-text">
+                          <span class="card-sub">Step 01 / Discover</span>
+                          <span class="card-title">Upcoming Movies</span>
+                        </div>
+                      </div>
+                      <div class="premium-arrow">
+                        <div class="arrow-line"></div>
+                        <div class="arrow-tip">▼</div>
+                      </div>
+                      <div class="premium-flow-card" style="margin-left: 20px;">
+                        <span class="card-icon">👉</span>
+                        <div class="card-text">
+                          <span class="card-sub">Step 02 / Select</span>
+                          <span class="card-title">Movie Selection</span>
+                        </div>
+                      </div>
+                      <div class="premium-arrow">
+                        <div class="arrow-line"></div>
+                        <div class="arrow-tip">▼</div>
+                      </div>
+                      <div class="premium-flow-card"
+                        style="background: #1a1a1a; border-color: #555; border-width: 2px;">
+                        <span class="card-icon">✦</span>
+                        <div class="card-text">
+                          <span class="card-sub" style="color: white; opacity: 0.7;">AI Integration</span>
+                          <span class="card-title" style="letter-spacing: 0.5px;">AI — Smart Booking</span>
+                        </div>
+                      </div>
+                      <div class="premium-arrow">
+                        <div class="arrow-line"></div>
+                        <div class="arrow-tip">▼</div>
+                      </div>
+                      <div class="premium-flow-card" style="margin-left: 10px;">
+                        <span class="card-icon">📅</span>
+                        <div class="card-text">
+                          <span class="card-sub">Preferences</span>
+                          <span class="card-title">Select Dates (Min. 2)</span>
+                        </div>
+                      </div>
+                      <div class="premium-arrow">
+                        <div class="arrow-line"></div>
+                        <div class="arrow-tip">▼</div>
+                      </div>
+                      <div class="premium-flow-card">
+                        <span class="card-icon">🏛️</span>
+                        <div class="card-text">
+                          <span class="card-sub">Preferences</span>
+                          <span class="card-title">Theatre & Time Slots</span>
+                        </div>
+                      </div>
+                      <div class="premium-arrow">
+                        <div class="arrow-line"></div>
+                        <div class="arrow-tip">▼</div>
+                      </div>
+                      <div class="premium-flow-card" style="margin-left: 10px;">
+                        <span class="card-icon">💺</span>
+                        <div class="card-text">
+                          <span class="card-sub">Preferences</span>
+                          <span class="card-title">No. of Seats</span>
+                        </div>
+                      </div>
+                      <div class="premium-arrow">
+                        <div class="arrow-line"></div>
+                        <div class="arrow-tip">▼</div>
+                      </div>
+                      <div class="premium-flow-card">
+                        <span class="card-icon">⭐</span>
+                        <div class="card-text">
+                          <span class="card-sub">Preferences</span>
+                          <span class="card-title">Seat Category (P/S)</span>
+                        </div>
+                      </div>
+                      <div class="premium-arrow">
+                        <div class="arrow-line"></div>
+                        <div class="arrow-tip">▼</div>
+                      </div>
+                      <div class="premium-flow-card" style="margin-left: 10px;">
+                        <span class="card-icon">👁️</span>
+                        <div class="card-text">
+                          <span class="card-sub">Review</span>
+                          <span class="card-title">Preview Selections</span>
+                        </div>
+                      </div>
+                      <div class="premium-arrow">
+                        <div class="arrow-line"></div>
+                        <div class="arrow-tip">▼</div>
+                      </div>
+                      <div class="premium-flow-card" style="border-style: dashed; border-color: #444;">
+                        <span class="card-icon">💳</span>
+                        <div class="card-text">
+                          <span class="card-sub">Payment</span>
+                          <span class="card-title">Set Autopay</span>
+                        </div>
+                      </div>
+                      <div style="height: 20px; width: 2px; background: white; margin: 10px 0;"></div>
+                      <div class="premium-flow-card" style="background: white; border: none; transform: scale(1.05);">
+                        <span class="card-icon" style="filter: invert(1);">🎉</span>
+                        <div class="card-text">
+                          <span class="card-sub" style="color: #666;">Success</span>
+                          <span class="card-title" style="color: black; font-weight: 900;">Confirmation</span>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div style="width: 60px;"></div>
+
+                    <!-- Profile Path (Under Profile) -->
+                    <div class="side-path"
+                      style="display: flex; flex-direction: column; align-items: center; width: 220px; z-index: 2;">
+                      <div class="premium-flow-card">
+                        <span class="card-icon">👤</span>
+                        <div class="card-text">
+                          <span class="card-sub">Profile View</span>
+                          <span class="card-title">Booking & Purchases</span>
+                        </div>
+                      </div>
+                      <div class="premium-arrow">
+                        <div class="arrow-line"></div>
+                        <div class="arrow-tip">▼</div>
+                      </div>
+                      <div class="premium-flow-card">
+                        <span class="card-icon">🛡️</span>
+                        <div class="card-text">
+                          <span class="card-sub">Tracking</span>
+                          <span class="card-title">Pre-booking Status</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+
+
+          <!-- ── SCREENS ── -->
+          <div class="cs-section">
+            <div class="cs-section-center">
+              <h2 class="cs-title">UI <em>screens</em></h2>
+              <div class="cs-centered-content">
+                <p
+                  style="font-size:0.9rem;color:var(--text-soft);margin-bottom:48px;line-height:1.7;text-align: center;">
+                  Complete App Screens with Workflow
+                </p>
+              </div>
+            </div>
+
+            <div class="ui-gallery">
+              <!-- 01-04 Discovery -->
+              <div class="ui-screen-item">
+                <div class="ui-screen-frame"><img src="./APP/Movies page 1.png" alt="Screen 1"></div>
+                <div class="ui-screen-info"><span class="ui-screen-num">01</span>
+                  <div class="ui-screen-name">Discovery Feed</div>
+                </div>
+              </div>
+              <div class="ui-screen-item">
+                <div class="ui-screen-frame"><img src="./APP/Coming soon 2.png" alt="Screen 2"></div>
+                <div class="ui-screen-info"><span class="ui-screen-num">02</span>
+                  <div class="ui-screen-name">Coming Soon</div>
+                </div>
+              </div>
+              <div class="ui-screen-item">
+                <div class="ui-screen-frame"><img src="./APP/AI Smart booking page 3.png" alt="Screen 3"></div>
+                <div class="ui-screen-info"><span class="ui-screen-num">03</span>
+                  <div class="ui-screen-name">AI Smart Booking</div>
+                </div>
+              </div>
+              <div class="ui-screen-item">
+                <div class="ui-screen-frame"><img src="./APP/AI guidlines 4.png" alt="Screen 4"></div>
+                <div class="ui-screen-info"><span class="ui-screen-num">04</span>
+                  <div class="ui-screen-name">AI Guidelines</div>
+                </div>
+              </div>
+
+              <!-- 05-08 Configuration -->
+              <div class="ui-screen-item">
+                <div class="ui-screen-frame"><img src="./APP/booking preference setting 5.png" alt="Screen 5"></div>
+                <div class="ui-screen-info"><span class="ui-screen-num">05</span>
+                  <div class="ui-screen-name">Availability</div>
+                </div>
+              </div>
+              <div class="ui-screen-item">
+                <div class="ui-screen-frame"><img src="./APP/seat selection 6.png" alt="Screen 6"></div>
+                <div class="ui-screen-info"><span class="ui-screen-num">06</span>
+                  <div class="ui-screen-name">Preference Setup</div>
+                </div>
+              </div>
+              <div class="ui-screen-item">
+                <div class="ui-screen-frame"><img src="./APP/number of seats 7.png" alt="Screen 7"></div>
+                <div class="ui-screen-info"><span class="ui-screen-num">07</span>
+                  <div class="ui-screen-name">Guest Count</div>
+                </div>
+              </div>
+              <div class="ui-screen-item">
+                <div class="ui-screen-frame"><img src="./APP/seat overview 8.png" alt="Screen 8"></div>
+                <div class="ui-screen-info"><span class="ui-screen-num">08</span>
+                  <div class="ui-screen-name">Seat Overview</div>
+                </div>
+              </div>
+
+              <!-- 09-12 Selection -->
+              <div class="ui-screen-item">
+                <div class="ui-screen-frame"><img src="./APP/seat selection 1 slot 9.png" alt="Screen 9"></div>
+                <div class="ui-screen-info"><span class="ui-screen-num">09</span>
+                  <div class="ui-screen-name">Primary Slot</div>
+                </div>
+              </div>
+              <div class="ui-screen-item">
+                <div class="ui-screen-frame"><img src="./APP/seat overview II 10.png" alt="Screen 10"></div>
+                <div class="ui-screen-info"><span class="ui-screen-num">10</span>
+                  <div class="ui-screen-name">Alert for setting secondary slot</div>
+                </div>
+              </div>
+              <div class="ui-screen-item">
+                <div class="ui-screen-frame"><img src="./APP/seat selection secondry slot 11.png" alt="Screen 11"></div>
+                <div class="ui-screen-info"><span class="ui-screen-num">11</span>
+                  <div class="ui-screen-name">Secondary Slot</div>
+                </div>
+              </div>
+              <div class="ui-screen-item">
+                <div class="ui-screen-frame"><img src="./APP/preview 12.png" alt="Screen 12"></div>
+                <div class="ui-screen-info"><span class="ui-screen-num">12</span>
+                  <div class="ui-screen-name">Booking Preview</div>
+                </div>
+              </div>
+
+              <!-- 13-16 Payment -->
+              <div class="ui-screen-item">
+                <div class="ui-screen-frame"><img src="./APP/Payment setting for autopay 13.png" alt="Screen 13"></div>
+                <div class="ui-screen-info"><span class="ui-screen-num">13</span>
+                  <div class="ui-screen-name">Auto-Pay Setup</div>
+                </div>
+              </div>
+              <div class="ui-screen-item">
+                <div class="ui-screen-frame"><img src="./APP/debit cards save 14.png" alt="Screen 14"></div>
+                <div class="ui-screen-info"><span class="ui-screen-num">14</span>
+                  <div class="ui-screen-name">Add Cards Details</div>
+                </div>
+              </div>
+              <div class="ui-screen-item">
+                <div class="ui-screen-frame"><img src="./APP/debit cards autopay enabled confirmation 15.png"
+                    alt="Screen 15">
+                </div>
+                <div class="ui-screen-info"><span class="ui-screen-num">15</span>
+                  <div class="ui-screen-name"> Auto-Pay Enabled Confirmation for card</div>
+                </div>
+              </div>
+              <div class="ui-screen-item">
+                <div class="ui-screen-frame"><img src="./APP/autopay setting for UPI  id verified save 16.png"
+                    alt="Screen 16"></div>
+                <div class="ui-screen-info"><span class="ui-screen-num">16</span>
+                  <div class="ui-screen-name">UPI Verification</div>
+                </div>
+              </div>
+
+              <!-- 17-20 Final -->
+              <div class="ui-screen-item">
+                <div class="ui-screen-frame"><img src="./APP/UPI autopay enable confirmation 17.png" alt="Screen 17">
+                </div>
+                <div class="ui-screen-info"><span class="ui-screen-num">17</span>
+                  <div class="ui-screen-name">Auto-Pay Enabled Confirmation for UPI</div>
+                </div>
+              </div>
+              <div class="ui-screen-item">
+                <div class="ui-screen-frame"><img src="./APP/Prebooking confirmation 18.png" alt="Screen 18"></div>
+                <div class="ui-screen-info"><span class="ui-screen-num">18</span>
+                  <div class="ui-screen-name">Final Confirmation</div>
+                </div>
+              </div>
+              <div class="ui-screen-item">
+                <div class="ui-screen-frame"><img src="./APP/profile page 19.png" alt="Screen 19"></div>
+                <div class="ui-screen-info"><span class="ui-screen-num">19</span>
+                  <div class="ui-screen-name">User Profile</div>
+                </div>
+              </div>
+              <div class="ui-screen-item">
+                <div class="ui-screen-frame"><img src="./APP/pre booked 20.png" alt="Screen 20"></div>
+                <div class="ui-screen-info"><span class="ui-screen-num">20</span>
+                  <div class="ui-screen-name">Pre-Booked History</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ── CHALLENGES ── -->
+          <div class="cs-section">
+            <div class="cs-section-center">
+              <h2 class="cs-title reveal">Real Problems | <em>Smart Solutions.</em></h2>
+               <div class="cs-centered-content">
+                <div class="challenge-split-grid reveal reveal-delay-1">
+                  <!-- Problems Bucket -->
+                  <div class="challenge-bucket prob-bucket">
+                    <h3>⚡ Problems</h3>
+                    <ul>
+                      <li>Users cannot book tickets before they go live.</li>
+                      <li>Tickets sell out quickly during high demand.</li>
+                      <li>Users can select only one date and time.</li>
+                      <li>Booking is stressful with constant refreshing.</li>
+                      <li>Payment often fails during peak time.</li>
+                      <li>Users are unsure how booking works.</li>
+                    </ul>
+                  </div>
+
+                  <!-- Solutions Bucket -->
+                  <div class="challenge-bucket sol-bucket">
+                    <h3>✦ Solutions</h3>
+                    <ul>
+                      <li>Enable AI pre-booking to book tickets automatically at release time.</li>
+                      <li>Use AI to book instantly and increase success rate.</li>
+                      <li>Allow backup date and time selection for better chances.</li>
+                      <li>Provide a hands-free booking experience using AI.</li>
+                      <li>Enable AutoPay for smooth and instant transactions.</li>
+                      <li>Show clear AI status and booking summaries.</li>
+                    </ul>
+                  </div>
+                </div>
+
+                <!-- Ending Line -->
+                <p class="reveal reveal-delay-2" style="text-align: center; margin-top: 40px; font-size: 1.1rem; color: var(--text-mid); font-weight: 300; font-style: italic;">
+                  Solving real user problems with simple and smart automation.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- ── OUTCOME ── -->
+          <div class="cs-section">
+            <div class="cs-section-center">
+             <h2 class="cs-title reveal">Impact that <em>matters</em></h2>
+              <div class="cs-centered-content">
+                <div class="outcome-row reveal reveal-delay-1">
+                  <div class="outcome-chip"><span class="big">90%</span><span class="small">Reduction in booking
+                      time</span>
+                  </div>
+                  <div class="outcome-chip"><span class="big">3×</span><span class="small">Faster than manual
+                      booking</span>
+                  </div>
+                  <div class="outcome-chip"><span class="big">100%</span><span class="small">Ensures users don’t miss releases</span>
+                  </div>
+                  <div class="outcome-chip"><span class="big">0</span><span class="small">App crashes in prototype
+                      tests</span></div>
+                </div>
+                <ul class="cs-bullets centered reveal reveal-delay-2" style="margin-top:28px;">
+                  <li>All 5 usability test users <strong>successfully completed a booking without assistance.</strong>
+                  </li>
+                  <li>The live status animation <strong>eliminated anxiety</strong> — users rated "trust in system".</li>
+                  <li>Preference setup <strong>Simplified selection process, minimizing user drop-off.</strong></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <!-- ── LEARNINGS ── -->
+          <div class="cs-section">
+            <div class="cs-section-center">
+             <h2 class="cs-title reveal">What I <em>learned</em></h2>
+              <div class="cs-centered-content">
+                <div class="learning-pills reveal reveal-delay-1">
+                  <span class="learning-pill">Trust is a UX problem</span>
+                  <span class="learning-pill">Progressive disclosure beats long forms</span>
+                  <span class="learning-pill">Status feedback = lower anxiety</span>
+                  <span class="learning-pill">AI needs guardrails users can feel</span>
+                  <span class="learning-pill">Dark UIs need higher contrast ratios</span>
+                  <span class="learning-pill">Fallback flows are as important as the main flow</span>
+                  <span class="learning-pill">Test with real stress scenarios, not ideal ones</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ── FUTURE IMPROVEMENTS ── -->
+          <div class="cs-section">
+            <div class="cs-section-center">
+             <h2 class="cs-title reveal">Future <em>improvements</em></h2>
+              <div class="cs-centered-content">
+                <div class="future-list reveal reveal-delay-1">
+                  <div class="future-item">Loyalty point integration — auto-apply rewards during booking</div>
+                  <div class="future-item">Add smart seat recommendations based on user behavior</div>
+                  <div class="future-item">AI snack pre-ordering based on past concession preferences</div>
+                  <div class="future-item">Provide real-time alerts for ticket availability and booking status</div>
+                  <div class="future-item">Introduce group pre-booking for friends and family</div>
+                  <div class="future-item">Voice-activated preference setup via smart assistant</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div><!-- end cs-main -->
+
+        <!-- Footer -->
+        <footer class="cs-footer">
+          <div class="footer-logo">S<span>owmiya</span></div>
+          <p style="font-size:0.82rem;color:var(--text-soft)">Crafted with ♥ in Chennai · UI/UX Designer & Front-End
+            Developer
+          </p>
+          <a href="sowmiya-portfolio.html" style="font-size:0.82rem;color:var(--rose);font-weight:500;">← Back to
+            Portfolio</a>
+        </footer>
+
+        <script>
+          // Cursor
+          const cursor = document.getElementById('cursor');
+          const follower = document.getElementById('cursorFollower');
+          let mx = 0, my = 0, fx = 0, fy = 0;
+          document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; cursor.style.left = mx + 'px'; cursor.style.top = my + 'px'; });
+          function animFollower() { fx += (mx - fx) * 0.12; fy += (my - fy) * 0.12; follower.style.left = fx + 'px'; follower.style.top = fy + 'px'; requestAnimationFrame(animFollower); }
+          animFollower();
+
+          // Scroll progress
+          const bar = document.getElementById('progress-bar');
+          window.addEventListener('scroll', () => {
+            const total = document.body.scrollHeight - window.innerHeight;
+            bar.style.width = (window.scrollY / total * 100) + '%';
+          });
+
+          // Navbar
+          const navbar = document.getElementById('navbar');
+          window.addEventListener('scroll', () => { navbar.classList.toggle('scrolled', window.scrollY > 60); });
+
+          // Reveal
+          const observer = new IntersectionObserver(entries => {
+            entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+          }, { threshold: 0.1 });
+          document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+        </script>
+</body>
+
+</html>

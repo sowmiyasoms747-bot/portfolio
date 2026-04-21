@@ -1,0 +1,11 @@
+Typography
+Arial is commonly used in the app design
+
+Color Palette
+DD354C - primary
+
+Other commonly used color
+EB4E63
+191818
+1FAD3D
+84D6FC

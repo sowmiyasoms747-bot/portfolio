@@ -1,0 +1,12 @@
+Discovery: User navigates to Upcoming Movies and selects a film.
+The Trigger: User clicks the AI - Pre-booking button.
+Preferences (The Safety Net):
+Select at least 2 preferred dates.
+Select 2 preferred theaters and showtimes.
+Choose the number of seats.
+Select Primary & Secondary seat choices (to ensure a successful booking if the first choice is taken).
+Verification: A Preview screen shows all selected preferences for review.
+Automation: User sets up Autopay to allow the system to purchase the ticket the moment booking opens.
+End Goal: Receive a Confirmation.
+Secondary Path: Management
+Profile Access: Users can go to their Profile → Your Bookings & Purchases → Pre-booking to track the status of their pending automated tickets.
