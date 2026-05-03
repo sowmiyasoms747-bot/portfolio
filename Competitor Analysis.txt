@@ -1,0 +1,11 @@
+What Exists Today
+App
+Pre-booking |AIAutomation| BackupSlots | Auto-Pay 
+BookMyShow❌❌❌❌
+Paytm Movies❌❌❌❌
+District❌❌❌❌
+Apple/Google Wallet❌❌❌✅
+
+
+Then add 2 lines below the table:
+"None of the existing platforms support AI-powered pre-booking or automated seat selection. This gap — where user demand is high but no solution exists — directly inspired this project."

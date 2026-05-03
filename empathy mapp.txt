@@ -1,27 +1,21 @@
-Planning For New Movie
-Touch Point: Trailer, social media (insta, thread), Movie apps (Paytm Movies, Bookmyshow)
-User Action: Watches trailer, wait for release
-User Emotion: Excited & Hyped 🤩
-Pain Point: No clarity on booking time
-Opportunities: Upcoming movies trailer & release date
-
-
-Booking Opens
-Touch Point: Booking app, Movie & Seat Selection
-User Action: Checking for showtime, theatres & seats
-User Emotion: Hopeful but unsure 😟
-Pain Point: No seat hold option
-Opportunities: AI pre-set movie booking with Preferred Showtime, Theatre & Seat
-
-Payment Confirmation
-Touch Point: Payment gateway (G-pay, Paytm, etc.) Confirmation
-User Action: Tries to pay fast to confirm booking
-User Emotion: Nervous until confirmation 😬
-Pain Point: Payment fail, Seat loss
-Opportunities: Auto-payment system
-Confirmation
-Touch Point: Ticket confirmation
-User Action: Check ticket details
-User Emotion: Happy & relieved 😊
-Pain Point: Majority None
-Opportunities: Instant confirmation to Email, Whatsapp
+👤 User: Movie Lover (High-demand ticket booking)
+💛 Feels
+Anxious about tickets selling out
+Excited for first-day show
+Frustrated with app crashes
+Stressed during booking time
+⚡ Does
+Refreshes the app repeatedly
+Opens multiple booking platforms
+Tries to book exactly when sales open
+Checks availability frequently
+🧠 Thinks
+“I might miss the tickets”
+“I need to act fast”
+“The app might crash again”
+“There should be an easier way”
+🗣️ Says
+“Tickets got sold out so fast!”
+“This app is too slow”
+“I couldn’t book in time”
+“Booking tickets is so stressful”
