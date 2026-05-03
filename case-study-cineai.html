@@ -3534,43 +3534,57 @@
 
         <style>
           .competitor-table-container {
-            background: #0a0a0a;
-            border: 1px solid #222;
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
             margin-bottom: 30px;
           }
           .comp-table {
             width: 100%;
-            border-collapse: collapse;
+            border-collapse: separate;
+            border-spacing: 0 16px;
             text-align: center;
           }
           .comp-table th {
-            padding: 28px 24px;
+            padding: 16px 24px;
             font-family: 'Outfit', sans-serif;
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             text-transform: uppercase;
-            letter-spacing: 1.5px;
+            letter-spacing: 2px;
             color: var(--text-soft);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-            background: #0d0d0d;
+            background: transparent;
             font-weight: 500;
-          }
-          .comp-table td {
-            padding: 28px 24px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.03);
-            color: var(--text-mid);
-            font-size: 0.95rem;
-          }
-          .comp-table tr:last-child td {
             border-bottom: none;
           }
           .comp-table tbody tr {
-            transition: background 0.4s ease;
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            position: relative;
+            z-index: 1;
+          }
+          .comp-table td {
+            padding: 24px 24px;
+            border-top: 1px solid #1a1a1a;
+            border-bottom: 1px solid #1a1a1a;
+            color: var(--text-mid);
+            font-size: 0.95rem;
+            background: #080808;
+            transition: all 0.4s ease;
+          }
+          .comp-table tbody td:first-child {
+            border-left: 1px solid #1a1a1a;
+            border-top-left-radius: 16px;
+            border-bottom-left-radius: 16px;
+          }
+          .comp-table tbody td:last-child {
+            border-right: 1px solid #1a1a1a;
+            border-top-right-radius: 16px;
+            border-bottom-right-radius: 16px;
           }
           .comp-table tbody tr:hover {
-            background: rgba(255, 255, 255, 0.02);
+            z-index: 10;
+            transform: scale(1.03);
+          }
+          .comp-table tbody tr:hover td {
+            background: #111;
+            border-color: #333;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6);
           }
           .comp-table .app-name {
             text-align: left;
