@@ -1,16 +1,16 @@
 /* CSS Variables for Premium Dark Theme */
 :root {
-    --bg-color: #050505;
-    --surface-color: #121212;
-    --surface-light: #1e1e1e;
+    --bg-color: #000000;
+    --surface-color: #0a0a0a;
+    --surface-light: #121212;
     --text-primary: #ffffff;
     --text-secondary: #a0a0a0;
     --accent-color: #ffffff;
-    --border-color: rgba(255, 255, 255, 0.1);
+    --border-color: #333333;
     --glow-color: rgba(255, 255, 255, 0.05);
     
     --font-heading: 'Outfit', sans-serif;
-    --font-body: 'Inter', sans-serif;
+    --font-body: 'DM Sans', sans-serif;
 }
 
 /* Global Styles */
@@ -338,4 +338,64 @@ body {
     .mockup-placeholder::after {
         border-radius: 22px;
     }
+}
+
+/* ── Custom Cursor ── */
+body, a, button {
+    cursor: none;
+}
+
+.cursor {
+    width: 12px;
+    height: 12px;
+    background: #ffffff;
+    border-radius: 50%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    z-index: 9999;
+    transform: translate(-50%, -50%);
+    transition: transform 0.15s, width 0.3s, height 0.3s, background 0.3s;
+}
+
+.cursor-follower {
+    width: 36px;
+    height: 36px;
+    border: 1.5px solid #666666;
+    border-radius: 50%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    z-index: 9998;
+    transform: translate(-50%, -50%);
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), width 0.3s, height 0.3s;
+}
+
+body:has(a:hover) .cursor,
+body:has(button:hover) .cursor {
+    width: 45px;
+    height: 45px;
+    background: transparent;
+    border: 1px solid white;
+}
+
+body:has(a:hover) .cursor-follower,
+body:has(button:hover) .cursor-follower {
+    width: 0;
+    height: 0;
+    opacity: 0;
+}
+
+/* ── Scroll Progress ── */
+#progress-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 3px;
+    background: linear-gradient(90deg, #666666, #ffffff);
+    z-index: 10000;
+    width: 0%;
+    transition: width 0.1s;
 }
