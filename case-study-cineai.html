@@ -2994,6 +2994,89 @@
       </div>
     </div>
 
+    <!-- ── PROBLEM METRICS ── -->
+    <div class="cs-section" style="padding-top: 0; padding-bottom: 60px;">
+      <style>
+        .metrics-stats-grid {
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+          gap: 24px;
+          max-width: 900px;
+          margin: 0 auto;
+        }
+
+        .metric-stat-card {
+          padding: 32px;
+          background: #0a0a0a;
+          border: 1px solid #222;
+          border-radius: var(--radius-md);
+          display: flex;
+          flex-direction: column;
+          gap: 12px;
+          align-items: center;
+          text-align: center;
+          transition: transform var(--transition), border-color var(--transition);
+        }
+
+        .metric-stat-card:hover {
+          transform: translateY(-4px);
+          border-color: #444;
+        }
+
+        .metric-stat-value {
+          font-family: 'Outfit', sans-serif;
+          font-size: 2.8rem;
+          font-weight: 700;
+          color: var(--text-dark);
+          line-height: 1;
+        }
+
+        .metric-stat-label {
+          font-size: 0.72rem;
+          font-weight: 600;
+          color: var(--text-soft);
+          letter-spacing: 0.14em;
+          text-transform: uppercase;
+        }
+
+        .metric-stat-desc {
+          font-size: 0.95rem;
+          line-height: 1.5;
+          color: var(--text-mid);
+          font-weight: 300;
+        }
+
+        @media (max-width: 768px) {
+          .metrics-stats-grid {
+            grid-template-columns: 1fr;
+          }
+        }
+      </style>
+
+      <div class="metrics-stats-grid">
+        <!-- Metric 1 -->
+        <div class="metric-stat-card reveal">
+          <div class="metric-stat-label">User Survey</div>
+          <div class="metric-stat-value">8 out of 10</div>
+          <p class="metric-stat-desc">Users surveyed said they have missed tickets due to high demand — this is why the problem exists.</p>
+        </div>
+
+        <!-- Metric 2 -->
+        <div class="metric-stat-card reveal reveal-delay-1">
+          <div class="metric-stat-label">Industry Research</div>
+          <div class="metric-stat-value">1 in 3</div>
+          <p class="metric-stat-desc">Online ticket purchases fail during peak release windows due to payment and traffic issues.</p>
+        </div>
+
+        <!-- Metric 3 -->
+        <div class="metric-stat-card reveal reveal-delay-2">
+          <div class="metric-stat-label">Booking Urgency</div>
+          <div class="metric-stat-value">60 seconds</div>
+          <p class="metric-stat-desc">Average time a high demand movie sells out after tickets go live — showing the urgency this feature solves.</p>
+        </div>
+      </div>
+    </div>
+
     <!-- ── SCREEN EVOLUTION ── -->
     <div class="cs-section" style="padding: 100px 0;">
       <div class="cs-section-center" style="margin-bottom: 60px;">
