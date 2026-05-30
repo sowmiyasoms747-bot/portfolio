@@ -229,34 +229,69 @@ body {
     width: 320px;
     height: 680px;
     background-color: var(--surface-color);
-    border: 1px solid var(--border-color);
-    border-radius: 40px;
+    border: 12px solid #0a0a0a; /* Sleek black phone bezel */
+    border-radius: 46px; /* Smooth rounded corners */
     display: flex;
     justify-content: center;
     align-items: center;
     position: relative;
     z-index: 1;
-    box-shadow: 0 30px 60px rgba(0,0,0,0.5);
+    /* Outer highlight + premium shadow matching the requested design */
+    box-shadow: 
+        0 0 0 2px #262626, /* Silver-grey outer metal body rim */
+        0 0 0 4.5px #ffffff, /* White high-contrast outer highlight */
+        0 25px 50px -12px rgba(0, 0, 0, 0.9);
     transition: transform 0.5s ease, box-shadow 0.5s ease;
     overflow: hidden;
 }
 
-/* Inner border to simulate phone bezel */
+/* Dynamic Island (Pill Shape) */
+.mockup-placeholder::before {
+    content: '';
+    position: absolute;
+    top: 11px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 76px;
+    height: 22px;
+    background: #000000;
+    border-radius: 11px;
+    z-index: 10;
+    pointer-events: none;
+}
+
+/* Status Bar & Home Gesture Bar Overlay */
 .mockup-placeholder::after {
     content: '';
     position: absolute;
-    top: 8px;
-    left: 8px;
-    right: 8px;
-    bottom: 8px;
-    border: 1px solid rgba(255,255,255,0.05);
-    border-radius: 32px;
+    inset: 0;
+    z-index: 9;
     pointer-events: none;
+    background-image: 
+        /* Status Bar SVG (White icons) */
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='296' height='24' viewBox='0 0 296 24'%3E%3Ctext x='16' y='16' fill='%23ffffff' font-family='-apple-system, BlinkMacSystemFont, %22Segoe UI%22, Roboto, Helvetica, Arial, sans-serif' font-size='10.5' font-weight='600'%3E5:31%3C/text%3E%3Cpath d='M232 16h2.5v-6H232zm3.5 0h2.5v-7.5H235.5zm3.5 0h2.5v-9H239zm3.5 0h2.5v-10.5H242.5z' fill='%23ffffff'/%3E%3Cpath d='M253 9a5 5 0 0 1 6.5 0m-7.5 1.8a3.2 3.2 0 0 1 8.5 0m-9.5 2a1.8 1.8 0 0 1 10.5 0m-6.2 1.8a0.8 0 0 1 1.9 0' stroke='%23ffffff' stroke-width='1.1' fill='none'%3E%3C/path%3E%3Crect x='264' y='8.5' width='16' height='8' rx='2' fill='none' stroke='%23ffffff' stroke-width='1'/%3E%3Crect x='265.5' y='10' width='10' height='5' rx='1' fill='%23ffffff'/%3E%3Cpath d='M281.2 11.2v2.6' stroke='%23ffffff' stroke-width='1' stroke-linecap='round'/%3E%3C/svg%3E"),
+        /* Top Status Bar Gradient Overlay (for readability on light headers) */
+        linear-gradient(to bottom, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0) 100%),
+        /* Bottom Home Indicator Gesture Bar */
+        linear-gradient(to right, #ffffff, #ffffff);
+    background-repeat: no-repeat, no-repeat, no-repeat;
+    background-position: 
+        top 2px center,
+        top left,
+        bottom 8px center;
+    background-size: 
+        100% 24px,
+        100% 40px,
+        100px 4px;
 }
 
 .mockup-placeholder:hover {
     transform: translateY(-10px);
-    box-shadow: 0 40px 80px rgba(0,0,0,0.6), 0 0 40px rgba(255,255,255,0.05);
+    box-shadow: 
+        0 0 0 2px #262626,
+        0 0 0 4.5px #ffffff,
+        0 40px 80px rgba(0,0,0,0.95), 
+        0 0 40px rgba(255,255,255,0.05);
 }
 
 .placeholder-text {
@@ -329,11 +364,8 @@ body {
     .mockup-placeholder {
         width: 280px;
         height: 600px;
-        border-radius: 30px;
-    }
-
-    .mockup-placeholder::after {
-        border-radius: 22px;
+        border-radius: 36px;
+        border-width: 9px;
     }
 }
 
