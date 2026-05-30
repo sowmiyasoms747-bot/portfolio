@@ -28,6 +28,233 @@
     </header>
 
     <main id="case-study" class="container">
+        <!-- Overview Section -->
+        <section class="cs-intro-section fade-in">
+            <div class="intro-grid">
+                <div class="intro-left">
+                    <span class="section-badge">Overview</span>
+                    <h2 class="section-title-large">What is Sensory-Friendly Routing?</h2>
+                    <p class="intro-text">This project introduces a Sensory-Friendly Routing feature added directly into Google Maps. It helps neurodiverse users — including people with autism, sensory processing disorder, anxiety, and mobility challenges — navigate their daily journeys without sensory overload. Instead of routing based only on speed and distance, this feature considers noise levels, crowd density, rest stop availability, and lighting to find the calmest path possible.</p>
+                </div>
+                <div class="intro-right">
+                    <div class="intro-card">
+                        <h3>Why I Chose This</h3>
+                        <p>I chose this problem because 1 in 7 people globally have some form of disability, yet no major navigation app today considers their sensory needs. Google Maps tells you the fastest route. But for millions of neurodiverse users, the fastest route is rarely the right route. I wanted to design something that genuinely makes independent travel possible for people who are currently left out.</p>
+                    </div>
+                    <div class="intro-card">
+                        <h3>The Goal</h3>
+                        <p>My goal is to make everyday navigation calmer, more predictable, and genuinely accessible for neurodiverse users — without making them feel labelled or different from anyone else.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Empathy Map Section -->
+        <section class="cs-empathy-section fade-in">
+            <span class="section-badge">User Research</span>
+            <h2 class="section-title-large">Empathy Mapping</h2>
+            <p class="section-subtitle-text">Based on insights from research into neurodiverse user behaviour and accessibility studies.</p>
+            
+            <div class="empathy-grid">
+                <!-- Center Node -->
+                <div class="empathy-center">
+                    <span>User</span>
+                </div>
+                
+                <!-- Thinks -->
+                <div class="empathy-card thoughts">
+                    <div class="card-icon">💭</div>
+                    <h3>Thinks</h3>
+                    <ul>
+                        <li>"Will this route be too loud or crowded?"</li>
+                        <li>"I need to know what the journey will feel like before I leave"</li>
+                        <li>"What if something unexpected happens on the way?"</li>
+                        <li>"I wish I could avoid that busy crossing near the market"</li>
+                    </ul>
+                </div>
+                
+                <!-- Feels -->
+                <div class="empathy-card feelings">
+                    <div class="card-icon">🤍</div>
+                    <h3>Feels</h3>
+                    <ul>
+                        <li>Anxious about unpredictable situations</li>
+                        <li>Overwhelmed in crowded or noisy areas</li>
+                        <li>Frustrated that no app understands their needs</li>
+                        <li>Relieved when a journey goes exactly as planned</li>
+                    </ul>
+                </div>
+                
+                <!-- Says -->
+                <div class="empathy-card says">
+                    <div class="card-icon">💬</div>
+                    <h3>Says</h3>
+                    <ul>
+                        <li>"I always plan my routes hours before I leave"</li>
+                        <li>"I avoid going out if I am not sure about the route"</li>
+                        <li>"I need to know where I can rest or find a toilet on the way"</li>
+                        <li>"I stopped using Maps because it never considers how I experience things"</li>
+                    </ul>
+                </div>
+                
+                <!-- Does -->
+                <div class="empathy-card does">
+                    <div class="card-icon">🏃</div>
+                    <h3>Does</h3>
+                    <ul>
+                        <li>Cross-references multiple apps before every trip</li>
+                        <li>Avoids going out during peak hours</li>
+                        <li>Plans rest stops manually before leaving home</li>
+                        <li>Chooses longer routes that feel safer over faster ones that feel risky</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="discovery-callout">
+                <div class="discovery-icon">💡</div>
+                <div class="discovery-content">
+                    <h4>Key Discovery</h4>
+                    <p>Neurodiverse users spend more energy planning the journey than taking it. The stress starts before they even leave home.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- What I Decided to Solve -->
+        <section class="cs-decision-section fade-in">
+            <div class="decision-content-box">
+                <span class="section-badge">The Strategy</span>
+                <h2>What I Decided to Solve</h2>
+                <p>I introduced a Sensory Mode feature addition to Google Maps that gives neurodiverse users the ability to set their personal sensory preferences — noise, crowds, lighting, rest stops, and restroom access — and receive routes scored for comfort, not just speed. An AI layer learns preferences over time and provides real-time advance alerts during navigation so users are never caught off guard.</p>
+            </div>
+        </section>
+
+        <!-- User Flow Section -->
+        <section class="cs-flow-section fade-in">
+            <span class="section-badge">User Journey</span>
+            <h2 class="section-title-large">The Sensory User Flow</h2>
+            <p class="section-subtitle-text">A step-by-step walk-through of the sensory navigation experience from start to destination.</p>
+            
+            <div class="flow-container">
+                <!-- Flow Item 1 -->
+                <div class="flow-step">
+                    <div class="flow-number">00</div>
+                    <div class="flow-content">
+                        <h4>Google Maps Home</h4>
+                        <p>User opens the standard map interface.</p>
+                    </div>
+                </div>
+                
+                <div class="flow-arrow">↓</div>
+                
+                <!-- Flow Item 2 -->
+                <div class="flow-step">
+                    <div class="flow-number">01</div>
+                    <div class="flow-content">
+                        <h4>Search Destination</h4>
+                        <p>User searches for their target location.</p>
+                    </div>
+                </div>
+                
+                <div class="flow-arrow">↓</div>
+                
+                <!-- Flow Item 3 -->
+                <div class="flow-step">
+                    <div class="flow-number">02</div>
+                    <div class="flow-content">
+                        <h4>Tap Sensory Mode Button</h4>
+                        <p>Feature is accessible directly on the directions configuration page.</p>
+                    </div>
+                </div>
+                
+                <div class="flow-arrow">↓</div>
+                
+                <!-- Flow Item 4 -->
+                <div class="flow-step">
+                    <div class="flow-number">03</div>
+                    <div class="flow-content">
+                        <h4>Set Sensory Preferences</h4>
+                        <p>Configure sensitivity parameters: noise, crowds, lighting, rest stops, restrooms.</p>
+                        <div class="flow-meta-badge">AI learns preferences silently on first use</div>
+                    </div>
+                </div>
+                
+                <div class="flow-arrow">↓</div>
+                
+                <!-- Flow Item 5 -->
+                <div class="flow-step">
+                    <div class="flow-number">04</div>
+                    <div class="flow-content">
+                        <h4>View Sensory-Scored Routes</h4>
+                        <p>View comfort-rated options alongside typical transit metrics.</p>
+                    </div>
+                </div>
+                
+                <div class="flow-arrow">↓</div>
+                
+                <!-- Flow Item 6 -->
+                <div class="flow-step">
+                    <div class="flow-number">05</div>
+                    <div class="flow-content">
+                        <h4>Select Route & Start</h4>
+                        <p>User accepts route and begins active turn-by-turn guidance.</p>
+                    </div>
+                </div>
+                
+                <div class="flow-arrow">↓</div>
+                
+                <!-- Flow Item 7 -->
+                <div class="flow-step active-ai">
+                    <div class="flow-number">06</div>
+                    <div class="flow-content">
+                        <h4>AI Real-time Monitoring</h4>
+                        <p>System tracks conditions dynamically ahead of user position.</p>
+                        
+                        <!-- Alert Split Box -->
+                        <div class="flow-split-box">
+                            <div class="split-header">
+                                <span class="alert-pulse"></span>
+                                <strong>Alert:</strong> Disturbance detected ahead
+                            </div>
+                            <p>Detour suggested to maintain high sensory score.</p>
+                            <div class="split-options">
+                                <div class="split-option">Option A: Accept detour</div>
+                                <div class="split-option">Option B: Keep current route</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="flow-arrow">↓</div>
+                
+                <!-- Flow Item 8 -->
+                <div class="flow-step">
+                    <div class="flow-number">07</div>
+                    <div class="flow-content">
+                        <h4>Arrive at Destination</h4>
+                        <p>User safely completes their travel.</p>
+                    </div>
+                </div>
+                
+                <div class="flow-arrow">↓</div>
+                
+                <!-- Flow Item 9 -->
+                <div class="flow-step">
+                    <div class="flow-number">08</div>
+                    <div class="flow-content">
+                        <h4>Post-Trip Feedback</h4>
+                        <p>Single-tap emoji reaction prompts updates to route models.</p>
+                        <div class="flow-meta-badge">Community data improves routing for all</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Screen Walkthrough Section Header -->
+        <div class="walkthrough-header fade-in" style="text-align: center; padding: 6rem 0 2rem;">
+            <span class="section-badge">Walkthrough</span>
+            <h2 class="section-title-large" style="margin-bottom: 0;">Interactive Screen Walkthrough</h2>
+        </div>
+
         <!-- Screen 1 -->
         <section class="screen-section fade-in">
             <div class="screen-content">
@@ -84,23 +311,10 @@
                     <h2>Map with Environmental Overlays</h2>
                     <p>The map view is enhanced with visual overlays indicating quiet zones, busy areas, and available rest points. This helps users build a mental model of their journey and reduces uncertainty before and during navigation.</p>
                 </div>
-                <div class="screen-visual">
+                <div class="screen-visual dual-mockups">
                     <div class="mockup-placeholder">
                         <img src="Sensory mapping/Sensory Toggle/Map with Environmental Overlays 1.png" alt="Map with Environmental Overlays Screen 1" style="width: 100%; height: 100%; object-fit: cover;">
                     </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Screen 5 (Added) -->
-        <section class="screen-section fade-in">
-            <div class="screen-content">
-                <div class="screen-text">
-                    <span class="screen-number">05</span>
-                    <h2>Environmental Overlays <span class="highlight">(Detailed View)</span></h2>
-                    <p>When interacting with the map overlays, users can access deeper, real-time insights into specific zones—such as crowd density updates or noise level warnings—allowing them to make proactive adjustments to their route.</p>
-                </div>
-                <div class="screen-visual">
                     <div class="mockup-placeholder">
                         <img src="Sensory mapping/Sensory Toggle/Map with Environmental Overlays 2.png" alt="Map with Environmental Overlays Screen 2" style="width: 100%; height: 100%; object-fit: cover;">
                     </div>
@@ -108,11 +322,11 @@
             </div>
         </section>
 
-        <!-- Screen 6 -->
-        <section class="screen-section right-align fade-in">
-            <div class="screen-content reverse-layout">
+        <!-- Screen 5 -->
+        <section class="screen-section fade-in">
+            <div class="screen-content">
                 <div class="screen-text">
-                    <span class="screen-number">06</span>
+                    <span class="screen-number">05</span>
                     <h2>Navigation with Smart Alerts</h2>
                     <p>During navigation, the system provides proactive alerts about upcoming crowded or noisy areas. Users are offered optional detours, ensuring they remain in control while being supported by real-time insights.</p>
                 </div>
@@ -124,15 +338,200 @@
             </div>
         </section>
 
+        <!-- Problems & Solutions Section -->
+        <section class="cs-challenges-section fade-in">
+            <span class="section-badge">Problem Space & Solutions</span>
+            <h2 class="section-title-large">Real Problems. Smart Solutions.</h2>
+            
+            <div class="challenges-grid">
+                <!-- Column 1: Problems -->
+                <div class="challenge-column problems">
+                    <div class="column-header">
+                        <span class="status-indicator error"></span>
+                        <h3>The Challenges</h3>
+                    </div>
+                    
+                    <div class="challenge-item-card">
+                        <span class="badge-num">P1</span>
+                        <p>Google Maps routes only by speed and distance, ignoring sensory needs.</p>
+                    </div>
+                    <div class="challenge-item-card">
+                        <span class="badge-num">P2</span>
+                        <p>No advance warning when a noisy or crowded area is coming up.</p>
+                    </div>
+                    <div class="challenge-item-card">
+                        <span class="badge-num">P3</span>
+                        <p>Rest stops and restrooms are not shown along a walking route.</p>
+                    </div>
+                    <div class="challenge-item-card">
+                        <span class="badge-num">P4</span>
+                        <p>Neurodiverse users have to use 3 or more apps just to plan one safe journey.</p>
+                    </div>
+                    <div class="challenge-item-card">
+                        <span class="badge-num">P5</span>
+                        <p>Unexpected changes mid-journey cause real anxiety and distress.</p>
+                    </div>
+                    <div class="challenge-item-card">
+                        <span class="badge-num">P6</span>
+                        <p>No navigation app today learns and adapts to an individual's sensory profile.</p>
+                    </div>
+                </div>
+                
+                <!-- Column 2: Solutions -->
+                <div class="challenge-column solutions">
+                    <div class="column-header">
+                        <span class="status-indicator success"></span>
+                        <h3>The Interventions</h3>
+                    </div>
+                    
+                    <div class="challenge-item-card">
+                        <span class="badge-num">S1</span>
+                        <p>Added sensory scoring to every route showing comfort level out of 10.</p>
+                    </div>
+                    <div class="challenge-item-card">
+                        <span class="badge-num">S2</span>
+                        <p>AI gives advance alerts at least 300 metres before a disturbance.</p>
+                    </div>
+                    <div class="challenge-item-card">
+                        <span class="badge-num">S3</span>
+                        <p>Rest stops and accessible restrooms are mapped and pinned along the route.</p>
+                    </div>
+                    <div class="challenge-item-card">
+                        <span class="badge-num">S4</span>
+                        <p>One single feature inside Google Maps handles everything.</p>
+                    </div>
+                    <div class="challenge-item-card">
+                        <span class="badge-num">S5</span>
+                        <p>Calm mode gives a one-tap safe exit during overwhelming moments.</p>
+                    </div>
+                    <div class="challenge-item-card">
+                        <span class="badge-num">S6</span>
+                        <p>AI learns preferences over time and auto-fills them before every trip.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
 
+        <!-- Impact Section -->
+        <section class="cs-impact-section fade-in">
+            <span class="section-badge">Impact</span>
+            <h2 class="section-title-large">Metrics That Matter</h2>
+            
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-value">9/10</div>
+                    <p class="stat-label">Average sensory score on quiet routes</p>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">300m</div>
+                    <p class="stat-label">Advance warning distance before disturbances</p>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">5</div>
+                    <p class="stat-label">Sensory parameters mapped and tracked</p>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">1-Tap</div>
+                    <p class="stat-label">To activate emergency Calm Mode</p>
+                </div>
+            </div>
+            
+            <div class="impact-insights">
+                <div class="insight-item">
+                    <strong>Inclusive Design:</strong> The sensory score replaced stigmatising labels, making the feature feel inclusive for all users.
+                </div>
+                <div class="insight-item">
+                    <strong>Empowerment:</strong> Advance alerts gave users control over their journey instead of forcing them to react to surprise stressors.
+                </div>
+                <div class="insight-item">
+                    <strong>Community Power:</strong> Post-trip feedback created a crowd-sourced improvement loop similar to Waze.
+                </div>
+            </div>
+        </section>
 
+        <!-- Key Learnings Section -->
+        <section class="cs-learnings-section fade-in">
+            <span class="section-badge">Reflection</span>
+            <h2 class="section-title-large">What I Learned</h2>
+            
+            <div class="learnings-list">
+                <div class="learning-item">
+                    <div class="learning-num">01</div>
+                    <div class="learning-body">
+                        <h4>Predictability is a functional need, not a preference</h4>
+                        <p>For neurodiverse users, uncertainty is a real barrier to travel, making predictable routes an absolute necessity.</p>
+                    </div>
+                </div>
+                <div class="learning-item">
+                    <div class="learning-num">02</div>
+                    <div class="learning-body">
+                        <h4>Edge cases are the most important design work</h4>
+                        <p>The calm mode SOS button taught me that designing for extreme stress moments often defines the core product utility.</p>
+                    </div>
+                </div>
+                <div class="learning-item">
+                    <div class="learning-num">03</div>
+                    <div class="learning-body">
+                        <h4>AI should be invisible</h4>
+                        <p>The best AI experience is when users never actively think about the algorithms, but simply notice the app keeps matching their requirements better over time.</p>
+                    </div>
+                </div>
+                <div class="learning-item">
+                    <div class="learning-num">04</div>
+                    <div class="learning-body">
+                        <h4>Entry points matter as much as features</h4>
+                        <p>Moving the sensory toggle to the active directions page instead of hiding it in deep settings completely changed its discoverability and rate of use.</p>
+                    </div>
+                </div>
+                <div class="learning-item">
+                    <div class="learning-num">05</div>
+                    <div class="learning-body">
+                        <h4>Designing for the underserved helps everyone</h4>
+                        <p>Designing for one specific underserved group almost always ends up improving the universal usability and experience for all users.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Future Improvements Section -->
+        <section class="cs-future-section fade-in">
+            <span class="section-badge">Next Steps</span>
+            <h2 class="section-title-large">Future Improvements</h2>
+            
+            <div class="future-grid">
+                <div class="future-card">
+                    <span class="future-icon">🚌</span>
+                    <h4>Public Transit Integration</h4>
+                    <p>Extend sensory scoring to public transit, tracking crowd levels and noise factors at each individual stop.</p>
+                </div>
+                <div class="future-card">
+                    <span class="future-icon">⏰</span>
+                    <h4>Time-of-Day Recommendations</h4>
+                    <p>Suggest optimal departure times (e.g. leaving 20 mins later to boost comfort score from 5/10 to 9/10).</p>
+                </div>
+                <div class="future-card">
+                    <span class="future-icon">👥</span>
+                    <h4>Caregiver Companion Mode</h4>
+                    <p>Allow a family member or support worker to monitor the traveler's journey and alerts remotely.</p>
+                </div>
+                <div class="future-card">
+                    <span class="future-icon">📣</span>
+                    <h4>Sensory Reporting Network</h4>
+                    <p>Enable user flags to report temporary noise zones or new rest spots in real time, similar to Waze.</p>
+                </div>
+                <div class="future-card">
+                    <span class="future-icon">🗣️</span>
+                    <h4>Voice-Only Guidance</h4>
+                    <p>Develop a voice-only mode for users who struggle to interface with screens during sensory overload.</p>
+                </div>
+            </div>
+        </section>
     </main>
 
     <footer class="footer">
-        <div class="footer-content">
-            <h2>Sensory Mapping Project</h2>
-            <p>Designed with empathy and accessibility in mind.</p>
-        </div>
+        <div class="footer-logo">S<span>owmiya</span></div>
+        <p>Crafted with ♥ in Chennai · UI/UX Designer & Front-End Developer</p>
+        <a href="index.html">← Back to Portfolio</a>
     </footer>
 
     <script>
@@ -176,6 +575,12 @@
             const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
             const scrolled = (winScroll / height) * 100;
             document.getElementById('progress-bar').style.width = scrolled + '%';
+        });
+
+        // Navbar scroll effect
+        const navbar = document.querySelector('.navbar');
+        window.addEventListener('scroll', () => {
+            navbar.classList.toggle('scrolled', window.scrollY > 60);
         });
     </script>
 </body>
