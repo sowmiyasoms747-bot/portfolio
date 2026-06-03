@@ -1,0 +1,4 @@
+Sensory mapping
+
+Typography - Roboto
+Colorgraphy -  primary -0B56CF, secondry- FFFFFF, other colors BBD5FF
