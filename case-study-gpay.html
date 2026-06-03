@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GPay Spend Indicator Case Study</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="sensory-mapping.css">
+</head>
+<body>
+    <div id="progress-bar"></div>
+    <div class="cursor" id="cursor"></div>
+    <div class="cursor-follower" id="cursorFollower"></div>
+
+    <nav class="navbar">
+        <div class="nav-logo">S<span>owmiya</span></div>
+        <a href="index.html" class="nav-back">← Back to Portfolio</a>
+    </nav>
+
+    <header class="hero">
+        <div class="hero-content">
+            <h1 class="hero-title">GPay Spend Indicator</h1>
+            <p class="hero-subtitle">Know what you spent before you spend again. A seamless, zero-setup feature addition that updates daily spending in real-time directly on the payment screen.</p>
+        </div>
+        <div class="hero-glow"></div>
+    </header>
+
+    <main id="case-study" class="container">
+        <!-- Overview Section -->
+        <section class="cs-intro-section fade-in">
+            <div class="intro-grid">
+                <div class="intro-left">
+                    <span class="section-badge">Overview</span>
+                    <h2 class="section-title-large">What is GPay's Today's Spend Indicator?</h2>
+                    <p class="intro-text">This project adds a Today's Spend Indicator feature to Google Pay. It shows the running total of money spent since midnight directly on the payment screen — right above the amount field — so users always know how much they have already spent that day before making another payment. The indicator updates automatically after every transaction and resets itself every midnight without any setup or manual input from the user.</p>
+                </div>
+                <div class="intro-right">
+                    <div class="intro-card">
+                        <h3>Why I Chose This</h3>
+                        <p>As a regular GPay user, I experienced paying blindly throughout the day and only realizing I was running short on cash when it was too late. I wanted to design an elegant solution that creates financial awareness in the exact moment of transaction, without adding friction.</p>
+                    </div>
+                    <div class="intro-card">
+                        <h3>The Goal</h3>
+                        <p>Provide immediate, zero-friction visibility of daily spending at the moment of payment, helping users stay conscious of their budget without the chore of manual tracking or complex setups.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Project Meta Section -->
+        <section class="cs-decision-section fade-in" style="padding: 4rem 0;">
+            <div class="intro-grid" style="grid-template-columns: repeat(4, 1fr); gap: 2rem; text-align: center;">
+                <div class="intro-card" style="padding: 1.5rem;">
+                    <h4 style="font-size: 0.8rem; text-transform: uppercase; color: var(--text-secondary); margin-bottom: 0.5rem;">My Role</h4>
+                    <p style="font-weight: 600;">UX Designer</p>
+                </div>
+                <div class="intro-card" style="padding: 1.5rem;">
+                    <h4 style="font-size: 0.8rem; text-transform: uppercase; color: var(--text-secondary); margin-bottom: 0.5rem;">Project Type</h4>
+                    <p style="font-weight: 600;">Feature Addition</p>
+                </div>
+                <div class="intro-card" style="padding: 1.5rem;">
+                    <h4 style="font-size: 0.8rem; text-transform: uppercase; color: var(--text-secondary); margin-bottom: 0.5rem;">Duration</h4>
+                    <p style="font-weight: 600;">2 Weeks</p>
+                </div>
+                <div class="intro-card" style="padding: 1.5rem;">
+                    <h4 style="font-size: 0.8rem; text-transform: uppercase; color: var(--text-secondary); margin-bottom: 0.5rem;">Platform</h4>
+                    <p style="font-weight: 600;">Android (Mobile)</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Research Section -->
+        <section class="cs-empathy-section fade-in">
+            <span class="section-badge">User Research</span>
+            <h2 class="section-title-large">Research & Validation</h2>
+            <p class="section-subtitle-text">Validating the awareness gap with real users and reviewing the existing GPay structure.</p>
+            
+            <div class="empathy-grid" style="grid-template-columns: repeat(2, 1fr); margin-bottom: 4rem;">
+                <div class="empathy-card">
+                    <div class="card-icon">👥</div>
+                    <h3>User Interviews</h3>
+                    <p style="color: var(--text-secondary); font-weight: 300;">I spoke with 5 regular GPay users and asked a simple question: <em>"Do you know how much you have spent today right now?"</em></p>
+                    <ul style="margin-top: 1rem;">
+                        <li>None of them could answer without opening their transaction history.</li>
+                        <li>3 out of 5 had experienced running out of money unexpectedly because they lost track.</li>
+                    </ul>
+                </div>
+                <div class="empathy-card">
+                    <div class="card-icon">🔍</div>
+                    <h3>Interface Analysis</h3>
+                    <p style="color: var(--text-secondary); font-weight: 300;">Examining GPay's information architecture and flow:</p>
+                    <ul style="margin-top: 1rem;">
+                        <li>Transaction history exists but requires navigating to a separate screen.</li>
+                        <li>No summary of daily spending is visible during the active payment flow.</li>
+                        <li>Account balance tells you what is left, but not how much you have already spent.</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="discovery-callout">
+                <div class="discovery-icon">💡</div>
+                <div class="discovery-content">
+                    <h4>Key Finding</h4>
+                    <p>The spending data already exists inside the app. No new data collection or complex systems are needed — we simply need to place that information at the exact moment of decision-making.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Key Insights Section -->
+        <section class="cs-future-section fade-in" style="border-bottom: 1px solid var(--border-color); padding-bottom: 8rem;">
+            <span class="section-badge">Key Insights</span>
+            <h2 class="section-title-large">Insights from the Field</h2>
+            <div class="future-grid" style="grid-template-columns: repeat(2, 1fr); gap: 2.5rem;">
+                <div class="future-card">
+                    <span class="future-icon">⚡</span>
+                    <h4>Awareness in the Moment</h4>
+                    <p>Awareness at the moment of action is infinitely more powerful than after-the-fact reflection. Knowing your total spend just before you pay changes behavior; knowing it at the end of the day changes nothing.</p>
+                </div>
+                <div class="future-card">
+                    <span class="future-icon">👁️</span>
+                    <h4>Awareness over Budgeting</h4>
+                    <p>Users don't want to budget — they want to be aware. Budgeting requires setup, discipline, and planning. Awareness requires zero effort if the right information is presented at the right time.</p>
+                </div>
+                <div class="future-card">
+                    <span class="future-icon">⏳</span>
+                    <h4>Transaction History is Too Far</h4>
+                    <p>Buried deep in separate pages, transaction logs require mental calculation and navigation. By the time a user digs into it, the decision to spend has already been made.</p>
+                </div>
+                <div class="future-card">
+                    <span class="future-icon">🔄</span>
+                    <h4>Midnight Auto-Reset</h4>
+                    <p>Automatic daily resets remove friction completely. If users had to manually reset a counter, it would be forgotten. The auto-reset ensures a fresh start every single day.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Strategy Section -->
+        <section class="cs-decision-section fade-in">
+            <div class="decision-content-box">
+                <span class="section-badge">The Strategy</span>
+                <h2>Zero-Friction Design Decisions</h2>
+                <p>To keep GPay's fast, tap-and-go experience intact, I based the design on four key architectural decisions focused on simplicity and awareness.</p>
+            </div>
+            
+            <div class="intro-grid" style="grid-template-columns: repeat(2, 1fr); gap: 2.5rem; margin-top: 4rem;">
+                <div class="intro-card">
+                    <h3 style="margin-bottom: 0.5rem;"><span style="color: var(--text-secondary); font-weight: 400;">Decision 1:</span> Zero Setup Required</h3>
+                    <p>No budgets to configure or daily limits to set. The tracker is useful from the very first payment, for every type of user, with absolutely zero configuration friction.</p>
+                </div>
+                <div class="intro-card">
+                    <h3 style="margin-bottom: 0.5rem;"><span style="color: var(--text-secondary); font-weight: 400;">Decision 2:</span> Context-Aware Placement</h3>
+                    <p>Placed directly above the amount field, which is where the user's focus naturally goes before entering a payment. No extra navigation, no extra taps.</p>
+                </div>
+                <div class="intro-card">
+                    <h3 style="margin-bottom: 0.5rem;"><span style="color: var(--text-secondary); font-weight: 400;">Decision 3:</span> Informational, Not Judgmental</h3>
+                    <p>The indicator presents a clean number with no judgmental colors or limit bars. It trusts the user's judgement, informing them without making them feel restricted.</p>
+                </div>
+                <div class="intro-card">
+                    <h3 style="margin-bottom: 0.5rem;"><span style="color: var(--text-secondary); font-weight: 400;">Decision 4:</span> Automatic Maintenance</h3>
+                    <p>The daily spend total is calculated dynamically and resets automatically at midnight. The user never has to maintain or think about the tool; it just works.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- User Flow Section -->
+        <section class="cs-flow-section fade-in">
+            <span class="section-badge">User Journey</span>
+            <h2 class="section-title-large">A Real Two-Payment Daily Journey</h2>
+            <p class="section-subtitle-text">A step-by-step walkthrough showing how GPay dynamically updates and tracks the user's spending across a single day.</p>
+            
+            <div class="flow-container">
+                <div class="flow-step">
+                    <div class="flow-number">01</div>
+                    <div class="flow-content">
+                        <h4>Open Google Pay</h4>
+                        <p>User launches GPay home screen to make a payment.</p>
+                    </div>
+                </div>
+                
+                <div class="flow-arrow">↓</div>
+                
+                <div class="flow-step">
+                    <div class="flow-number">02</div>
+                    <div class="flow-content">
+                        <h4>Start First Payment</h4>
+                        <p>Opens payment screen for Saurav. Today's Spend displays ₹0 at the top.</p>
+                    </div>
+                </div>
+                
+                <div class="flow-arrow">↓</div>
+                
+                <div class="flow-step">
+                    <div class="flow-number">03</div>
+                    <div class="flow-content">
+                        <h4>Enter Amount</h4>
+                        <p>Inputs ₹100 to pay Saurav. Today's Spend remains ₹0.</p>
+                    </div>
+                </div>
+                
+                <div class="flow-arrow">↓</div>
+                
+                <div class="flow-step">
+                    <div class="flow-number">04</div>
+                    <div class="flow-content">
+                        <h4>Confirm UPI Pay</h4>
+                        <p>User confirms transaction of ₹100 from bank account.</p>
+                    </div>
+                </div>
+                
+                <div class="flow-arrow">↓</div>
+                
+                <div class="flow-step">
+                    <div class="flow-number">05</div>
+                    <div class="flow-content">
+                        <h4>Payment Success (₹100)</h4>
+                        <p>GPay confirms the transaction of ₹100 is complete.</p>
+                    </div>
+                </div>
+                
+                <div class="flow-arrow">↓</div>
+                
+                <div class="flow-step active-ai">
+                    <div class="flow-number">06</div>
+                    <div class="flow-content">
+                        <h4>Start Second Payment</h4>
+                        <p>Later, user opens payment screen for David. Today's Spend has dynamically updated to ₹100.</p>
+                    </div>
+                </div>
+                
+                <div class="flow-arrow">↓</div>
+                
+                <div class="flow-step">
+                    <div class="flow-number">07</div>
+                    <div class="flow-content">
+                        <h4>Enter Amount</h4>
+                        <p>Inputs ₹200 to pay David. Today's Spend is visible at ₹100, providing instant budget awareness.</p>
+                    </div>
+                </div>
+                
+                <div class="flow-arrow">↓</div>
+                
+                <div class="flow-step">
+                    <div class="flow-number">08</div>
+                    <div class="flow-content">
+                        <h4>Confirm UPI Pay</h4>
+                        <p>User initiates and confirms the second payment of ₹200.</p>
+                    </div>
+                </div>
+                
+                <div class="flow-arrow">↓</div>
+                
+                <div class="flow-step">
+                    <div class="flow-number">09</div>
+                    <div class="flow-content">
+                        <h4>Payment Success (₹200)</h4>
+                        <p>Payment of ₹200 goes through. Total day's spend has now reached ₹300.</p>
+                    </div>
+                </div>
+                
+                <div class="flow-arrow">↓</div>
+                
+                <div class="flow-step">
+                    <div class="flow-number">10</div>
+                    <div class="flow-content">
+                        <h4>Midnight Auto-Reset</h4>
+                        <p>At midnight, the counter resets back to ₹0 automatically for a fresh start.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Walkthrough Section Header -->
+        <div class="walkthrough-header fade-in" style="text-align: center; padding: 6rem 0 2rem;">
+            <span class="section-badge">Walkthrough</span>
+            <h2 class="section-title-large" style="margin-bottom: 0;">Interactive Screen Walkthrough</h2>
+        </div>
+
+        <!-- Screen 1 -->
+        <section class="screen-section fade-in">
+            <div class="screen-content">
+                <div class="screen-text">
+                    <span class="screen-number">01</span>
+                    <h2>Launch & Start <span class="highlight">(Spend: ₹0)</span></h2>
+                    <p>The flow starts with the familiar Google Pay home screen. When the user initiates a payment, they are greeted by a subtle Today's Spend indicator pill at the top, showing ₹0 before any transaction takes place.</p>
+                </div>
+                <div class="screen-visual dual-mockups">
+                    <div class="mockup-placeholder">
+                        <img src="Todays spend Gpay/google pay 1.png" alt="Google Pay Home" style="width: 100%; height: 100%; object-fit: fill;">
+                    </div>
+                    <div class="mockup-placeholder">
+                        <img src="Todays spend Gpay/2.png" alt="Payment Screen Start" style="width: 100%; height: 100%; object-fit: fill;">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Screen 2 -->
+        <section class="screen-section right-align fade-in">
+            <div class="screen-content reverse-layout">
+                <div class="screen-text">
+                    <span class="screen-number">02</span>
+                    <h2>First Payment <span class="highlight">(₹100)</span></h2>
+                    <p>The user inputs ₹100 to pay Saurav, selects their bank, and completes the payment. The transaction page confirms the payment, updating the internal daily spend counter silently.</p>
+                </div>
+                <div class="screen-visual dual-mockups">
+                    <div class="mockup-placeholder">
+                        <img src="Todays spend Gpay/3.png" alt="First Payment Input" style="width: 100%; height: 100%; object-fit: fill;">
+                    </div>
+                    <div class="mockup-placeholder">
+                        <img src="Todays spend Gpay/5.png" alt="First Payment Success" style="width: 100%; height: 100%; object-fit: fill;">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Screen 3 -->
+        <section class="screen-section fade-in">
+            <div class="screen-content">
+                <div class="screen-text">
+                    <span class="screen-number">03</span>
+                    <h2>Second Payment <span class="highlight">(₹200)</span></h2>
+                    <p>Later in the day, the user opens the payment screen to pay David. The indicator now prominently shows Today's Spend: ₹100. The user enters ₹200, is aware of their current total, and initiates the transaction.</p>
+                </div>
+                <div class="screen-visual dual-mockups">
+                    <div class="mockup-placeholder">
+                        <img src="Todays spend Gpay/7.png" alt="Second Payment Input" style="width: 100%; height: 100%; object-fit: fill;">
+                    </div>
+                    <div class="mockup-placeholder">
+                        <img src="Todays spend Gpay/9.png" alt="Second Payment Success" style="width: 100%; height: 100%; object-fit: fill;">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Screen 4 -->
+        <section class="screen-section right-align fade-in">
+            <div class="screen-content reverse-layout">
+                <div class="screen-text">
+                    <span class="screen-number">04</span>
+                    <h2>Before & After <span class="highlight">Comparison</span></h2>
+                    <p>By comparing the old payment layout to the new feature addition, it's clear how the spend indicator integrates naturally into GPay's design system without adding visual clutter or cognitive noise.</p>
+                </div>
+                <div class="screen-visual dual-mockups">
+                    <div class="mockup-placeholder">
+                        <img src="Todays spend Gpay/camparsion/old version.png" alt="Old Version Payment Screen" style="width: 100%; height: 100%; object-fit: fill;">
+                    </div>
+                    <div class="mockup-placeholder">
+                        <img src="Todays spend Gpay/camparsion/New feature added version.png" alt="New Feature Payment Screen" style="width: 100%; height: 100%; object-fit: fill;">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Problems & Solutions Section -->
+        <section class="cs-challenges-section fade-in">
+            <span class="section-badge">Problem Space & Solutions</span>
+            <h2 class="section-title-large">Real Problems. Smart Solutions.</h2>
+            
+            <div class="challenges-grid">
+                <!-- Column 1: Problems -->
+                <div class="challenge-column problems">
+                    <div class="column-header">
+                        <span class="status-indicator error"></span>
+                        <h3>The Challenges</h3>
+                    </div>
+                    <div class="challenge-item-card">
+                        <span class="badge-num">P1</span>
+                        <p>GPay users pay blindly throughout the day with zero daily total visibility.</p>
+                    </div>
+                    <div class="challenge-item-card">
+                        <span class="badge-num">P2</span>
+                        <p>Transaction history requires navigating away and is buried deep in the app.</p>
+                    </div>
+                    <div class="challenge-item-card">
+                        <span class="badge-num">P3</span>
+                        <p>Account balance only shows what is left, not how much has been spent today.</p>
+                    </div>
+                    <div class="challenge-item-card">
+                        <span class="badge-num">P4</span>
+                        <p>Traditional budget tracking demands tedious setup, planning, and maintenance.</p>
+                    </div>
+                    <div class="challenge-item-card">
+                        <span class="badge-num">P5</span>
+                        <p>Overspending is only noticed after the transactions are complete and cash is gone.</p>
+                    </div>
+                </div>
+                
+                <!-- Column 2: Solutions -->
+                <div class="challenge-column solutions">
+                    <div class="column-header">
+                        <span class="status-indicator success"></span>
+                        <h3>The Interventions</h3>
+                    </div>
+                    <div class="challenge-item-card">
+                        <span class="badge-num">S1</span>
+                        <p>Added the Today's Spend Indicator directly on the payment page.</p>
+                    </div>
+                    <div class="challenge-item-card">
+                        <span class="badge-num">S2</span>
+                        <p>Placed the indicator above the amount entry field for contextual visibility.</p>
+                    </div>
+                    <div class="challenge-item-card">
+                        <span class="badge-num">S3</span>
+                        <p>Displays a simple running total that resets automatically at midnight.</p>
+                    </div>
+                    <div class="challenge-item-card">
+                        <span class="badge-num">S4</span>
+                        <p>Zero configuration required—works out of the box from the first payment.</p>
+                    </div>
+                    <div class="challenge-item-card">
+                        <span class="badge-num">S5</span>
+                        <p>Provides non-judgmental, purely informational feedback to foster conscious spending.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Impact Section -->
+        <section class="cs-impact-section fade-in">
+            <span class="section-badge">Impact</span>
+            <h2 class="section-title-large">Metrics That Matter</h2>
+            
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-value">5/5</div>
+                    <p class="stat-label">Users tested couldn't state daily spend without opening logs</p>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">0 Taps</div>
+                    <p class="stat-label">Setup friction or configuration required to activate</p>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">2 Payments</div>
+                    <p class="stat-label">In prototype journey (₹0 to ₹100 to ₹300 total spend)</p>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">1 Placement</div>
+                    <p class="stat-label">Right above the amount field to ensure maximum visibility</p>
+                </div>
+            </div>
+            
+            <div class="impact-insights">
+                <div class="insight-item">
+                    <strong>Contextual Awareness:</strong> Displaying the total spend at the exact point of payment empowers users to pause and evaluate.
+                </div>
+                <div class="insight-item">
+                    <strong>Zero-Overhead Tracking:</strong> Because there is no setup flow, spontaneous spenders benefit from day one without setting a formal budget.
+                </div>
+                <div class="insight-item">
+                    <strong>Automatic Life-Cycle:</strong> The auto-reset at midnight removes maintenance work, ensuring the feature remains useful indefinitely.
+                </div>
+            </div>
+        </section>
+
+        <!-- Key Learnings Section -->
+        <section class="cs-learnings-section fade-in">
+            <span class="section-badge">Reflection</span>
+            <h2 class="section-title-large">What I Learned</h2>
+            
+            <div class="learnings-list">
+                <div class="learning-item">
+                    <div class="learning-num">01</div>
+                    <div class="learning-body">
+                        <h4>Simple is Powerful</h4>
+                        <p>The best UX solutions are not always the most complex ones. A simple running total placed in the right spot is more effective than full budgeting dashboards that users rarely visit.</p>
+                    </div>
+                </div>
+                <div class="learning-item">
+                    <div class="learning-num">02</div>
+                    <div class="learning-body">
+                        <h4>Reposition Existing Data</h4>
+                        <p>GPay already had the transaction logs. UX design is often about relocating existing data to a moment where it can actively support user behavior.</p>
+                    </div>
+                </div>
+                <div class="learning-item">
+                    <div class="learning-num">03</div>
+                    <div class="learning-body">
+                        <h4>Lived Experience is Research</h4>
+                        <p>Experiencing the frustration myself drove a focused, honest solution. Personal habits can be a powerful launchpad for identifying universal usability issues.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Future Improvements Section -->
+        <section class="cs-future-section fade-in">
+            <span class="section-badge">Next Steps</span>
+            <h2 class="section-title-large">Future Roadmap</h2>
+            
+            <div class="future-grid">
+                <div class="future-card">
+                    <span class="future-icon">🍔</span>
+                    <h4>Category Breakdown</h4>
+                    <p>Display daily spending grouped by categories (e.g. food ₹150, transport ₹80) without manual tagging effort.</p>
+                </div>
+                <div class="future-card">
+                    <span class="future-icon">📈</span>
+                    <h4>Weekly Pattern Insights</h4>
+                    <p>Show weekly spending charts to help users identify which days they tend to spend the most.</p>
+                </div>
+                <div class="future-card">
+                    <span class="future-icon">🚨</span>
+                    <h4>Optional Soft Limit</h4>
+                    <p>Allow users to set a soft daily spend threshold. The indicator shifts to orange/red as they approach or cross it.</p>
+                </div>
+                <div class="future-card">
+                    <span class="future-icon">👥</span>
+                    <h4>Shared Bill Split Awareness</h4>
+                    <p>Differentiate between personal purchases and split group bills for couples or housemates.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="cs-decision-section fade-in" style="padding: 6rem 0; text-align: center;">
+            <p style="font-family: var(--font-heading); font-size: 1.5rem; font-weight: 300; font-style: italic; max-width: 800px; margin: 0 auto; color: var(--text-secondary);">
+                "Because knowing what you spent before you spend again is not a feature — it is common sense that every payment app should have built in."
+            </p>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-logo">S<span>owmiya</span></div>
+        <p>Crafted with ♥ in Chennai · UI/UX Designer & Front-End Developer</p>
+        <a href="index.html">← Back to Portfolio</a>
+    </footer>
+
+    <script>
+        // Intersection Observer for scroll fade-in animations
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.15
+        };
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(section => {
+            observer.observe(section);
+        });
+
+        // Cursor logic
+        const cursor = document.getElementById('cursor');
+        const follower = document.getElementById('cursorFollower');
+        
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+            
+            setTimeout(() => {
+                follower.style.left = e.clientX + 'px';
+                follower.style.top = e.clientY + 'px';
+            }, 50);
+        });
+
+        // Scroll Progress
+        window.addEventListener('scroll', () => {
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            document.getElementById('progress-bar').style.width = scrolled + '%';
+        });
+
+        // Navbar scroll effect
+        const navbar = document.querySelector('.navbar');
+        window.addEventListener('scroll', () => {
+            navbar.classList.toggle('scrolled', window.scrollY > 60);
+        });
+    </script>
+</body>
+</html>
