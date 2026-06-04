@@ -98,11 +98,193 @@
             border: 2px solid rgba(255, 255, 255, 0.1) !important;
             box-shadow: 0 0 24px rgba(11, 86, 207, 0.4) !important;
         }
-        /* Fix Hero Layout Height Overlap with fixed Navbar */
-        .hero {
-            min-height: auto !important;
-            padding-top: 160px !important;
-            padding-bottom: 60px !important;
+        /* ── TWO-COLUMN PREMIUM HERO STYLING (MATCHES CINEAI) ── */
+        #cs-hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: center;
+            padding: 140px 5% 80px;
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(160deg, #000000 60%, #0a0a0a 100%);
+        }
+
+        .hero-orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .hero-orb-1 {
+            width: 500px;
+            height: 500px;
+            background: rgba(11, 86, 207, 0.15);
+            top: -80px;
+            right: -100px;
+            animation: floatOrb 9s ease-in-out infinite;
+        }
+
+        .hero-orb-2 {
+            width: 300px;
+            height: 300px;
+            background: rgba(11, 86, 207, 0.08);
+            bottom: 60px;
+            left: -60px;
+            animation: floatOrb 7s 3s ease-in-out infinite;
+        }
+
+        @keyframes floatOrb {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        .cs-breadcrumb {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.78rem;
+            color: #707070;
+            margin-bottom: 28px;
+            position: relative;
+            z-index: 2;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        .cs-breadcrumb span {
+            color: #0B56CF;
+        }
+
+        .cs-tag {
+            display: inline-block;
+            padding: 6px 16px;
+            border-radius: 50px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.72rem;
+            font-weight: 600;
+            color: white;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            margin-bottom: 24px;
+            position: relative;
+            z-index: 2;
+        }
+
+        h1.cs-hero-title {
+            font-family: 'Outfit', sans-serif;
+            font-size: clamp(2.8rem, 6vw, 4.5rem);
+            font-weight: 700;
+            line-height: 1.1;
+            letter-spacing: -0.03em;
+            color: #ffffff;
+            max-width: 760px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .cs-hero-impact {
+            font-size: 1.1rem;
+            color: #a0a0a0;
+            font-weight: 300;
+            max-width: 580px;
+            line-height: 1.65;
+            margin-top: 24px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .cs-meta {
+            display: flex;
+            gap: 40px;
+            margin-top: 48px;
+            flex-wrap: wrap;
+            position: relative;
+            z-index: 2;
+        }
+
+        .cs-meta-item .meta-label {
+            font-size: 0.68rem;
+            font-weight: 700;
+            color: #707070;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            margin-bottom: 6px;
+        }
+
+        .cs-meta-item .meta-val {
+            font-size: 0.92rem;
+            font-weight: 500;
+            color: #ffffff;
+        }
+
+        .cs-hero-visual {
+            position: absolute;
+            right: 5%;
+            top: 50%;
+            transform: translateY(-50%) perspective(1500px) rotateY(-15deg) rotateX(5deg);
+            width: 340px;
+            z-index: 10;
+            transition: all 0.5s ease;
+        }
+
+        .premium-mockup {
+            position: relative;
+            width: 100%;
+            border-radius: 46px;
+            background: #000;
+            padding: 10px;
+            border: 3px solid #262626;
+            box-shadow: 
+                0 40px 100px rgba(0, 0, 0, 0.6),
+                inset 0 0 10px rgba(255, 255, 255, 0.1);
+            animation: heroFloat 6s ease-in-out infinite;
+        }
+
+        .premium-mockup img {
+            width: 100%;
+            display: block;
+            height: auto;
+            border-radius: 38px;
+        }
+
+        @keyframes heroFloat {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-16px);
+            }
+        }
+
+        @media (max-width: 1150px) {
+            .cs-hero-visual {
+                display: none;
+            }
+            #cs-hero {
+                min-height: auto;
+                padding-top: 140px;
+                padding-bottom: 60px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            #cs-hero {
+                padding-top: 120px;
+                padding-bottom: 40px;
+            }
+            .cs-meta {
+                gap: 24px;
+                margin-top: 36px;
+            }
         }
     </style>
 </head>
@@ -117,117 +299,42 @@
         <a href="index.html" class="nav-back">← Back to Portfolio</a>
     </nav>
 
-    <header class="hero">
-        <div class="hero-content">
-            <h1 class="hero-title">Sensory-Friendly Routing</h1>
-            <p class="hero-subtitle">Shifting navigation from a speed-focused system to a comfort-driven experience,
-                prioritizing predictability, accessibility, and emotional well-being throughout the journey.</p>
+    <!-- ════════════════════════ HERO ════════════════════════ -->
+    <section id="cs-hero">
+        <div class="hero-orb hero-orb-1"></div>
+        <div class="hero-orb hero-orb-2"></div>
 
-            <style>
-                .hero-meta-grid {
-                    display: grid;
-                    grid-template-columns: repeat(4, 1fr);
-                    gap: 24px;
-                    max-width: 950px;
-                    margin: 48px auto 0;
-                    padding: 28px 36px;
-                    background: rgba(10, 10, 10, 0.5);
-                    border: 1px solid rgba(255, 255, 255, 0.05);
-                    border-radius: 24px;
-                    backdrop-filter: blur(16px);
-                    -webkit-backdrop-filter: blur(16px);
-                    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
-                    text-align: left;
-                }
+        <div class="cs-breadcrumb">Portfolio <span>✦</span> Case Study</div>
+        <div class="cs-tag">★ Featured Project</div>
 
-                .hero-meta-col {
-                    border-right: 1px solid rgba(255, 255, 255, 0.05);
-                    padding-right: 20px;
-                    padding-left: 20px;
-                }
+        <h1 class="cs-hero-title">Sensory-Friendly Routing</h1>
+        <p class="cs-hero-impact">Shifting navigation from a speed-focused system to a comfort-driven experience, prioritizing predictability, accessibility, and emotional well-being throughout the journey.</p>
 
-                .hero-meta-col:first-child {
-                    padding-left: 0;
-                }
-
-                .hero-meta-col:last-child {
-                    border-right: none;
-                    padding-right: 0;
-                }
-
-                .hero-meta-label {
-                    font-size: 0.72rem;
-                    color: #0B56CF;
-                    font-weight: 700;
-                    text-transform: uppercase;
-                    letter-spacing: 0.12em;
-                    display: block;
-                    margin-bottom: 8px;
-                }
-
-                .hero-meta-val {
-                    font-size: 0.95rem;
-                    color: var(--text-primary);
-                    font-weight: 500;
-                    line-height: 1.4;
-                    display: block;
-                }
-
-                .hero-meta-sub {
-                    font-size: 0.76rem;
-                    color: var(--text-secondary);
-                    font-weight: 300;
-                    display: block;
-                    margin-top: 2px;
-                }
-
-                @media (max-width: 900px) {
-                    .hero-meta-grid {
-                        grid-template-columns: repeat(2, 1fr);
-                        gap: 24px 20px;
-                        padding: 24px;
-                    }
-
-                    .hero-meta-col {
-                        border-right: none;
-                        padding-right: 0;
-                        padding-left: 0;
-                    }
-                }
-
-                @media (max-width: 500px) {
-                    .hero-meta-grid {
-                        grid-template-columns: 1fr;
-                        padding: 24px;
-                    }
-                }
-            </style>
-
-            <div class="hero-meta-grid">
-                <div class="hero-meta-col">
-                    <span class="hero-meta-label">Role</span>
-                    <span class="hero-meta-val">UX Designer</span>
-                    <span class="hero-meta-sub">Accessibility Researcher</span>
-                </div>
-                <div class="hero-meta-col">
-                    <span class="hero-meta-label">Tools</span>
-                    <span class="hero-meta-val">Figma</span>
-                    <span class="hero-meta-sub">Workspace</span>
-                </div>
-                <div class="hero-meta-col">
-                    <span class="hero-meta-label">Duration</span>
-                    <span class="hero-meta-val">2 Weeks</span>
-                    <span class="hero-meta-sub">Research & Iteration</span>
-                </div>
-                <div class="hero-meta-col">
-                    <span class="hero-meta-label">Type</span>
-                    <span class="hero-meta-val">Feature Addition</span>
-                    <span class="hero-meta-sub">Google Maps · Android</span>
-                </div>
+        <div class="cs-meta">
+            <div class="cs-meta-item">
+                <div class="meta-label">Role</div>
+                <div class="meta-val">UX Designer · Accessibility Researcher</div>
+            </div>
+            <div class="cs-meta-item">
+                <div class="meta-label">Tools</div>
+                <div class="meta-val">Figma · FigJam</div>
+            </div>
+            <div class="cs-meta-item">
+                <div class="meta-label">Duration</div>
+                <div class="meta-val">8 Weeks</div>
+            </div>
+            <div class="cs-meta-item">
+                <div class="meta-label">Type</div>
+                <div class="meta-val">Feature Addition · Google Maps · Android</div>
             </div>
         </div>
-        <div class="hero-glow"></div>
-    </header>
+
+        <div class="cs-hero-visual">
+            <div class="premium-mockup">
+                <img src="Sensory mapping/Sensory Toggle/Route Selection.png" alt="Sensory-Friendly Routing Route Selection Mockup">
+            </div>
+        </div>
+    </section>
 
     <main id="case-study" class="container">
         <!-- Overview Section -->

@@ -8,6 +8,196 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=DM+Sans:wght@300;400;500&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="sensory-mapping.css">
+    <style>
+        /* ── TWO-COLUMN PREMIUM HERO STYLING (MATCHES CINEAI) ── */
+        #cs-hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: center;
+            padding: 140px 5% 80px;
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(160deg, #000000 60%, #0a0a0a 100%);
+        }
+
+        .hero-orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .hero-orb-1 {
+            width: 500px;
+            height: 500px;
+            background: rgba(26, 115, 233, 0.15); /* GPay Blue */
+            top: -80px;
+            right: -100px;
+            animation: floatOrb 9s ease-in-out infinite;
+        }
+
+        .hero-orb-2 {
+            width: 300px;
+            height: 300px;
+            background: rgba(52, 168, 83, 0.08); /* GPay Green */
+            bottom: 60px;
+            left: -60px;
+            animation: floatOrb 7s 3s ease-in-out infinite;
+        }
+
+        @keyframes floatOrb {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        .cs-breadcrumb {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.78rem;
+            color: #707070;
+            margin-bottom: 28px;
+            position: relative;
+            z-index: 2;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        .cs-breadcrumb span {
+            color: #1A73E9; /* GPay Blue Accent */
+        }
+
+        .cs-tag {
+            display: inline-block;
+            padding: 6px 16px;
+            border-radius: 50px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.72rem;
+            font-weight: 600;
+            color: white;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            margin-bottom: 24px;
+            position: relative;
+            z-index: 2;
+        }
+
+        h1.cs-hero-title {
+            font-family: 'Outfit', sans-serif;
+            font-size: clamp(2.8rem, 6vw, 4.5rem);
+            font-weight: 700;
+            line-height: 1.1;
+            letter-spacing: -0.03em;
+            color: #ffffff;
+            max-width: 760px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .cs-hero-impact {
+            font-size: 1.1rem;
+            color: #a0a0a0;
+            font-weight: 300;
+            max-width: 580px;
+            line-height: 1.65;
+            margin-top: 24px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .cs-meta {
+            display: flex;
+            gap: 40px;
+            margin-top: 48px;
+            flex-wrap: wrap;
+            position: relative;
+            z-index: 2;
+        }
+
+        .cs-meta-item .meta-label {
+            font-size: 0.68rem;
+            font-weight: 700;
+            color: #707070;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            margin-bottom: 6px;
+        }
+
+        .cs-meta-item .meta-val {
+            font-size: 0.92rem;
+            font-weight: 500;
+            color: #ffffff;
+        }
+
+        .cs-hero-visual {
+            position: absolute;
+            right: 5%;
+            top: 50%;
+            transform: translateY(-50%) perspective(1500px) rotateY(-15deg) rotateX(5deg);
+            width: 340px;
+            z-index: 10;
+            transition: all 0.5s ease;
+        }
+
+        .premium-mockup {
+            position: relative;
+            width: 100%;
+            border-radius: 46px;
+            background: #000;
+            padding: 10px;
+            border: 3px solid #262626;
+            box-shadow: 
+                0 40px 100px rgba(0, 0, 0, 0.6),
+                inset 0 0 10px rgba(255, 255, 255, 0.1);
+            animation: heroFloat 6s ease-in-out infinite;
+        }
+
+        .premium-mockup img {
+            width: 100%;
+            display: block;
+            height: auto;
+            border-radius: 38px;
+        }
+
+        @keyframes heroFloat {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-16px);
+            }
+        }
+
+        @media (max-width: 1150px) {
+            .cs-hero-visual {
+                display: none;
+            }
+            #cs-hero {
+                min-height: auto;
+                padding-top: 140px;
+                padding-bottom: 60px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            #cs-hero {
+                padding-top: 120px;
+                padding-bottom: 40px;
+            }
+            .cs-meta {
+                gap: 24px;
+                margin-top: 36px;
+            }
+        }
+    </style>
 </head>
 <body>
     <div id="progress-bar"></div>
@@ -19,13 +209,42 @@
         <a href="index.html" class="nav-back">← Back to Portfolio</a>
     </nav>
 
-    <header class="hero">
-        <div class="hero-content">
-            <h1 class="hero-title">GPay Spend Indicator</h1>
-            <p class="hero-subtitle">Know what you spent before you spend again. A seamless, zero-setup feature addition that updates daily spending in real-time directly on the payment screen.</p>
+    <!-- ════════════════════════ HERO ════════════════════════ -->
+    <section id="cs-hero">
+        <div class="hero-orb hero-orb-1"></div>
+        <div class="hero-orb hero-orb-2"></div>
+
+        <div class="cs-breadcrumb">Portfolio <span>✦</span> Case Study</div>
+        <div class="cs-tag">★ Featured Project</div>
+
+        <h1 class="cs-hero-title">GPay Spend Indicator</h1>
+        <p class="cs-hero-impact">Know what you spent before you spend again. A seamless, zero-setup feature addition that updates daily spending in real-time directly on the payment screen.</p>
+
+        <div class="cs-meta">
+            <div class="cs-meta-item">
+                <div class="meta-label">Role</div>
+                <div class="meta-val">UX Designer</div>
+            </div>
+            <div class="cs-meta-item">
+                <div class="meta-label">Tools</div>
+                <div class="meta-val">Figma</div>
+            </div>
+            <div class="cs-meta-item">
+                <div class="meta-label">Duration</div>
+                <div class="meta-val">2 Weeks</div>
+            </div>
+            <div class="cs-meta-item">
+                <div class="meta-label">Type</div>
+                <div class="meta-val">Feature Addition · Google Pay · Android</div>
+            </div>
         </div>
-        <div class="hero-glow"></div>
-    </header>
+
+        <div class="cs-hero-visual">
+            <div class="premium-mockup">
+                <img src="Todays spend Gpay/camparsion/New feature added version.png" alt="GPay Today's Spend Indicator Dashboard Mockup">
+            </div>
+        </div>
+    </section>
 
     <main id="case-study" class="container">
         <!-- Overview Section -->
@@ -49,27 +268,7 @@
             </div>
         </section>
 
-        <!-- Project Meta Section -->
-        <section class="cs-decision-section fade-in" style="padding: 4rem 0;">
-            <div class="intro-grid" style="grid-template-columns: repeat(4, 1fr); gap: 2rem; text-align: center;">
-                <div class="intro-card" style="padding: 1.5rem;">
-                    <h4 style="font-size: 0.8rem; text-transform: uppercase; color: var(--text-secondary); margin-bottom: 0.5rem;">My Role</h4>
-                    <p style="font-weight: 600;">UX Designer</p>
-                </div>
-                <div class="intro-card" style="padding: 1.5rem;">
-                    <h4 style="font-size: 0.8rem; text-transform: uppercase; color: var(--text-secondary); margin-bottom: 0.5rem;">Project Type</h4>
-                    <p style="font-weight: 600;">Feature Addition</p>
-                </div>
-                <div class="intro-card" style="padding: 1.5rem;">
-                    <h4 style="font-size: 0.8rem; text-transform: uppercase; color: var(--text-secondary); margin-bottom: 0.5rem;">Duration</h4>
-                    <p style="font-weight: 600;">2 Weeks</p>
-                </div>
-                <div class="intro-card" style="padding: 1.5rem;">
-                    <h4 style="font-size: 0.8rem; text-transform: uppercase; color: var(--text-secondary); margin-bottom: 0.5rem;">Platform</h4>
-                    <p style="font-weight: 600;">Android (Mobile)</p>
-                </div>
-            </div>
-        </section>
+
 
         <!-- Research Section -->
         <section class="cs-empathy-section fade-in">
