@@ -1,12 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sensory-Friendly Routing Case Study</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Outfit:wght@300;400;500;600;700;800&family=DM+Sans:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;1,400&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Outfit:wght@300;400;500;600;700;800&family=DM+Sans:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;1,400&family=Roboto:wght@300;400;500;700&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="sensory-mapping.css">
     <style>
         /* ── CREATIVE UX DESIGN SYSTEM OVERRIDES (SENSORY ROUTING) ── */
@@ -16,12 +19,12 @@
         }
 
         /* Glassmorphic Cards & Grid Items */
-        .intro-card, 
-        .empathy-card, 
-        .persona-card-sensory, 
-        .decision-card-sensory, 
-        .flow-step, 
-        .stat-card, 
+        .intro-card,
+        .empathy-card,
+        .persona-card-sensory,
+        .decision-card-sensory,
+        .flow-step,
+        .stat-card,
         .future-card,
         .challenge-item-card {
             background: rgba(10, 10, 10, 0.5) !important;
@@ -34,12 +37,12 @@
         }
 
         /* Active Hover States with Calming Blue Accent Glows */
-        .intro-card:hover, 
-        .empathy-card:hover, 
-        .persona-card-sensory:hover, 
-        .decision-card-sensory:hover, 
-        .flow-step:hover, 
-        .stat-card:hover, 
+        .intro-card:hover,
+        .empathy-card:hover,
+        .persona-card-sensory:hover,
+        .decision-card-sensory:hover,
+        .flow-step:hover,
+        .stat-card:hover,
         .future-card:hover,
         .challenge-item-card:hover {
             transform: translateY(-4px) !important;
@@ -74,7 +77,7 @@
             transition: color 0.3s ease !important;
         }
 
-        .flow-step:hover + .flow-arrow {
+        .flow-step:hover+.flow-arrow {
             color: #0B56CF !important;
         }
 
@@ -95,8 +98,15 @@
             border: 2px solid rgba(255, 255, 255, 0.1) !important;
             box-shadow: 0 0 24px rgba(11, 86, 207, 0.4) !important;
         }
+        /* Fix Hero Layout Height Overlap with fixed Navbar */
+        .hero {
+            min-height: auto !important;
+            padding-top: 160px !important;
+            padding-bottom: 60px !important;
+        }
     </style>
 </head>
+
 <body>
     <div id="progress-bar"></div>
     <div class="cursor" id="cursor"></div>
@@ -110,8 +120,9 @@
     <header class="hero">
         <div class="hero-content">
             <h1 class="hero-title">Sensory-Friendly Routing</h1>
-            <p class="hero-subtitle">Shifting navigation from a speed-focused system to a comfort-driven experience, prioritizing predictability, accessibility, and emotional well-being throughout the journey.</p>
-            
+            <p class="hero-subtitle">Shifting navigation from a speed-focused system to a comfort-driven experience,
+                prioritizing predictability, accessibility, and emotional well-being throughout the journey.</p>
+
             <style>
                 .hero-meta-grid {
                     display: grid;
@@ -128,18 +139,22 @@
                     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
                     text-align: left;
                 }
+
                 .hero-meta-col {
                     border-right: 1px solid rgba(255, 255, 255, 0.05);
                     padding-right: 20px;
                     padding-left: 20px;
                 }
+
                 .hero-meta-col:first-child {
                     padding-left: 0;
                 }
+
                 .hero-meta-col:last-child {
                     border-right: none;
                     padding-right: 0;
                 }
+
                 .hero-meta-label {
                     font-size: 0.72rem;
                     color: #0B56CF;
@@ -149,6 +164,7 @@
                     display: block;
                     margin-bottom: 8px;
                 }
+
                 .hero-meta-val {
                     font-size: 0.95rem;
                     color: var(--text-primary);
@@ -156,6 +172,7 @@
                     line-height: 1.4;
                     display: block;
                 }
+
                 .hero-meta-sub {
                     font-size: 0.76rem;
                     color: var(--text-secondary);
@@ -163,18 +180,21 @@
                     display: block;
                     margin-top: 2px;
                 }
+
                 @media (max-width: 900px) {
                     .hero-meta-grid {
                         grid-template-columns: repeat(2, 1fr);
                         gap: 24px 20px;
                         padding: 24px;
                     }
+
                     .hero-meta-col {
                         border-right: none;
                         padding-right: 0;
                         padding-left: 0;
                     }
                 }
+
                 @media (max-width: 500px) {
                     .hero-meta-grid {
                         grid-template-columns: 1fr;
@@ -216,16 +236,26 @@
                 <div class="intro-left">
                     <span class="section-badge">Overview</span>
                     <h2 class="section-title-large">What is Sensory-Friendly Routing?</h2>
-                    <p class="intro-text">This project introduces a Sensory-Friendly Routing feature added directly into Google Maps. It helps neurodiverse users — including people with autism, sensory processing disorder, anxiety, and mobility challenges — navigate their daily journeys without sensory overload. Instead of routing based only on speed and distance, this feature considers noise levels, crowd density, rest stop availability, and lighting to find the calmest path possible.</p>
+                    <p class="intro-text">This project introduces a Sensory-Friendly Routing feature added directly into
+                        Google Maps. It helps neurodiverse users — including people with autism, sensory processing
+                        disorder, anxiety, and mobility challenges — navigate their daily journeys without sensory
+                        overload. Instead of routing based only on speed and distance, this feature considers noise
+                        levels, crowd density, rest stop availability, and lighting to find the calmest path possible.
+                    </p>
                 </div>
                 <div class="intro-right">
                     <div class="intro-card">
                         <h3>Why I Chose This</h3>
-                        <p>I chose this problem because 1 in 7 people globally have some form of disability, yet no major navigation app today considers their sensory needs. Google Maps tells you the fastest route. But for millions of neurodiverse users, the fastest route is rarely the right route. I wanted to design something that genuinely makes independent travel possible for people who are currently left out.</p>
+                        <p>I chose this problem because 1 in 7 people globally have some form of disability, yet no
+                            major navigation app today considers their sensory needs. Google Maps tells you the fastest
+                            route. But for millions of neurodiverse users, the fastest route is rarely the right route.
+                            I wanted to design something that genuinely makes independent travel possible for people who
+                            are currently left out.</p>
                     </div>
                     <div class="intro-card">
                         <h3>The Goal</h3>
-                        <p>My goal is to make everyday navigation calmer, more predictable, and genuinely accessible for neurodiverse users — without making them feel labelled or different from anyone else.</p>
+                        <p>My goal is to make everyday navigation calmer, more predictable, and genuinely accessible for
+                            neurodiverse users — without making them feel labelled or different from anyone else.</p>
                     </div>
                 </div>
             </div>
@@ -235,14 +265,15 @@
         <section class="cs-empathy-section fade-in">
             <span class="section-badge">User Research</span>
             <h2 class="section-title-large">Empathy Mapping</h2>
-            <p class="section-subtitle-text">Based on insights from research into neurodiverse user behaviour and accessibility studies.</p>
-            
+            <p class="section-subtitle-text">Based on insights from research into neurodiverse user behaviour and
+                accessibility studies.</p>
+
             <div class="empathy-grid">
                 <!-- Center Node -->
                 <div class="empathy-center">
                     <span>User</span>
                 </div>
-                
+
                 <!-- Thinks -->
                 <div class="empathy-card thoughts">
                     <div class="card-icon">💭</div>
@@ -254,7 +285,7 @@
                         <li>"I wish I could avoid that busy crossing near the market"</li>
                     </ul>
                 </div>
-                
+
                 <!-- Feels -->
                 <div class="empathy-card feelings">
                     <div class="card-icon">🤍</div>
@@ -266,7 +297,7 @@
                         <li>Relieved when a journey goes exactly as planned</li>
                     </ul>
                 </div>
-                
+
                 <!-- Says -->
                 <div class="empathy-card says">
                     <div class="card-icon">💬</div>
@@ -278,7 +309,7 @@
                         <li>"I stopped using Maps because it never considers how I experience things"</li>
                     </ul>
                 </div>
-                
+
                 <!-- Does -->
                 <div class="empathy-card does">
                     <div class="card-icon">🏃</div>
@@ -291,23 +322,28 @@
                     </ul>
                 </div>
             </div>
-            
+
             <div class="discovery-callout">
                 <div class="discovery-icon">💡</div>
                 <div class="discovery-content">
                     <h4>Key Discovery</h4>
-                    <p>Neurodiverse users spend more energy planning the journey than taking it. The stress starts before they even leave home.</p>
+                    <p>Neurodiverse users spend more energy planning the journey than taking it. The stress starts
+                        before they even leave home.</p>
                 </div>
             </div>
         </section>
 
         <!-- ── PERSONAS SECTION ── -->
-        <section class="cs-intro-section fade-in" style="border-top: 1px solid var(--border-color); padding-top: 6rem; padding-bottom: 6rem;">
-            <div class="cs-section-center" style="max-width: 1100px; margin: 0 auto; padding: 0 2rem; text-align: center;">
+        <section class="cs-intro-section fade-in"
+            style="border-top: 1px solid var(--border-color); padding-top: 6rem; padding-bottom: 6rem;">
+            <div class="cs-section-center"
+                style="max-width: 1100px; margin: 0 auto; padding: 0 2rem; text-align: center;">
                 <span class="section-badge">Meet the Users</span>
                 <h2 class="section-title-large" style="margin-bottom: 12px;">User <em>Personas</em></h2>
-                <p style="font-size:0.9rem;color:var(--text-secondary);margin-bottom:48px;line-height:1.7;max-width: 600px; margin-left: auto; margin-right: auto;">
-                    Synthesizing real-world needs, expectations, and challenges into core archetype profiles that direct our sensory navigation parameters.
+                <p
+                    style="font-size:0.9rem;color:var(--text-secondary);margin-bottom:48px;line-height:1.7;max-width: 600px; margin-left: auto; margin-right: auto;">
+                    Synthesizing real-world needs, expectations, and challenges into core archetype profiles that direct
+                    our sensory navigation parameters.
                 </p>
 
                 <style>
@@ -316,6 +352,7 @@
                         grid-template-columns: repeat(3, 1fr);
                         gap: 24px;
                     }
+
                     .persona-card-sensory {
                         background: var(--surface-color);
                         border: 1px solid var(--border-color);
@@ -327,11 +364,13 @@
                         gap: 16px;
                         transition: transform var(--transition), border-color var(--transition), box-shadow var(--transition);
                     }
+
                     .persona-card-sensory:hover {
                         transform: translateY(-4px);
                         border-color: #444;
                         box-shadow: 0 12px 32px rgba(255, 255, 255, 0.02);
                     }
+
                     .persona-avatar-sensory {
                         width: 60px;
                         height: 60px;
@@ -343,12 +382,14 @@
                         justify-content: center;
                         font-size: 1.6rem;
                     }
+
                     .persona-name-sensory {
                         font-family: var(--font-heading);
                         font-size: 1.35rem;
                         font-weight: 600;
                         color: var(--text-primary);
                     }
+
                     .persona-meta-sensory {
                         font-size: 0.72rem;
                         color: var(--text-secondary);
@@ -356,12 +397,14 @@
                         letter-spacing: 0.08em;
                         font-weight: 500;
                     }
+
                     .persona-text-sensory {
                         font-size: 0.88rem;
                         line-height: 1.6;
                         color: var(--text-secondary);
                         font-weight: 300;
                     }
+
                     @media (max-width: 900px) {
                         .personas-grid-sensory {
                             grid-template-columns: 1fr;
@@ -381,7 +424,9 @@
                             </div>
                         </div>
                         <p class="persona-text-sensory">
-                            Autistic software developer in Chennai. Plans every journey hours in advance because unexpected situations cause real anxiety. Needs to know exactly what a route will feel and look like before he ever leaves home.
+                            Autistic software developer in Chennai. Plans every journey hours in advance because
+                            unexpected situations cause real anxiety. Needs to know exactly what a route will feel and
+                            look like before he ever leaves home.
                         </p>
                     </div>
 
@@ -395,7 +440,9 @@
                             </div>
                         </div>
                         <p class="persona-text-sensory">
-                            Wheelchair user with chronic fatigue, working part time as a teacher. Knows a route is technically accessible but never knows if she will have anywhere to sit and rest along the way. Often abandons journeys because energy runs out with no rest stop in sight.
+                            Wheelchair user with chronic fatigue, working part time as a teacher. Knows a route is
+                            technically accessible but never knows if she will have anywhere to sit and rest along the
+                            way. Often abandons journeys because energy runs out with no rest stop in sight.
                         </p>
                     </div>
 
@@ -409,7 +456,9 @@
                             </div>
                         </div>
                         <p class="persona-text-sensory">
-                            Parent of an autistic child who handles all school runs and daily errands. Needs routes that avoid loud markets, construction noise, and visually overwhelming streets so her child does not get overwhelmed mid journey.
+                            Parent of an autistic child who handles all school runs and daily errands. Needs routes that
+                            avoid loud markets, construction noise, and visually overwhelming streets so her child does
+                            not get overwhelmed mid journey.
                         </p>
                     </div>
                 </div>
@@ -421,17 +470,24 @@
             <div class="decision-content-box">
                 <span class="section-badge">The Strategy</span>
                 <h2>What I Decided to Solve</h2>
-                <p>I introduced a Sensory Mode feature addition to Google Maps that gives neurodiverse users the ability to set their personal sensory preferences — noise, crowds, lighting, rest stops, and restroom access — and receive routes scored for comfort, not just speed. An AI layer learns preferences over time and provides real-time advance alerts during navigation so users are never caught off guard.</p>
+                <p>I introduced a Sensory Mode feature addition to Google Maps that gives neurodiverse users the ability
+                    to set their personal sensory preferences — noise, crowds, lighting, rest stops, and restroom access
+                    — and receive routes scored for comfort, not just speed. An AI layer learns preferences over time
+                    and provides real-time advance alerts during navigation so users are never caught off guard.</p>
             </div>
         </section>
 
         <!-- ── DESIGN DECISIONS SECTION ── -->
-        <section class="cs-decision-section fade-in" style="border-top: 1px solid var(--border-color); padding-top: 6rem; padding-bottom: 6rem;">
-            <div class="cs-section-center" style="max-width: 1000px; margin: 0 auto; padding: 0 2rem; text-align: center;">
+        <section class="cs-decision-section fade-in"
+            style="border-top: 1px solid var(--border-color); padding-top: 6rem; padding-bottom: 6rem;">
+            <div class="cs-section-center"
+                style="max-width: 1000px; margin: 0 auto; padding: 0 2rem; text-align: center;">
                 <span class="section-badge">The Strategy</span>
                 <h2 class="section-title-large" style="margin-bottom: 12px;">Design <em>Decisions</em></h2>
-                <p style="font-size:0.9rem;color:var(--text-secondary);margin-bottom:48px;line-height:1.7;max-width: 600px; margin-left: auto; margin-right: auto;">
-                    Architectural and experience design choices made to ensure safety, inclusion, and predictability during navigation without stigma.
+                <p
+                    style="font-size:0.9rem;color:var(--text-secondary);margin-bottom:48px;line-height:1.7;max-width: 600px; margin-left: auto; margin-right: auto;">
+                    Architectural and experience design choices made to ensure safety, inclusion, and predictability
+                    during navigation without stigma.
                 </p>
 
                 <style>
@@ -440,6 +496,7 @@
                         grid-template-columns: repeat(3, 1fr);
                         gap: 24px;
                     }
+
                     .decision-card-sensory {
                         background: var(--surface-color);
                         border: 1px solid var(--border-color);
@@ -451,10 +508,12 @@
                         gap: 12px;
                         transition: transform var(--transition), border-color var(--transition);
                     }
+
                     .decision-card-sensory:hover {
                         transform: translateY(-4px);
                         border-color: #444;
                     }
+
                     .decision-title-sensory {
                         font-family: var(--font-heading);
                         font-size: 1.15rem;
@@ -462,12 +521,14 @@
                         color: var(--text-primary);
                         line-height: 1.3;
                     }
+
                     .decision-text-sensory {
                         font-size: 0.88rem;
                         line-height: 1.6;
                         color: var(--text-secondary);
                         font-weight: 300;
                     }
+
                     @media (max-width: 900px) {
                         .decisions-grid-sensory {
                             grid-template-columns: 1fr;
@@ -479,31 +540,43 @@
                 <div class="decisions-grid-sensory">
                     <div class="decision-card-sensory">
                         <h3 class="decision-title-sensory">
-                            <span style="color: var(--text-secondary); font-weight: 400; font-size: 0.85rem; display: block; margin-bottom: 4px; text-transform: uppercase; letter-spacing: 0.05em;">Decision 1</span>
+                            <span
+                                style="color: var(--text-secondary); font-weight: 400; font-size: 0.85rem; display: block; margin-bottom: 4px; text-transform: uppercase; letter-spacing: 0.05em;">Decision
+                                1</span>
                             Sensory score instead of a label
                         </h3>
                         <p class="decision-text-sensory">
-                            I used a number out of 10 instead of labels like "autism-friendly route". Labels stigmatise users and make them feel different. A neutral score is universal — anyone can care about a quieter, calmer walk regardless of why they need it.
+                            I used a number out of 10 instead of labels like "autism-friendly route". Labels stigmatise
+                            users and make them feel different. A neutral score is universal — anyone can care about a
+                            quieter, calmer walk regardless of why they need it.
                         </p>
                     </div>
 
                     <div class="decision-card-sensory">
                         <h3 class="decision-title-sensory">
-                            <span style="color: var(--text-secondary); font-weight: 400; font-size: 0.85rem; display: block; margin-bottom: 4px; text-transform: uppercase; letter-spacing: 0.05em;">Decision 2</span>
+                            <span
+                                style="color: var(--text-secondary); font-weight: 400; font-size: 0.85rem; display: block; margin-bottom: 4px; text-transform: uppercase; letter-spacing: 0.05em;">Decision
+                                2</span>
                             Entry point on the directions page not settings
                         </h3>
                         <p class="decision-text-sensory">
-                            Users discover features when they need them most. The directions page is exactly the moment someone is thinking about their journey. Placing the toggle there means users find it naturally — not buried inside accessibility settings they may never visit.
+                            Users discover features when they need them most. The directions page is exactly the moment
+                            someone is thinking about their journey. Placing the toggle there means users find it
+                            naturally — not buried inside accessibility settings they may never visit.
                         </p>
                     </div>
 
                     <div class="decision-card-sensory">
                         <h3 class="decision-title-sensory">
-                            <span style="color: var(--text-secondary); font-weight: 400; font-size: 0.85rem; display: block; margin-bottom: 4px; text-transform: uppercase; letter-spacing: 0.05em;">Decision 3</span>
+                            <span
+                                style="color: var(--text-secondary); font-weight: 400; font-size: 0.85rem; display: block; margin-bottom: 4px; text-transform: uppercase; letter-spacing: 0.05em;">Decision
+                                3</span>
                             Alerts fire at 300 metres minimum
                         </h3>
                         <p class="decision-text-sensory">
-                            A last second warning when the user is already near a disturbance creates panic instead of preventing it. Firing alerts at least 300 metres ahead gives calm, unhurried time to read, decide, and choose — without rushing or feeling pressured.
+                            A last second warning when the user is already near a disturbance creates panic instead of
+                            preventing it. Firing alerts at least 300 metres ahead gives calm, unhurried time to read,
+                            decide, and choose — without rushing or feeling pressured.
                         </p>
                     </div>
                 </div>
@@ -514,8 +587,9 @@
         <section class="cs-flow-section fade-in">
             <span class="section-badge">User Journey</span>
             <h2 class="section-title-large">The Sensory User Flow</h2>
-            <p class="section-subtitle-text">A step-by-step walk-through of the sensory navigation experience from start to destination.</p>
-            
+            <p class="section-subtitle-text">A step-by-step walk-through of the sensory navigation experience from start
+                to destination.</p>
+
             <div class="flow-container">
                 <!-- Flow Item 1 -->
                 <div class="flow-step">
@@ -525,9 +599,9 @@
                         <p>User opens the standard map interface.</p>
                     </div>
                 </div>
-                
+
                 <div class="flow-arrow">↓</div>
-                
+
                 <!-- Flow Item 2 -->
                 <div class="flow-step">
                     <div class="flow-number">01</div>
@@ -536,9 +610,9 @@
                         <p>User searches for their target location.</p>
                     </div>
                 </div>
-                
+
                 <div class="flow-arrow">↓</div>
-                
+
                 <!-- Flow Item 3 -->
                 <div class="flow-step">
                     <div class="flow-number">02</div>
@@ -547,9 +621,9 @@
                         <p>Feature is accessible directly on the directions configuration page.</p>
                     </div>
                 </div>
-                
+
                 <div class="flow-arrow">↓</div>
-                
+
                 <!-- Flow Item 4 -->
                 <div class="flow-step">
                     <div class="flow-number">03</div>
@@ -559,20 +633,21 @@
                         <div class="flow-meta-badge">AI learns preferences silently on first use</div>
                     </div>
                 </div>
-                
+
                 <div class="flow-arrow">↓</div>
-                
+
                 <!-- Flow Item 5 -->
                 <div class="flow-step">
                     <div class="flow-number">04</div>
                     <div class="flow-content">
                         <h4>View Sensory- Routes</h4>
-                        <p> a sensory-friendly path based on your preferences and the default Google Maps route — so you can choose what works best for you.</p>
+                        <p> a sensory-friendly path based on your preferences and the default Google Maps route — so you
+                            can choose what works best for you.</p>
                     </div>
                 </div>
-                
+
                 <div class="flow-arrow">↓</div>
-                
+
                 <!-- Flow Item 6 -->
                 <div class="flow-step">
                     <div class="flow-number">05</div>
@@ -581,16 +656,16 @@
                         <p>User accepts route and begins active turn-by-turn guidance.</p>
                     </div>
                 </div>
-                
+
                 <div class="flow-arrow">↓</div>
-                
+
                 <!-- Flow Item 7 -->
                 <div class="flow-step active-ai">
                     <div class="flow-number">06</div>
                     <div class="flow-content">
                         <h4>AI Real-time Monitoring</h4>
                         <p>System tracks conditions dynamically ahead of user position.</p>
-                        
+
                         <!-- Alert Split Box -->
                         <div class="flow-split-box">
                             <div class="split-header">
@@ -605,9 +680,9 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="flow-arrow">↓</div>
-                
+
                 <!-- Flow Item 8 -->
                 <div class="flow-step">
                     <div class="flow-number">07</div>
@@ -622,9 +697,12 @@
         <!-- ── VISUAL IDENTITY ── -->
         <section class="cs-section fade-in" style="padding: 6rem 0 2rem;">
             <div class="cs-section-center" style="max-width: 1000px; margin: 0 auto; padding: 0 2rem;">
-                <h2 class="section-title-large" style="text-align: center; margin-bottom: 12px;">Typography & <em>Color</em></h2>
-                <p style="font-size:0.9rem;color:var(--text-secondary);margin-bottom:32px;line-height:1.7;text-align: center; max-width: 600px; margin-left: auto; margin-right: auto;">
-                    The aesthetic foundation of Sensory-Friendly Routing, designed for high-contrast visibility and calming, accessible navigation tones.
+                <h2 class="section-title-large" style="text-align: center; margin-bottom: 12px;">Typography &
+                    Color</h2>
+                <p
+                    style="font-size:0.9rem;color:var(--text-secondary);margin-bottom:32px;line-height:1.7;text-align: center; max-width: 600px; margin-left: auto; margin-right: auto;">
+                    The aesthetic foundation of Sensory-Friendly Routing, designed for high-contrast visibility and
+                    calming, accessible navigation tones.
                 </p>
 
                 <div class="visual-identity-container">
@@ -638,9 +716,12 @@
                                 <div class="type-tag">Primary Sans</div>
                             </div>
                             <div class="type-sample-inline">
-                                <div class="type-alphabet" style="font-family: 'Roboto', sans-serif; letter-spacing: 0.08em;">ABCDEFGHIJKLMNOPQRSTUVWXYZ</div>
+                                <div class="type-alphabet"
+                                    style="font-family: 'Roboto', sans-serif; letter-spacing: 0.08em;">
+                                    ABCDEFGHIJKLMNOPQRSTUVWXYZ</div>
                                 <div class="type-desc">
-                                    Designed for maximum legibility and clean geometric sizing to ensure absolute clarity during active real-time navigation.
+                                    Designed for maximum legibility and clean geometric sizing to ensure absolute
+                                    clarity during active real-time navigation.
                                 </div>
                             </div>
                         </div>
@@ -661,8 +742,12 @@
                         <div>
                             <h5 class="palette-heading">Color Theme & Accents</h5>
                             <div class="palette-secondary">
-                                <div class="swatch-small" style="background: #000000; color: #FFFFFF; border: 1px solid var(--border-color);">BG: #000000</div>
-                                <div class="swatch-small" style="background: #FFFFFF; color: #000000; border: 1px solid var(--border-color);">Text: #FFFFFF</div>
+                                <div class="swatch-small"
+                                    style="background: #000000; color: #FFFFFF; border: 1px solid var(--border-color);">
+                                    BG: #000000</div>
+                                <div class="swatch-small"
+                                    style="background: #FFFFFF; color: #000000; border: 1px solid var(--border-color);">
+                                    Text: #FFFFFF</div>
                                 <div class="swatch-small" style="background: #BBD5FF; color: #000000;">#BBD5FF</div>
                                 <div class="swatch-small" style="background: #053A8F; color: #FFFFFF;">#053A8F</div>
                             </div>
@@ -684,11 +769,14 @@
                 <div class="screen-text">
                     <span class="screen-number">01</span>
                     <h2>Entry Point <span class="highlight">(Sensory Toggle)</span></h2>
-                    <p>A new “Sensory” option is introduced directly within the directions interface of Google Maps. Placing the feature here ensures discoverability at the moment users are actively planning a journey, rather than hiding it inside settings.</p>
+                    <p>A new “Sensory” option is introduced directly within the directions interface of Google Maps.
+                        Placing the feature here ensures discoverability at the moment users are actively planning a
+                        journey, rather than hiding it inside settings.</p>
                 </div>
                 <div class="screen-visual">
                     <div class="mockup-placeholder">
-                        <img src="Sensory mapping/Sensory Toggle/Sensory Toggle.png" alt="Sensory Toggle Screen" style="width: 100%; height: 100%; object-fit: cover;">
+                        <img src="Sensory mapping/Sensory Toggle/Sensory Toggle.png" alt="Sensory Toggle Screen"
+                            style="width: 100%; height: 100%; object-fit: cover;">
                     </div>
                 </div>
             </div>
@@ -700,11 +788,14 @@
                 <div class="screen-text">
                     <span class="screen-number">02</span>
                     <h2>Sensory Preferences</h2>
-                    <p>Users can quickly personalize their experience by selecting sensitivity levels for noise, crowd density, accessibility, and rest stops. The design keeps interactions simple and optional, reducing cognitive load while still allowing meaningful customization.</p>
+                    <p>Users can quickly personalize their experience by selecting sensitivity levels for noise, crowd
+                        density, accessibility, and rest stops. The design keeps interactions simple and optional,
+                        reducing cognitive load while still allowing meaningful customization.</p>
                 </div>
                 <div class="screen-visual">
                     <div class="mockup-placeholder">
-                        <img src="Sensory mapping/Sensory Toggle/Sensory Preferences.png" alt="Sensory Preferences Screen" style="width: 100%; height: 100%; object-fit: cover;">
+                        <img src="Sensory mapping/Sensory Toggle/Sensory Preferences.png"
+                            alt="Sensory Preferences Screen" style="width: 100%; height: 100%; object-fit: cover;">
                     </div>
                 </div>
             </div>
@@ -716,11 +807,14 @@
                 <div class="screen-text">
                     <span class="screen-number">03</span>
                     <h2>Route Selection <span class="highlight">(Sensory Scoring)</span></h2>
-                    <p>Routes are presented with a sensory score alongside time and distance, allowing users to balance comfort and efficiency. Instead of labeling routes, a neutral scoring system makes the feature inclusive and accessible to all users.</p>
+                    <p>Routes are presented with a sensory score alongside time and distance, allowing users to balance
+                        comfort and efficiency. Instead of labeling routes, a neutral scoring system makes the feature
+                        inclusive and accessible to all users.</p>
                 </div>
                 <div class="screen-visual">
                     <div class="mockup-placeholder">
-                        <img src="Sensory mapping/Sensory Toggle/Route Selection.png" alt="Route Selection Screen" style="width: 100%; height: 100%; object-fit: cover;">
+                        <img src="Sensory mapping/Sensory Toggle/Route Selection.png" alt="Route Selection Screen"
+                            style="width: 100%; height: 100%; object-fit: cover;">
                     </div>
                 </div>
             </div>
@@ -732,14 +826,20 @@
                 <div class="screen-text">
                     <span class="screen-number">04</span>
                     <h2>Map with Environmental Overlays</h2>
-                    <p>The map view is enhanced with visual overlays indicating quiet zones, busy areas, and available rest points. This helps users build a mental model of their journey and reduces uncertainty before and during navigation.</p>
+                    <p>The map view is enhanced with visual overlays indicating quiet zones, busy areas, and available
+                        rest points. This helps users build a mental model of their journey and reduces uncertainty
+                        before and during navigation.</p>
                 </div>
                 <div class="screen-visual dual-mockups">
                     <div class="mockup-placeholder">
-                        <img src="Sensory mapping/Sensory Toggle/Map with Environmental Overlays 1.png" alt="Map with Environmental Overlays Screen 1" style="width: 100%; height: 100%; object-fit: cover;">
+                        <img src="Sensory mapping/Sensory Toggle/Map with Environmental Overlays 1.png"
+                            alt="Map with Environmental Overlays Screen 1"
+                            style="width: 100%; height: 100%; object-fit: cover;">
                     </div>
                     <div class="mockup-placeholder">
-                        <img src="Sensory mapping/Sensory Toggle/Map with Environmental Overlays 2.png" alt="Map with Environmental Overlays Screen 2" style="width: 100%; height: 100%; object-fit: cover;">
+                        <img src="Sensory mapping/Sensory Toggle/Map with Environmental Overlays 2.png"
+                            alt="Map with Environmental Overlays Screen 2"
+                            style="width: 100%; height: 100%; object-fit: cover;">
                     </div>
                 </div>
             </div>
@@ -751,11 +851,15 @@
                 <div class="screen-text">
                     <span class="screen-number">05</span>
                     <h2>Navigation with Smart Alerts</h2>
-                    <p>During navigation, the system provides proactive alerts about upcoming crowded or noisy areas. Users are offered optional detours, ensuring they remain in control while being supported by real-time insights.</p>
+                    <p>During navigation, the system provides proactive alerts about upcoming crowded or noisy areas.
+                        Users are offered optional detours, ensuring they remain in control while being supported by
+                        real-time insights.</p>
                 </div>
                 <div class="screen-visual">
                     <div class="mockup-placeholder">
-                        <img src="Sensory mapping/Sensory Toggle/Navigation with Smart Alerts.png" alt="Navigation with Smart Alerts Screen" style="width: 100%; height: 100%; object-fit: cover;">
+                        <img src="Sensory mapping/Sensory Toggle/Navigation with Smart Alerts.png"
+                            alt="Navigation with Smart Alerts Screen"
+                            style="width: 100%; height: 100%; object-fit: cover;">
                     </div>
                 </div>
             </div>
@@ -765,7 +869,7 @@
         <section class="cs-challenges-section fade-in">
             <span class="section-badge">Problem Space & Solutions</span>
             <h2 class="section-title-large">Real Problems. Smart Solutions.</h2>
-            
+
             <div class="challenges-grid">
                 <!-- Column 1: Problems -->
                 <div class="challenge-column problems">
@@ -773,7 +877,7 @@
                         <span class="status-indicator error"></span>
                         <h3>The Challenges</h3>
                     </div>
-                    
+
                     <div class="challenge-item-card">
                         <span class="badge-num">P1</span>
                         <p>Google Maps routes only by speed and distance, ignoring sensory needs.</p>
@@ -799,14 +903,14 @@
                         <p>No navigation app today learns and adapts to an individual's sensory profile.</p>
                     </div>
                 </div>
-                
+
                 <!-- Column 2: Solutions -->
                 <div class="challenge-column solutions">
                     <div class="column-header">
                         <span class="status-indicator success"></span>
                         <h3>The Interventions</h3>
                     </div>
-                    
+
                     <div class="challenge-item-card">
                         <span class="badge-num">S1</span>
                         <p>Added sensory scoring to every route showing comfort level out of 10.</p>
@@ -839,7 +943,7 @@
         <section class="cs-impact-section fade-in">
             <span class="section-badge">Impact</span>
             <h2 class="section-title-large">Metrics That Matter</h2>
-            
+
             <div class="stats-grid">
                 <div class="stat-card">
                     <div class="stat-value">9/10</div>
@@ -858,13 +962,15 @@
                     <p class="stat-label">To activate emergency Calm Mode</p>
                 </div>
             </div>
-            
+
             <div class="impact-insights">
                 <div class="insight-item">
-                    <strong>Inclusive Design:</strong> The sensory score replaced stigmatising labels, making the feature feel inclusive for all users.
+                    <strong>Inclusive Design:</strong> The sensory score replaced stigmatising labels, making the
+                    feature feel inclusive for all users.
                 </div>
                 <div class="insight-item">
-                    <strong>Empowerment:</strong> Advance alerts gave users control over their journey instead of forcing them to react to surprise stressors.
+                    <strong>Empowerment:</strong> Advance alerts gave users control over their journey instead of
+                    forcing them to react to surprise stressors.
                 </div>
             </div>
         </section>
@@ -873,41 +979,46 @@
         <section class="cs-learnings-section fade-in">
             <span class="section-badge">Reflection</span>
             <h2 class="section-title-large">What I Learned</h2>
-            
+
             <div class="learnings-list">
                 <div class="learning-item">
                     <div class="learning-num">01</div>
                     <div class="learning-body">
                         <h4>Predictability is a functional need, not a preference</h4>
-                        <p>For neurodiverse users, uncertainty is a real barrier to travel, making predictable routes an absolute necessity.</p>
+                        <p>For neurodiverse users, uncertainty is a real barrier to travel, making predictable routes an
+                            absolute necessity.</p>
                     </div>
                 </div>
                 <div class="learning-item">
                     <div class="learning-num">02</div>
                     <div class="learning-body">
                         <h4>Edge cases are the most important design work</h4>
-                        <p>The calm mode SOS button taught me that designing for extreme stress moments often defines the core product utility.</p>
+                        <p>The calm mode SOS button taught me that designing for extreme stress moments often defines
+                            the core product utility.</p>
                     </div>
                 </div>
                 <div class="learning-item">
                     <div class="learning-num">03</div>
                     <div class="learning-body">
                         <h4>AI should be invisible</h4>
-                        <p>The best AI experience is when users never actively think about the algorithms, but simply notice the app keeps matching their requirements better over time.</p>
+                        <p>The best AI experience is when users never actively think about the algorithms, but simply
+                            notice the app keeps matching their requirements better over time.</p>
                     </div>
                 </div>
                 <div class="learning-item">
                     <div class="learning-num">04</div>
                     <div class="learning-body">
                         <h4>Entry points matter as much as features</h4>
-                        <p>Moving the sensory toggle to the active directions page instead of hiding it in deep settings completely changed its discoverability and rate of use.</p>
+                        <p>Moving the sensory toggle to the active directions page instead of hiding it in deep settings
+                            completely changed its discoverability and rate of use.</p>
                     </div>
                 </div>
                 <div class="learning-item">
                     <div class="learning-num">05</div>
                     <div class="learning-body">
                         <h4>Designing for the underserved helps everyone</h4>
-                        <p>Designing for one specific underserved group almost always ends up improving the universal usability and experience for all users.</p>
+                        <p>Designing for one specific underserved group almost always ends up improving the universal
+                            usability and experience for all users.</p>
                     </div>
                 </div>
             </div>
@@ -917,32 +1028,37 @@
         <section class="cs-future-section fade-in">
             <span class="section-badge">Next Steps</span>
             <h2 class="section-title-large">Future Improvements</h2>
-            
+
             <div class="future-grid">
                 <div class="future-card">
                     <span class="future-icon">🚌</span>
                     <h4>Public Transit Integration</h4>
-                    <p>Extend sensory scoring to public transit, tracking crowd levels and noise factors at each individual stop.</p>
+                    <p>Extend sensory scoring to public transit, tracking crowd levels and noise factors at each
+                        individual stop.</p>
                 </div>
                 <div class="future-card">
                     <span class="future-icon">⏰</span>
                     <h4>Time-of-Day Recommendations</h4>
-                    <p>Suggest optimal departure times (e.g. leaving 20 mins later to boost comfort score from 5/10 to 9/10).</p>
+                    <p>Suggest optimal departure times (e.g. leaving 20 mins later to boost comfort score from 5/10 to
+                        9/10).</p>
                 </div>
                 <div class="future-card">
                     <span class="future-icon">👥</span>
                     <h4>Caregiver Companion Mode</h4>
-                    <p>Allow a family member or support worker to monitor the traveler's journey and alerts remotely.</p>
+                    <p>Allow a family member or support worker to monitor the traveler's journey and alerts remotely.
+                    </p>
                 </div>
                 <div class="future-card">
                     <span class="future-icon">📣</span>
                     <h4>Sensory Reporting Network</h4>
-                    <p>Enable user flags to report temporary noise zones or new rest spots in real time, similar to Waze.</p>
+                    <p>Enable user flags to report temporary noise zones or new rest spots in real time, similar to
+                        Waze.</p>
                 </div>
                 <div class="future-card">
                     <span class="future-icon">🗣️</span>
                     <h4>Voice-Only Guidance</h4>
-                    <p>Develop a voice-only mode for users who struggle to interface with screens during sensory overload.</p>
+                    <p>Develop a voice-only mode for users who struggle to interface with screens during sensory
+                        overload.</p>
                 </div>
             </div>
         </section>
@@ -978,11 +1094,11 @@
         // Cursor logic
         const cursor = document.getElementById('cursor');
         const follower = document.getElementById('cursorFollower');
-        
+
         document.addEventListener('mousemove', (e) => {
             cursor.style.left = e.clientX + 'px';
             cursor.style.top = e.clientY + 'px';
-            
+
             setTimeout(() => {
                 follower.style.left = e.clientX + 'px';
                 follower.style.top = e.clientY + 'px';
@@ -1004,4 +1120,5 @@
         });
     </script>
 </body>
+
 </html>
