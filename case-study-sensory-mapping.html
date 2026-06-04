@@ -8,6 +8,94 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Outfit:wght@300;400;500;600;700;800&family=DM+Sans:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;1,400&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="sensory-mapping.css">
+    <style>
+        /* ── CREATIVE UX DESIGN SYSTEM OVERRIDES (SENSORY ROUTING) ── */
+        :root {
+            --glow-blue: rgba(11, 86, 207, 0.15);
+            --glow-hover: rgba(11, 86, 207, 0.4);
+        }
+
+        /* Glassmorphic Cards & Grid Items */
+        .intro-card, 
+        .empathy-card, 
+        .persona-card-sensory, 
+        .decision-card-sensory, 
+        .flow-step, 
+        .stat-card, 
+        .future-card,
+        .challenge-item-card {
+            background: rgba(10, 10, 10, 0.5) !important;
+            border: 1px solid rgba(255, 255, 255, 0.05) !important;
+            backdrop-filter: blur(16px) !important;
+            -webkit-backdrop-filter: blur(16px) !important;
+            border-radius: 20px !important;
+            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1) !important;
+            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.2) !important;
+        }
+
+        /* Active Hover States with Calming Blue Accent Glows */
+        .intro-card:hover, 
+        .empathy-card:hover, 
+        .persona-card-sensory:hover, 
+        .decision-card-sensory:hover, 
+        .flow-step:hover, 
+        .stat-card:hover, 
+        .future-card:hover,
+        .challenge-item-card:hover {
+            transform: translateY(-4px) !important;
+            border-color: var(--glow-hover) !important;
+            box-shadow: 0 12px 32px rgba(11, 86, 207, 0.1) !important;
+        }
+
+        /* Callout Box Overrides */
+        .decision-content-box,
+        .discovery-callout {
+            background: rgba(10, 10, 10, 0.5) !important;
+            border: 1px solid rgba(255, 255, 255, 0.05) !important;
+            border-left: 4px solid #0B56CF !important;
+            backdrop-filter: blur(16px) !important;
+            -webkit-backdrop-filter: blur(16px) !important;
+            border-radius: 0 20px 20px 0 !important;
+            padding: 36px !important;
+            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.2) !important;
+        }
+
+        /* Flow Arrow & Stepper Customizations */
+        .flow-number {
+            color: #0B56CF !important;
+            font-family: var(--font-heading) !important;
+            font-weight: 700 !important;
+        }
+
+        .flow-arrow {
+            color: rgba(255, 255, 255, 0.1) !important;
+            font-size: 1.5rem !important;
+            margin: 12px auto !important;
+            transition: color 0.3s ease !important;
+        }
+
+        .flow-step:hover + .flow-arrow {
+            color: #0B56CF !important;
+        }
+
+        .active-ai {
+            border-color: rgba(11, 86, 207, 0.4) !important;
+            box-shadow: 0 0 24px rgba(11, 86, 207, 0.15) !important;
+        }
+
+        .flow-split-box {
+            background: rgba(20, 20, 20, 0.8) !important;
+            border: 1px solid rgba(255, 255, 255, 0.05) !important;
+            border-radius: 12px !important;
+        }
+
+        /* Empathy Map Center Glow */
+        .empathy-center {
+            background: linear-gradient(135deg, #0b56cf, #053a8f) !important;
+            border: 2px solid rgba(255, 255, 255, 0.1) !important;
+            box-shadow: 0 0 24px rgba(11, 86, 207, 0.4) !important;
+        }
+    </style>
 </head>
 <body>
     <div id="progress-bar"></div>
@@ -104,11 +192,11 @@
                 <div class="hero-meta-col">
                     <span class="hero-meta-label">Tools</span>
                     <span class="hero-meta-val">Figma</span>
-                    <span class="hero-meta-sub">FigJam Workspace</span>
+                    <span class="hero-meta-sub">Workspace</span>
                 </div>
                 <div class="hero-meta-col">
                     <span class="hero-meta-label">Duration</span>
-                    <span class="hero-meta-val">8 Weeks</span>
+                    <span class="hero-meta-val">2 Weeks</span>
                     <span class="hero-meta-sub">Research & Iteration</span>
                 </div>
                 <div class="hero-meta-col">
@@ -571,12 +659,12 @@
                             </div>
                         </div>
                         <div>
-                            <h5 class="palette-heading">Secondary & Functional Colors</h5>
+                            <h5 class="palette-heading">Color Theme & Accents</h5>
                             <div class="palette-secondary">
-                                <div class="swatch-small" style="background: #FFFFFF; color: #000000; border: 1px solid var(--border-color);">#FFFFFF</div>
+                                <div class="swatch-small" style="background: #000000; color: #FFFFFF; border: 1px solid var(--border-color);">BG: #000000</div>
+                                <div class="swatch-small" style="background: #FFFFFF; color: #000000; border: 1px solid var(--border-color);">Text: #FFFFFF</div>
                                 <div class="swatch-small" style="background: #BBD5FF; color: #000000;">#BBD5FF</div>
                                 <div class="swatch-small" style="background: #053A8F; color: #FFFFFF;">#053A8F</div>
-                                <div class="swatch-small" style="background: #121212; color: #FFFFFF; border: 1px solid var(--border-color);">#121212</div>
                             </div>
                         </div>
                     </div>
