@@ -140,12 +140,35 @@
         .cs-hero-visual {
             position: absolute;
             right: 5%;
-            top: 50%;
+            top: 54%;
             transform: translateY(-50%) perspective(1500px) rotateY(-15deg) rotateX(5deg);
-            width: 340px;
+            width: 300px;
             z-index: 10;
             transition: all 0.5s ease;
         }
+
+        /* Prevent mockup overlapping with fixed navbar or being cut off at bottom on typical laptop/desktop viewport heights */
+        @media (max-height: 900px) {
+            .cs-hero-visual {
+                width: 275px;
+                top: 56%;
+            }
+        }
+
+        @media (max-height: 800px) {
+            .cs-hero-visual {
+                width: 250px;
+                top: 57%;
+            }
+        }
+
+        @media (max-height: 700px) {
+            .cs-hero-visual {
+                width: 220px;
+                top: 58%;
+            }
+        }
+
 
         .premium-mockup {
             position: relative;
