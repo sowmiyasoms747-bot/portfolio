@@ -292,6 +292,218 @@
         </section>
 
 
+        <!-- User Persona Section -->
+        <section class="cs-intro-section fade-in" style="border-top: 1px solid var(--border-color); padding-top: 6rem; padding-bottom: 6rem;">
+            <div style="max-width: 1100px; margin: 0 auto; padding: 0 2rem;">
+                <span class="section-badge" style="display: block; text-align: center; margin-bottom: 12px;">Target User Profile</span>
+                <h2 class="section-title-large" style="text-align: center; margin-bottom: 12px;">User <em>Persona</em></h2>
+                <p style="font-size: 0.95rem; color: var(--text-secondary); margin-bottom: 56px; line-height: 1.7; max-width: 600px; margin-left: auto; margin-right: auto; text-align: center;">
+                    Meet Meera, the user archetype representing young professionals who rely heavily on quick digital payments but struggle with passive daily budget tracking.
+                </p>
+
+                <style>
+                    .persona-layout {
+                        display: grid;
+                        grid-template-columns: 1.1fr 2fr;
+                        gap: 40px;
+                        align-items: start;
+                    }
+
+                    .persona-profile-card {
+                        background: rgba(10, 10, 10, 0.5);
+                        border: 1px solid rgba(255, 255, 255, 0.05);
+                        backdrop-filter: blur(16px);
+                        -webkit-backdrop-filter: blur(16px);
+                        border-radius: 24px;
+                        padding: 40px;
+                        display: flex;
+                        flex-direction: column;
+                        align-items: center;
+                        text-align: center;
+                        gap: 20px;
+                        box-shadow: 0 4px 24px rgba(0, 0, 0, 0.2);
+                        border-top: 3px solid #1A73E9; /* GPay Blue Accent top border */
+                    }
+
+                    .persona-profile-avatar {
+                        width: 90px;
+                        height: 90px;
+                        border-radius: 50%;
+                        background: linear-gradient(135deg, #1A73E9, #34A853);
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        font-size: 2.8rem;
+                        box-shadow: 0 8px 24px rgba(26, 115, 233, 0.3);
+                    }
+
+                    .persona-profile-name {
+                        font-family: var(--font-heading);
+                        font-size: 1.8rem;
+                        font-weight: 600;
+                        color: var(--text-primary);
+                        margin: 0;
+                    }
+
+                    .persona-profile-meta {
+                        font-size: 0.85rem;
+                        color: var(--text-secondary);
+                        text-transform: uppercase;
+                        letter-spacing: 0.1em;
+                        font-weight: 500;
+                    }
+
+                    .persona-profile-quote {
+                        font-size: 1.05rem;
+                        line-height: 1.6;
+                        color: var(--text-primary);
+                        font-style: italic;
+                        font-weight: 300;
+                        margin-top: 10px;
+                        border-top: 1px solid rgba(255, 255, 255, 0.08);
+                        padding-top: 20px;
+                    }
+
+                    .persona-details-grid {
+                        display: grid;
+                        grid-template-columns: 1fr 1fr;
+                        gap: 24px;
+                    }
+
+                    .persona-detail-card {
+                        background: rgba(10, 10, 10, 0.5);
+                        border: 1px solid rgba(255, 255, 255, 0.05);
+                        backdrop-filter: blur(16px);
+                        -webkit-backdrop-filter: blur(16px);
+                        border-radius: 20px;
+                        padding: 32px;
+                        box-shadow: 0 4px 24px rgba(0, 0, 0, 0.2);
+                        transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+                    }
+
+                    .persona-detail-card:hover {
+                        transform: translateY(-4px);
+                        border-color: rgba(26, 115, 233, 0.3);
+                        box-shadow: 0 12px 32px rgba(26, 115, 233, 0.05);
+                    }
+
+                    .persona-detail-card h3 {
+                        font-family: var(--font-heading);
+                        font-size: 1.25rem;
+                        font-weight: 600;
+                        margin-bottom: 16px;
+                        display: flex;
+                        align-items: center;
+                        gap: 10px;
+                        color: var(--text-primary);
+                    }
+
+                    .persona-detail-card h3 .icon {
+                        font-size: 1.5rem;
+                    }
+
+                    .persona-detail-card ul {
+                        list-style: none;
+                        display: flex;
+                        flex-direction: column;
+                        gap: 12px;
+                    }
+
+                    .persona-detail-card ul li {
+                        font-size: 0.95rem;
+                        color: var(--text-secondary);
+                        line-height: 1.5;
+                        font-weight: 300;
+                        position: relative;
+                        padding-left: 20px;
+                    }
+
+                    .persona-detail-card ul li::before {
+                        content: '•';
+                        position: absolute;
+                        left: 0;
+                        color: rgba(26, 115, 233, 0.6);
+                    }
+
+                    .persona-detail-card.pain-points ul li::before {
+                        color: #EA4335; /* Red indicator for pain points */
+                    }
+
+                    .persona-detail-card.needs ul li::before {
+                        color: #34A853; /* Green indicator for needs */
+                    }
+
+                    @media (max-width: 900px) {
+                        .persona-layout {
+                            grid-template-columns: 1fr;
+                            gap: 32px;
+                        }
+                        .persona-details-grid {
+                            grid-template-columns: 1fr;
+                            gap: 20px;
+                        }
+                    }
+                </style>
+
+                <div class="persona-layout">
+                    <!-- Left Side: Profile -->
+                    <div class="persona-profile-card">
+                        <div class="persona-profile-avatar">👩‍💻</div>
+                        <div>
+                            <h3 class="persona-profile-name">Meera, 26</h3>
+                            <span class="persona-profile-meta">Chennai · Software Engineer</span>
+                        </div>
+                        <p class="persona-profile-quote">
+                            "I make decent money, but multiple small UPI transactions add up so fast that I only realize I've overspent when my bank balance runs low."
+                        </p>
+                    </div>
+
+                    <!-- Right Side: Grid of Details -->
+                    <div class="persona-details-grid">
+                        <!-- Thinks Card -->
+                        <div class="persona-detail-card">
+                            <h3><span class="icon">💭</span> Thinks</h3>
+                            <ul>
+                                <li>"Where did all my money go this month?"</li>
+                                <li>"I make decent money but I'm always broke by month end"</li>
+                                <li>"I should track my spending but it's too much effort"</li>
+                            </ul>
+                        </div>
+
+                        <!-- Feels Card -->
+                        <div class="persona-detail-card">
+                            <h3><span class="icon">🧠</span> Feels</h3>
+                            <ul>
+                                <li>Anxious checking bank balance</li>
+                                <li>Guilty after impulse purchases</li>
+                                <li>Overwhelmed by detailed budgeting apps</li>
+                            </ul>
+                        </div>
+
+                        <!-- Pain Points Card -->
+                        <div class="persona-detail-card pain-points">
+                            <h3><span class="icon">🛑</span> Pain Points</h3>
+                            <ul>
+                                <li>Makes multiple small UPI payments daily without realising total</li>
+                                <li>Only notices overspending when balance is low</li>
+                                <li>Doesn't want a complex budgeting app, just quick awareness</li>
+                            </ul>
+                        </div>
+
+                        <!-- Needs Card -->
+                        <div class="persona-detail-card needs">
+                            <h3><span class="icon">🎯</span> Needs</h3>
+                            <ul>
+                                <li>A simple, effortless way to see today's spending at a glance</li>
+                                <li>No manual entry, no setup</li>
+                                <li>Something that works passively in the background</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
 
         <!-- Research Section -->
         <section class="cs-empathy-section fade-in">
