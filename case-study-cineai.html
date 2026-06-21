@@ -2891,58 +2891,51 @@
     <!-- ── OVERVIEW ── -->
     <div class="cs-section">
       <style>
-        .overview-grid {
-          background: #0a0a0a;
-          border: 1px solid #222;
-          border-radius: var(--radius-lg);
-          padding: 60px 48px;
+        .intro-grid {
           display: grid;
-          grid-template-columns: 1.15fr 1.15fr 0.85fr;
-          gap: 48px;
+          grid-template-columns: 1.25fr 1fr;
+          gap: 80px;
           max-width: 1100px;
           margin: 0 auto;
           align-items: start;
         }
 
-        .overview-col {
+        .intro-left {
           display: flex;
           flex-direction: column;
           gap: 16px;
         }
 
-        .overview-col:not(:last-child) {
-          border-right: 1px solid #222;
-          padding-right: 48px;
+        .intro-left .intro-text {
+          font-size: 1.15rem;
+          line-height: 1.8;
+          color: var(--text-mid);
+          font-weight: 300;
         }
 
-        .overview-label {
-          font-size: 0.72rem;
-          font-weight: 600;
-          color: var(--text-soft);
-          letter-spacing: 0.14em;
-          text-transform: uppercase;
+        .intro-right {
           display: flex;
-          align-items: center;
-          gap: 10px;
+          flex-direction: column;
+          gap: 40px;
         }
 
-        .overview-label::before {
-          content: '';
-          width: 20px;
-          height: 1px;
-          background: var(--text-soft);
-          display: inline-block;
+        .intro-card {
+          background: var(--bg-surface);
+          border: 1px solid var(--border);
+          padding: 40px;
+          border-radius: var(--radius-lg);
+          box-shadow: var(--shadow-md);
         }
 
-        .overview-title {
+        .intro-card h3 {
           font-family: 'Outfit', sans-serif;
-          font-size: 1.8rem;
+          font-size: 1.5rem;
           font-weight: 500;
           color: var(--text-dark);
-          line-height: 1.25;
+          margin-bottom: 16px;
         }
 
-        .overview-text {
+        .intro-card p {
           font-size: 1.05rem;
           line-height: 1.7;
           color: var(--text-mid);
@@ -2950,49 +2943,39 @@
         }
 
         @media (max-width: 992px) {
-          .overview-grid {
+          .intro-grid {
             grid-template-columns: 1fr;
-            gap: 40px;
-            padding: 40px 32px;
-          }
-
-          .overview-col:not(:last-child) {
-            border-right: none;
-            border-bottom: 1px solid #222;
-            padding-right: 0;
-            padding-bottom: 40px;
+            gap: 48px;
+            padding: 0 24px;
           }
         }
       </style>
 
-      <div class="overview-grid reveal">
-        <!-- Column 1: The Project -->
-        <div class="overview-col">
-          <div class="overview-label">The Project</div>
-          <h2 class="overview-title">What is BookMyShow AI Smart Booking?</h2>
-          <p class="overview-text">
+      <div class="intro-grid reveal">
+        <div class="intro-left">
+          <span class="section-label">Overview</span>
+          <h2 class="cs-title" style="margin-bottom: 16px;">What is BookMyShow AI Smart Booking?</h2>
+          <p class="intro-text">
             This project introduces an AI-powered pre-booking system that allows users to book tickets even before they
             go live. Users can set their preferences in advance, and the AI automatically books tickets at the right
             moment.
           </p>
         </div>
 
-        <!-- Column 2: The Context -->
-        <div class="overview-col">
-          <div class="overview-label">The Context</div>
-          <h2 class="overview-title">Why did I choose this?</h2>
-          <p class="overview-text">
-            For high-demand releases — especially movies featuring stars like Vijay or Ajith — tickets sell out within seconds of going live. Fans who desperately want to watch their favourite hero's first day first show are left with nothing, not even a second or third day slot for weeks. The current BookMyShow system forces every user to compete at the exact same second, and most lose.
-          </p>
-        </div>
+        <div class="intro-right">
+          <div class="intro-card">
+            <h3>Why did I choose this?</h3>
+            <p>
+              For high-demand releases — especially movies featuring stars like Vijay or Ajith — tickets sell out within seconds of going live. Fans who desperately want to watch their favourite hero's first day first show are left with nothing, not even a second or third day slot for weeks. The current BookMyShow system forces every user to compete at the exact same second, and most lose.
+            </p>
+          </div>
 
-        <!-- Column 3: The Objective -->
-        <div class="overview-col">
-          <div class="overview-label">The Objective</div>
-          <h2 class="overview-title">Goal</h2>
-          <p class="overview-text" style="font-size: 1.2rem; line-height: 1.65; color: #ffffff; font-style: italic; font-weight: 300; position: relative; padding-left: 20px; border-left: 2px solid #ffffff; margin-top: 8px;">
-            "My goal is to make booking simple, smart, and stress-free for everyone."
-          </p>
+          <div class="intro-card">
+            <h3>Goal</h3>
+            <p style="font-size: 1.2rem; line-height: 1.65; color: #ffffff; font-style: italic; font-weight: 300; position: relative; padding-left: 20px; border-left: 2px solid #ffffff; margin-top: 8px;">
+              "My goal is to make booking simple, smart, and stress-free for everyone."
+            </p>
+          </div>
         </div>
       </div>
     </div>
